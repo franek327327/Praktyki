@@ -351,7 +351,7 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 
 
         <div id="stopka">
-            PLAN LEKCJI &copy; Praktyka gr2 Filip
+            PLAN LEKCJI &copy; Praktyka gr2 
         </div>
 
 
