@@ -1,0 +1,192 @@
+body {
+    background-color: #B3DBE1;
+    font-family: 'DM Serif Display', serif;
+    font-family: 'PT Sans', sans-serif;
+}
+
+#container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#logo {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#bcolor {
+    text-align: center;
+    background-color: #465973;
+    padding: 30px 60px 30px 60px;
+}
+
+h1 {
+    font-size: 39px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+h2 {
+    font-size: 39px;
+}
+
+
+/* Logowanie */
+
+.logAnim
+{
+	animation-name: zaloguj;
+	animation-duration: 0.7s;
+	animation-timing-function: ease-out;
+	overflow: hidden
+}
+.logRev
+{
+	animation-name: zalogujRev;
+	animation-duration: 0.7s;
+	animation-timing-function: ease-out;
+	overflow: hidden;
+}
+.regAnim
+{
+	animation-name: rejestracja;
+	animation-duration: 0.7s;
+	animation-timing-function: ease-out;
+	overflow: hidden
+}
+.regRev
+{
+	animation-name: rejestracjaRev;
+	animation-duration: 0.7s;
+	animation-timing-function: ease-out;
+	overflow: hidden;
+}
+
+
+.log-btn:hover,
+.reg-btn:hover {
+    cursor: pointer;
+    color: rgb(157, 163, 157);
+}
+
+.log-btn:active,
+.reg-btn:active {
+    color: rgb(0, 0, 0);
+}
+
+.log-btn,
+.reg-btn {
+    color: rgb(245, 234, 234);
+    text-decoration: none;
+    font-size: 40px;
+    display: block;
+
+}
+
+.logo-detail-act {
+    display: block;
+}
+
+input {
+    display: block;
+    margin: auto;
+    border-radius: 5px;
+    border: 0;
+    height: 18px;
+    margin-top: 5px;
+    box-shadow: 0 0 5px black;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid;
+    box-shadow: 0 0 5px black;
+}
+
+button {
+    margin-top: 10px;
+	font-weight: bold;
+}
+
+p {
+    margin-top: 20px;
+}
+a
+{
+	color:white;
+}
+
+.zobaczHaslo {
+    position: relative;
+    left: 220px;
+    bottom: 15px;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 3px;
+}
+input[type="radio"]
+{
+	display: inline;
+	box-shadow: 0 0 0;
+}
+label
+{
+	color: white;
+}
+.error
+{
+	color:red;
+}
+
+
+/* Koncepcja */
+
+.siła {
+    max-height: 5px;
+    max-width: 200px;
+    background-color: aquamarine;
+}
+
+#stopka {
+    position: fixed;
+    height: 40px;
+    width: 100%;
+    right: 0.5px;
+    background-color: #465973;
+    bottom: 0;
+    text-align: center;
+    font-size: 19px;
+    color: white;
+}
+
+@keyframes zaloguj {
+  from 
+  {
+	  height: 0;
+	  opacity: 0;
+  }
+  to 
+  {
+	  height: 175px;
+	  opacity: 1;
+  }
+}
+
+@keyframes rejestracja {
+  from 
+  {
+	  height: 0;
+	  opacity: 0;
+  }
+  to 
+  {
+	  height:387px;
+	  opacity: 1;
+  }
+}

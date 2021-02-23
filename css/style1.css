@@ -1,0 +1,82 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #465973;
+    font-family: 'DM Serif Display', serif;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.blink-text-menu {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+	margin-top: 350px;
+}
+
+.blink-text-menu li a {
+    position: relative;
+    display: flex;
+    padding: 6px;
+    color: white;
+    font-family: Lato, sans-serif;
+    text-decoration: none;
+    text-align: center;
+}
+
+.blink-text-menu li a span {
+    position: relative;
+    overflow: hidden;
+    transition: 0.6s;
+}
+
+.blink-text-menu li a span .out {
+    display: inline-flex;
+}
+
+.blink-text-menu li a span .in {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.blink-text-menu li a:hover span .out {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.blink-text-menu li a:hover span .in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+a:link {
+    color: white;
+}
+
+#stopka {
+    position: fixed;
+    height: 40px;
+    width: 100%;
+    right: 0.5px;
+    background-color: #465973;
+    bottom: 0;
+    text-align: center;
+    font-size: 19px;
+    color: white;
+}
+
+h1 {
+    font-size: 39px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+	top:5%;
+	position:absolute;
+}
+/*Animacja*/
+
+@keyframes zaloguj {
+  from {display:none}
+  to {background-color: yellow;}
+}
