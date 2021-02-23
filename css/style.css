@@ -164,10 +164,6 @@ label
     font-size: 19px;
     color: white;
 }
-.hello
-{
-
-}
 
 @keyframes zaloguj {
   from 
@@ -194,4 +190,3 @@ label
 	  opacity: 1;
   }
 }
-hello
