@@ -81,16 +81,28 @@ h1 {
 
 img
 {
-margin: 100px 0 0 100px;
+margin: 10% 0 0 10%;
 max-width: 15%;
 }
 
-.profilText
+.profilText 
 {
-    display: contents;
-    font-size: 4vw;
+    display: block;
+    font-size: 3vw;
+    float: left;
     color: #465973;
-    font-family: 'Dosis', sans-serif;
+    margin: 8% 0 0 30%;
+    position: absolute;
+}
+
+#profil p
+{
+    display: block;
+    font-size: 3vw;
+    float: left;
+    color: #465973;
+    margin: 4% 0 0 10%;
+    position: absolute;
 }
 
 #profil
