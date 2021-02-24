@@ -129,6 +129,10 @@ if(!isset($_SESSION['zalogowany']))
         </table>
     </div>
 
+    <div id="Klasy">
+        <a id="closeKlasy">&#10006;</a>
+        <p> Dane o Klasie tu będą</p>
+    </div>
     <div id="stopka">
         PLAN LEKCJI &copy; Praktyka gr2
     </div>
