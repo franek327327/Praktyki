@@ -1,17 +1,14 @@
 body {
-    display: flex;
     justify-content: center;
     align-items: center;
     background: #465973;
-    font-family: 'DM Serif Display', serif;
     font-family: 'PT Sans', sans-serif;
 }
 
 .blink-text-menu {
-    display: flex;
-    flex-direction: column;
     list-style-type: none;
-	margin-top: 350px;
+    width: fit-content;
+    margin: 20% auto auto auto;
 }
 
 .blink-text-menu li a {
@@ -72,7 +69,6 @@ h1 {
     text-align: center;
     color: rgb(255, 255, 255);
 	top:5%;
-	position:absolute;
 }
 /*Animacja*/
 
@@ -80,3 +76,94 @@ h1 {
   from {display:none}
   to {background-color: yellow;}
 }
+
+/* Profil nauczyciela */
+
+img
+{
+margin: 100px 0 0 100px;
+max-width: 15%;
+}
+
+.profilText
+{
+    display: contents;
+    font-size: 4vw;
+    color: #465973;
+    font-family: 'Dosis', sans-serif;
+}
+
+#profil
+{
+background-color:white;
+width:97%;
+max-width: 1000px;
+height:95%;
+border-radius: 5px;
+margin: 0;
+position: absolute;
+top: 48%;
+left: 50%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+display: none;
+background-color: #B3DBE1;
+}
+
+#closeProfil
+{
+float:right;
+font-size: 40px;
+font-weight: bold;
+font-family: 'Dosis', sans-serif;
+margin: 0 16px 0 0;
+}
+
+#closeProfil:hover
+{
+cursor: pointer;
+}
+
+.profilAnim
+{
+    animation-name: ProfilAnim;
+	animation-duration: 0.7s;
+	animation-timing-function: ease-out;
+	overflow: hidden;
+}
+
+.profilAnimRev
+{
+    animation-name: ProfilAnimRev;
+	animation-duration: 0.7s;
+	animation-timing-function: ease-out;
+	overflow: hidden;
+    animation-fill-mode: forwards;
+}
+
+
+
+@keyframes ProfilAnim {
+    from 
+    {
+        height: 0;
+        opacity: 0;
+    }
+    to 
+    {
+        height: 95%;
+        opacity: 1;
+    }
+  }
+  @keyframes ProfilAnimRev {
+    from 
+    {
+        height: 95%;
+        opacity: 1;
+    }
+    to 
+    {
+        height: 0;
+        opacity: 0; 
+    }
+  }
