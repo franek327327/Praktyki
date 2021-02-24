@@ -5,9 +5,9 @@ if(!isset($_SESSION['zalogowany']))
 {
 	header('Location:../index.php');
 	exit();
-}
+} 
 
-?>
+?> 
 
 
 <!DOCTYPE HTML>
@@ -42,7 +42,7 @@ if(!isset($_SESSION['zalogowany']))
 
     </ul>
     <div id="profil">
-        <a id="closeProfil">x</a>
+        <a id="closeProfil">&#10006;</a>
         <img src="../img/avatar.png">
         <h1 class="profilText">
             <?php

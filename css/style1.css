@@ -77,7 +77,7 @@ h1 {
   to {background-color: yellow;}
 }
 
-/* Profil nauczyciela */
+/* Profil */
 
 img
 {
@@ -141,7 +141,7 @@ cursor: pointer;
     animation-fill-mode: forwards;
 }
 
-
+/*Animacje*/
 
 @keyframes ProfilAnim {
     from 
