@@ -15,7 +15,7 @@ if(!isset($_SESSION['zalogowany']))
 
 <head>
     <meta charset="utf-8" />
-    <title>plan lekcji</title>
+    <title>Nauczyciel</title>
     <link rel="stylesheet" href="../css/style1.css">
     <script src="../js/app1.js" defer></script>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
