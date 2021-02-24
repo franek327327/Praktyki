@@ -77,65 +77,6 @@ h1 {
   to {background-color: yellow;}
 }
 
-/* Profil */
-
-img
-{
-margin: 10% 0 0 10%;
-max-width: 15%;
-}
-
-.profilText 
-{
-    display: block;
-    font-size: 3vw;
-    float: left;
-    color: #465973;
-    margin: 8% 0 0 30%;
-    position: absolute;
-}
-
-#profil p
-{
-    display: block;
-    font-size: 3vw;
-    float: left;
-    color: #465973;
-    margin: 4% 0 0 10%;
-    position: absolute;
-}
-
-#profil
-{
-background-color:white;
-width:97%;
-max-width: 1000px;
-height:95%;
-border-radius: 5px;
-margin: 0;
-position: absolute;
-top: 48%;
-left: 50%;
--ms-transform: translate(-50%, -50%);
-transform: translate(-50%, -50%);
-display: none;
-background-color: #B3DBE1;
-}
-
-#closeProfil
-{
-float:right;
-font-size: 40px;
-font-weight: bold;
-font-family: 'Dosis', sans-serif;
-margin: 0 16px 0 0;
-}
-
-#closeProfil:hover
-{
-cursor: pointer;
-}
-
 .profilAnim
 {
     animation-name: ProfilAnim;
@@ -152,6 +93,46 @@ cursor: pointer;
 	overflow: hidden;
     animation-fill-mode: forwards;
 }
+
+
+/*Uczeń i Nauczyciel*/
+
+.tab-contents
+{
+background-color:white;
+width:97%;
+max-width: 1000px;
+height:95%;
+border-radius: 5px;
+margin: 0;
+position: absolute;
+top: 48%;
+left: 50%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+display: none;
+background-color: #B3DBE1;
+}
+.tab-content{
+    display: none;
+}
+.tab-content-active {
+    display: block;
+}
+.tab-el {
+    background: var(--color);
+    border-radius: 15px 15px 0 0;
+    transition: 0.5s background-color;
+    background-image: linear-gradient(var(--color) calc(100% - 10px), rgba(0,0,0,0.5));
+    margin-right:2px;
+    transition: 0.1s all;
+}
+.tab-el-active {
+    background: var(--color-active);
+    box-shadow: none;
+    margin-left:0;
+}
+
 
 /*Animacje*/
 

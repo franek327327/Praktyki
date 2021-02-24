@@ -29,7 +29,7 @@ blinkTextMenuLinks.forEach(function(link) {
 });
 
 // Profil
-
+/*
 const profil = document.querySelector("#profil");
 const profilShowBtn = document.querySelector("#showProfil");
 const profilCloseBtn = document.querySelector("#closeProfil");
@@ -47,3 +47,42 @@ profilCloseBtn.addEventListener("click", function() {
 	profil.classList.add("profilAnimRev");
     profil.classList.remove("profilAnim");
 });
+*/
+
+ const buttons = document.querySelectorAll(".tab-el");
+
+ for(const btn of buttons){
+     
+     btn.addEventListener("click", function(){
+
+        /* let tabs = document.querySelector(".tab-el-active");
+        
+        if(tabs){
+            tabs.classList.remove("tab-el-active");   
+        }
+        btn.classList.toggle("tab-el-active"); */
+        const contentHref = btn.children[0].getAttribute("href");
+        const content = document.querySelector(contentHref);
+        const contentAll = document.querySelectorAll(".tab-content");
+        for(const contest of contentAll){
+            contest.classList.remove("tab-content-active");
+        }
+        content.classList.add("tab-content-active");
+        
+        const contener = document.querySelector(".tab-contents")
+        contener.style.display = "block";
+	    contener.classList.add("profilAnim");
+        contener.classList.remove("profilAnimRev");
+     });
+        const contener = document.querySelector(".tab-contents");
+        const zamknij = document.querySelectorAll(".close");
+    for(const cls of zamknij){
+        cls.addEventListener("click", function(){
+            const contentAll = document.querySelectorAll(".tab-content");
+            contentAll.classList.remove("tab-content-active");
+            btn.classList.toggle("tab-el-active");
+            contener.style.display = "none";
+	        contener.classList.add("profilAnimRev");
+            contener.classList.remove("profilAnim");
+        })}
+ }

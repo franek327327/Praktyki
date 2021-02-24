@@ -42,7 +42,7 @@ if(!isset($_SESSION['zalogowany']))
 
     </ul>
     <div id="profil">
-        <a id="closeProfil">&#10006;</a>
+        <a id="closeProfil">✖</a>
         <img src="../img/avatar.png">
         <h1 class="profilText">
             <?php

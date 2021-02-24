@@ -1,11 +1,11 @@
 <?php
-session_start();
+/*session_start();
 
 if(!isset($_SESSION['zalogowany']))
 {
 	header('Location:../index.php');
 	exit();
-}
+}*/
 
 ?>
 
@@ -28,17 +28,25 @@ if(!isset($_SESSION['zalogowany']))
 
     <h1>Platforma Szkolna - Uczeń</h1>
    <div id="Menu">
-    <ul class="blink-text-menu">
-        <li><a href="#profil">Profil</a></li>
-        <li><a href="#Plan">Plan</a></li>
-        <li><a href="#Klasa">Klasy</a></li>
-		<li><a href="procesWylogowania.php">Wyloguj</a></li>
+    <ul class="blink-text-menu tab">
+        <li class="tab-el">
+            <a href="#profil">Profil</a>
+        </li>
+        <li class="tab-el">
+            <a href="#plan">Plan</a>
+        </li>
+        <li class="tab-el">
+            <a href="#Klasy">Klasy</a>
+        </li>
+		<li class="tab-el">
+            <a href="procesWylogowania.php">Wyloguj</a>
+        </li>
 
     </ul>
     </div>
-
-    <div id="profil">
-        <a id="closeProfil">&#10006;</a>
+<div class="tab-contents">
+    <div class="tab-content" id="profil">
+        <a class="close">✖</a>
         <img src="../img/avatar.png">
         <h1 class="profilText">
         <?php
@@ -47,8 +55,8 @@ if(!isset($_SESSION['zalogowany']))
         </h1>
     </div>
 
-    <div id="plan">
-        <a id="closePlan">&#10016;</a>
+    <div class="tab-content" id="plan">
+        <a class="close">&#10016;</a>
         <table>
             <thead>
             <tr>
@@ -129,14 +137,16 @@ if(!isset($_SESSION['zalogowany']))
         </table>
     </div>
 
-    <div id="Klasy">
-        <a id="closeKlasy">&#10006;</a>
+    <div class="tab-content" id="Klasy">
+        <a class="close">&#10006;</a>
         <p> Dane o Klasie tu będą</p>
     </div>
+</div>
     <div id="stopka">
         PLAN LEKCJI &copy; Praktyka gr2
     </div>
-    </div>
+    
+
 </body>
 
 </html>
