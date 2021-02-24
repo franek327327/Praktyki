@@ -17,12 +17,7 @@ buttonLogowanie.addEventListener("click", function() {
 
 });
 buttonRejestracja.addEventListener("click", function() {
-
-	src="index.php";
-	console.log(ileBld);
 	
-	
-
     rejestracja.style.display = "block";
 	logowanie.classList.remove(".logAnim");
 	rejestracja.classList.add("regAnim");

@@ -101,8 +101,8 @@ if (isset($_POST['emailReg']))
 			{
 				//Czy mail istnieje
 				$rezultat = $polaczenie->query("SELECT id FROM uczniowie WHERE email='$email'");
-				
-				if(!$rezultat) throw new Exception($polaczenie->error);
+				$rezultat2 = $polaczenie->query("SELECT id FROM nauczyciele WHERE email='$email'");
+				if(!$rezultat && !$rezultat2) throw new Exception($polaczenie->error);
 				
 				$ileMaili = $rezultat->num_rows;
 				if($ileMaili>0)
@@ -113,8 +113,8 @@ if (isset($_POST['emailReg']))
 				
 				//czy login istnieje
 				$rezultat = $polaczenie->query("SELECT id FROM uczniowie WHERE login='$login'");
-				
-				if(!$rezultat) throw new Exception($polaczenie->error);
+				$rezultat2 = $polaczenie->query("SELECT id FROM nauczyciele WHERE login='$login'");
+				if(!$rezultat && !$rezultat2) throw new Exception($polaczenie->error);
 				
 				$ileLogin = $rezultat->num_rows;
 				if($ileLogin>0)
@@ -124,7 +124,8 @@ if (isset($_POST['emailReg']))
 				}
 				if($ok==true)
 				{
-					
+					if($_POST['uN']=="uczen")
+					{
 					if($polaczenie->query("INSERT INTO uczniowie VALUES (NULL, '$login', '$haslo1', '$email', NULL, '$imie', '$nazwisko', '$adres')"))
 					{
 						$_SESSION['rejestracjaUdana']=true;
@@ -133,6 +134,19 @@ if (isset($_POST['emailReg']))
 					{
 						throw new Exception($polaczenie->error);
 					}
+					}else if($_POST['uN']=="nauczyciel")
+					{
+						if($polaczenie->query("INSERT INTO nauczyciele VALUES (NULL, '$login', '$haslo1', '$email', NULL, '$imie', '$nazwisko', '$adres')"))
+					{
+						$_SESSION['rejestracjaUdana']=true;
+						$_SESSION['rejestracjaUdana2']=true;
+						
+					}else
+					{
+						throw new Exception($polaczenie->error);
+					}
+					}
+					
 				}
 				$polaczenie->close();
 			}
@@ -143,27 +157,32 @@ if (isset($_POST['emailReg']))
 			echo '<br>'.$e;
 		}
 		
-		if(isset($_SESSION['rejestracjaUdana']) && $_SESSION['rejestracjaUdana']==true)
+		
+
+
+header('Location:index.php');	
+}
+
+if(!isset($_SESSION['rejestracjaUdana2']) && isset($_SESSION['rejestracjaUdana']))
 {
-	echo "Rejestracja udana, możesz zalogować się na twoje konto";
+	echo "Zarejestrowano pomyślnie! Możesz zalogować się na swoje konto!";
 	unset($_SESSION['rejestracjaUdana']);
 }
-	
+if(isset($_SESSION['rejestracjaUdana2']) && isset($_SESSION['rejestracjaUdana']))
+{
+	unset($_SESSION['rejestracjaUdana2']);
 }
-$ileBlad = count($_SESSION);
+
+
 
 if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 {
+	
 	header('Location:php/nauczyciel.php');
 	exit();
 }
 ?>
-<script type="text/javascript">
- 
- var ileBld = '<?php echo $ileBlad; ?>';
- 
- 
-</script>
+
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
