@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -49,6 +50,18 @@ if(!isset($_SESSION['zalogowany']))
             echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
             ?>
         </h1>
+        <br><br>
+        <p>Klasa: 
+            <?php
+            if(isset($_SESSION['klasa']))
+            {
+            echo $_SESSION['klasa'];
+            }else
+            {
+                echo '<a href="#">Dołącz do klasy</a>';
+            }
+            ?>
+        </p>
     </div>
 
 
