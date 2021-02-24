@@ -42,6 +42,9 @@ mysqli_real_escape_string($polaczenie,$haslo))))
 		$_SESSION['login'] = $wiersz['login'];
 		$_SESSION['klasa'] = $wiersz['klasa'];
 		$_SESSION['email'] = $wiersz['email'];
+		$_SESSION['imie'] = $wiersz['imie'];
+		$_SESSION['nazwisko'] = $wiersz['nazwisko'];
+		$_SESSION['adres'] = $wiersz['adres'];
 		
 		$rezultat->close();
 		header('Location:nauczyciel.php');

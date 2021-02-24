@@ -174,6 +174,8 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
     <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=PT+Sans&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="container">
@@ -351,7 +353,7 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 
 
         <div id="stopka">
-            PLAN LEKCJI &copy; Praktyka gr2 Filip
+            PLAN LEKCJI &copy; Praktyka gr2
         </div>
 
 

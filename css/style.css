@@ -26,9 +26,10 @@ body {
 }
 
 h1 {
-    font-size: 39px;
+    font-size: 45px;
     text-align: center;
     color: rgb(255, 255, 255);
+    
 }
 
 h2 {
@@ -45,26 +46,12 @@ h2 {
 	animation-timing-function: ease-out;
 	overflow: hidden
 }
-.logRev
-{
-	animation-name: zalogujRev;
-	animation-duration: 0.7s;
-	animation-timing-function: ease-out;
-	overflow: hidden;
-}
 .regAnim
 {
 	animation-name: rejestracja;
 	animation-duration: 0.7s;
 	animation-timing-function: ease-out;
 	overflow: hidden
-}
-.regRev
-{
-	animation-name: rejestracjaRev;
-	animation-duration: 0.7s;
-	animation-timing-function: ease-out;
-	overflow: hidden;
 }
 
 
@@ -190,3 +177,5 @@ label
 	  opacity: 1;
   }
 }
+
+

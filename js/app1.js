@@ -27,3 +27,23 @@ blinkTextMenuLinks.forEach(function(link) {
         link.append(span);
     });
 });
+
+// Profil
+
+const profil = document.querySelector("#profil");
+const profilShowBtn = document.querySelector("#showProfil");
+const profilCloseBtn = document.querySelector("#closeProfil");
+
+profilShowBtn.addEventListener("click", function() {
+
+    profil.style.display = "block";
+	profil.classList.add("profilAnim");
+    profil.classList.remove("profilAnimRev");
+});
+
+profilCloseBtn.addEventListener("click", function() {
+
+    profil.style.display = "block";
+	profil.classList.add("profilAnimRev");
+    profil.classList.remove("profilAnim");
+});

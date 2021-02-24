@@ -7,9 +7,7 @@ buttonLogowanie.addEventListener("click", function() {
 
     logowanie.style.display = "block";
 	logowanie.classList.add("logAnim");
-	logowanie.classList.remove("logRev");
 	rejestracja.classList.remove("regAnim");
-	rejestracja.classList.add("regRev");
 	
 
     if (rejestracja.style.display == "block") 
@@ -26,9 +24,7 @@ buttonRejestracja.addEventListener("click", function() {
 	
 
     rejestracja.style.display = "block";
-	logowanie.classList.add("logRev");
 	logowanie.classList.remove(".logAnim");
-	rejestracja.classList.remove("regRev");
 	rejestracja.classList.add("regAnim");
 
     if (logowanie.style.display == "block") 
