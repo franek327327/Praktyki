@@ -191,6 +191,7 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
     <link rel="stylesheet" href="css/style.css">
     <script src="js/app.js" defer></script>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=PT+Sans&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -203,7 +204,7 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
         <h1>Platforma Szkolna - Projekt</h1>
 
         <div id="logo">
-            <h2>Logowanie:</h2>
+            <h2 class="logowanie-text">Logowanie:</h2>
 
 
             <div id="bcolor">
@@ -362,7 +363,6 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 							?>
                             <input type="submit" value="Zarejestruj się">
 						</form>
-                        <div class="siła"></div>
                     </div>
 
             </div>
