@@ -132,6 +132,9 @@ background-color: #B3DBE1;
     box-shadow: none;
     margin-left:0;
 }
+.close{
+    text-decoration: none;
+}
 
 
 /*Animacje*/
@@ -160,3 +163,4 @@ background-color: #B3DBE1;
         opacity: 0; 
     }
   }
+

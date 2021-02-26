@@ -31,38 +31,51 @@ if(!isset($_SESSION['zalogowany']))
     <h1>Platforma Szkolna - Nauczyciel</h1>
 
     
-
-    <ul class="blink-text-menu">
-        <li><a href="#" id="showProfil">Profil</a></li>
-        <li><a href="#">Uczniowie</a></li>
-        <li><a href="#">Klasy</a></li>
-        <li><a href="#">Kalendarium</a></li>
-        <li><a href="#">Słownik</a></li>
-		<li><a href="procesWylogowania.php">Wyloguj</a></li>
-
+<div id="menu">
+    <ul class="blink-text-menu tab">
+        <li class="tab-el">
+            <a href="#profil">Profil</a>
+        </li>
+        <li class="tab-el">
+            <a href="#uczniowie">Uczniowie</a>
+        </li>
+        <li class="tab-el">
+            <a href="#klasy">Klasy</a>
+        </li>
+        <li class="tab-el">
+            <a href="#plan">Kalendarium</a>
+        </li>
+        <li class="tab-el">
+            <a href="#lekcje">Lekcje</a>
+        </li>
+		<li class="tab-el">
+            <a href="procesWylogowania.php">Wyloguj</a>
+        </li>
+</div>
     </ul>
-    <div id="profil">
-        <a id="closeProfil">✖</a>
-        <img src="../img/avatar.png">
-        <h1 class="profilText">
-            <?php
-            echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
-            ?>
-        </h1>
-        <br><br>
-        <p>Klasa: 
-            <?php
-            if(isset($_SESSION['klasa']))
-            {
-            echo $_SESSION['klasa'];
-            }else
-            {
-                echo '<a href="#">Dołącz do klasy</a>';
-            }
-            ?>
-        </p>
-    </div>
-
+    <div class="tab-contents">
+        <div class="tab-content" id="profil">
+            <a class="close">✖</a>
+            <img src="../img/avatar.png">
+            <h1 class="profilText">
+                <?php
+                echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
+                ?>
+            </h1>
+            <br><br>
+            <p>Klasa: 
+                <?php
+                if(isset($_SESSION['klasa']))
+                {
+                echo $_SESSION['klasa'];
+                }else
+                {
+                    echo '<a href="#">Dołącz do klasy</a>';
+                }
+                ?>
+            </p>
+        </div>
+    </div>          
 
     <div id="stopka">
         PLAN LEKCJI &copy; Praktyka gr2

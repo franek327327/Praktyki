@@ -3,6 +3,7 @@ const logowanie = document.querySelector(".log");
 const rejestracja = document.querySelector(".reg");
 const buttonRejestracja = document.querySelector(".reg-btn");
 
+
 buttonLogowanie.addEventListener("click", function() {
 
     logowanie.style.display = "block";

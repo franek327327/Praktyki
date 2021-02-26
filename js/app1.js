@@ -52,15 +52,8 @@ profilCloseBtn.addEventListener("click", function() {
  const buttons = document.querySelectorAll(".tab-el");
 
  for(const btn of buttons){
-     
-     btn.addEventListener("click", function(){
-
-        /* let tabs = document.querySelector(".tab-el-active");
-        
-        if(tabs){
-            tabs.classList.remove("tab-el-active");   
-        }
-        btn.classList.toggle("tab-el-active"); */
+    
+    btn.addEventListener("click", function(){
         const contentHref = btn.children[0].getAttribute("href");
         const content = document.querySelector(contentHref);
         const contentAll = document.querySelectorAll(".tab-content");
@@ -74,15 +67,15 @@ profilCloseBtn.addEventListener("click", function() {
 	    contener.classList.add("profilAnim");
         contener.classList.remove("profilAnimRev");
      });
-        const contener = document.querySelector(".tab-contents");
-        const zamknij = document.querySelectorAll(".close");
-    for(const cls of zamknij){
-        cls.addEventListener("click", function(){
-            const contentAll = document.querySelectorAll(".tab-content");
-            contentAll.classList.remove("tab-content-active");
-            btn.classList.toggle("tab-el-active");
-            contener.style.display = "none";
-	        contener.classList.add("profilAnimRev");
-            contener.classList.remove("profilAnim");
-        })}
+   
+ }
+
+ const closet = document.querySelectorAll(".close");
+
+ for(const cls of closet){
+    cls.addEventListener("click", function(){
+        const contener = document.querySelector(".tab-contents")
+	    contener.classList.remove("profilAnim");
+        contener.classList.add("profilAnimRev");
+    })
  }
