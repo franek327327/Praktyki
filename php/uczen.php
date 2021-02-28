@@ -1,11 +1,11 @@
 <?php
-/*session_start();
+session_start();
 
 if(!isset($_SESSION['zalogowany']))
 {
 	header('Location:../index.php');
 	exit();
-}*/
+}
 
 ?>
 
@@ -53,11 +53,23 @@ if(!isset($_SESSION['zalogowany']))
             echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
         ?>
         </h1>
+    <p>Klasa: 
+        <?php
+        if(isset($_SESSION['klasa']))
+         {
+         echo $_SESSION['klasa'];
+        }else
+        {
+            echo '<p> Przejdź do zakładki Klasy aby dołączyć do klasy </p>';
+        } 
+        ?>
+                
+     </p>
     </div>
 
     <div class="tab-content" id="plan">
-        <a class="close">&#10016;</a>
-        <table>
+        <a class="close">✖</a>
+        <table class="plan">
             <thead>
             <tr>
                 <th></th>
@@ -138,8 +150,20 @@ if(!isset($_SESSION['zalogowany']))
     </div>
 
     <div class="tab-content" id="Klasy">
-        <a class="close">&#10006;</a>
-        <p> Dane o Klasie tu będą</p>
+        <a class="close">✖</a>
+        <p> 
+        <?php 
+            if(isset($_SESSION['klasa']))
+             {
+             echo $_SESSION['klasa'];
+             }else
+             {
+             echo '<a href="#">Dołącz do klasy</a>';
+             }
+        ?>
+        Dołączanie do klasy tutaj.
+        <!-- PHP od wyświetlenia osób z klasy --> 
+        </p>
     </div>
 </div>
     <div id="stopka">

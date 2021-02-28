@@ -37,7 +37,7 @@ if(!isset($_SESSION['zalogowany']))
             <a href="#profil">Profil</a>
         </li>
         <li class="tab-el">
-            <a href="#uczniowie">Uczniowie</a>
+            <a href="uczniowie.php">Uczniowie</a>
         </li>
         <li class="tab-el">
             <a href="#klasy">Klasy</a>
@@ -51,36 +51,134 @@ if(!isset($_SESSION['zalogowany']))
 		<li class="tab-el">
             <a href="procesWylogowania.php">Wyloguj</a>
         </li>
-</div>
     </ul>
-    <div class="tab-contents">
-        <div class="tab-content" id="profil">
-            <a class="close">✖</a>
-            <img src="../img/avatar.png">
-            <h1 class="profilText">
-                <?php
-                echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
-                ?>
-            </h1>
-            <br><br>
-            <p>Klasa: 
-                <?php
-                if(isset($_SESSION['klasa']))
-                {
-                echo $_SESSION['klasa'];
-                }else
-                {
-                    echo '<a href="#">Dołącz do klasy</a>';
-                }
-                ?>
-            </p>
+</div>
+    
+<div class="tab-contents">
+    <div class="tab-content" id="profil">
+         <a class="close">✖</a>
+        <img src="../img/avatar.png">
+         <h1 class="profilText">
+             <?php
+             echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
+            ?>
+        </h1>
+        <br><br>
+        <p>Klasa: 
+            <?php 
+            if(isset($_SESSION['klasa']))
+            {
+            echo $_SESSION['klasa'];
+            }else
+            {
+                echo '<a href="#">Dołącz do klasy</a>';
+            } 
+            ?>
+                
+        </p>
+    </div>
+        
+    <div class="tab-content" id="plan">
+        <a class="close">✖</a>
+            <table class="plan">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+
+        <div class="tab-contnet" id="plan">
+                <a class="close">✖</a>
+                <div>
+                
+                </div>
         </div>
-    </div>          
+
+        <div class="tab-content" id="lekcje">
+                <a class="close">✖</a>
+                <div>
+                <!-- tutaj php od wyświetlania LISTY lekcji -->
+                </div>
+        </div>
+</div>          
 
     <div id="stopka">
         PLAN LEKCJI &copy; Praktyka gr2
     </div>
-    </div>
+    
 </body>
 
 </html>

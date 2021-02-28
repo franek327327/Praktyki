@@ -135,7 +135,14 @@ background-color: #B3DBE1;
 .close{
     text-decoration: none;
 }
-
+.close:hover{
+    cursor: pointer;
+}
+.plan{
+    background-color: aquamarine;
+    border-radius: 1px;
+    border-color: blueviolet;
+}
 
 /*Animacje*/
 

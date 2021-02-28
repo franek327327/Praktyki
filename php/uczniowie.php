@@ -17,7 +17,9 @@
 
 
     <h1>Platforma Szkolna - Nauczyciel - uczniowie</h1>
-
     
+
+</body>
+</html>   
 
 
