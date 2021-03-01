@@ -215,7 +215,7 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 								echo $_SESSION['fr_loginLog'];
 								unset($_SESSION['fr_loginLog']);
 							}
-							?>"><br>
+							?>">
 								
                                 <a>Hasło:</a> <input type="password" name="haslo" id="haslo">
 								<div class="zobaczHaslo" href="#haslo"></div>
