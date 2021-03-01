@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['zalogowany']))
+if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION['funkcja'] != 0))
 {
 	header('Location:../index.php');
 	exit();
-}
+} 
 
 ?>
 

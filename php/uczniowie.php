@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION['funkcja'] != 1))
+{
+	header('Location:../index.php');
+	exit();
+} 
+
+?> 
+
 <!DOCTYPE HTML>
 <html lang="pl">
 
