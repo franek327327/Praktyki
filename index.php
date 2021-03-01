@@ -218,7 +218,6 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 							?>">
 								
                                 <a>Hasło:</a> <input type="password" name="haslo" id="haslo">
-								<div class="zobaczHaslo" href="#haslo"></div>
 								<?php
 						if(isset($_SESSION['blad']))
 						{
@@ -310,7 +309,6 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 							}
 							?>
                             <a>Powtórz hasło:</a> <input type="password" name="haslo2"> 
-                            <a>Siła Hasła</a>
 							<br>
 							<label>
 							<input type="radio" name="uN" value="uczen" <?php
