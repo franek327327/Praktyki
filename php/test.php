@@ -24,18 +24,7 @@ if ($rezultat->num_rows > 0) {
 // drukowanie
 echo '<button onclick="window.print()">Wydrukuj plan</button> <br><br>';
 
-// wyswietlanie wszystkich uczniow
-$profil = "SELECT imie, nazwisko, funkcja, id FROM uzytkownicy WHERE funkcja = 0";
 
-$rezultat = $polaczenie->query($profil);
-
-if ($rezultat->num_rows > 0) {
-    $petla = 0;
-	while($wiersz = $rezultat->fetch_assoc()) {
-		$petla++;
-		echo "Uczen " . $wiersz["id"] . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . "<br>";
-	}
-}
 echo "<br>";
 
 // usuwanie uczniow o id == 5
@@ -51,5 +40,17 @@ if ($polaczenie->query($sql) === TRUE) {
     echo "Error deleting record: " . $rezultat->conect_error;
 }
 
+// dodawanie lekcji do planu
+$dodaj = "INSERT INTO plan (idPrzedmiot, IdKlasa, IdDzien, IdGodzinaLekcyjna, IdSala, IdNauczyciel) VALUES (";
+
+
+
+
+
+
+
+
+
 $polaczenie->close();
 ?>
+
