@@ -6,7 +6,31 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
 	header('Location:../index.php');
 	exit();
 } 
+// Zamiana id klasy na nazwę klasy
+if(isset($_SESSION['idKlasy']))
+{
+    require_once "polaczenieZBaza.php";
 
+    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+
+    $rezultatKlas = $polaczenie->query("SELECT id, klasa FROM klasy");
+
+
+    if ($rezultatKlas->num_rows > 0) 
+    {
+        while($wierszKlas = $rezultatKlas->fetch_assoc()) 
+        {
+            
+            if($_SESSION['idKlasy'] == $wierszKlas['id'])
+            {
+                $_SESSION['klasa'] = $wierszKlas['klasa'];
+            }
+        }
+    }
+
+
+    $polaczenie->close();
+}
 
 
 ?>
@@ -57,9 +81,9 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
         </h1>
     <p>
         <?php
-        if(isset($_SESSION['idKlasy']))
+        if(isset($_SESSION['klasa']))
          {
-         echo 'Klasa: '.$_SESSION['idKlasy'];
+         echo 'Klasa: '.$_SESSION['klasa'];
         }else
         {
             echo '<p> Przejdź do zakładki Klasy aby dołączyć do klasy </p>';
@@ -156,30 +180,61 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
     <div class="tab-content" id="Klasy">
         <a class="close">✖</a>
         <p> 
-        <form method="post" action="uczen.php">
-        <select name="dodanieDoKlasy">
+       
         <?php 
         
-        $rezultatKlas = $polaczenie->query("SELECT id, klasa FROM klasy");
+        require_once "polaczenieZBaza.php";
 
-        if ($rezultat1->num_rows > 0) 
-        {
-	        while($wiersz = $rezultat1->fetch_assoc()) 
+        $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+
+        if(isset($_SESSION['klasa']))
             {
-                echo '<option value="' . $wiersz["id"] . '">' . $wiersz["przedmiot"] . "</option>";
+            echo "Klasa: ".$_SESSION['klasa'];
             }
-        }
+        else
+            {
+                
+                echo '<form method="post" action="uczen.php">';
+                echo '<select name="dodanieDoKlasy">';
+                
+                
 
-            if(isset($_SESSION['klasa']))
-             {
-             echo $_SESSION['klasa'];
-             }else
-             {
-             echo '<a href="#">Dołącz do klasy</a>';
-             }
+                $rezultatKlas = $polaczenie->query("SELECT id, klasa FROM klasy");
+                if ($rezultatKlas->num_rows > 0) 
+                {
+                    while($wierszKlas = $rezultatKlas->fetch_assoc()) 
+                    {
+                        
+                        echo '<option value="' .$wierszKlas['id']. '">' . $wierszKlas["klasa"] ."</option>";        //Rozwijany
+                    }
+                }
+                echo "</select>";
+                echo '<input type="submit" name="dolaczanie" value="Dołącz do klasy!"></form>';       //Przycisk
+            }
+
+
+
+        if(isset($_POST['dolaczanie']))
+        {
+
+            if($polaczenie->query("UPDATE uzytkownicy SET IdKlasa=".$_POST['dodanieDoKlasy']." WHERE id=".$_SESSION['id']))
+            {
+                $_SESSION['idKlasy'] = $_POST['dodanieDoKlasy'];
+                header("Refresh:0");
+                        
+            }else
+            {
+                echo $_POST['dodanieDoKlasy'];
+            }
+
+            unset($_POST);
+
+        }
+        
+        $polaczenie->close();
         ?>
-        </select>
-        </form>
+        
+        
         <!-- PHP od wyświetlenia osób z klasy --> 
         </p>
     </div>
