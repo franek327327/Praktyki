@@ -163,7 +163,7 @@ h1 {
         opacity: 0;
     }
     to {
-        height: 600px%;
+        height: 600px;
         opacity: 1;
     }
 }
@@ -226,3 +226,4 @@ a:hover {
 a:active {
     color: rgb(255, 255, 255);
 }
+
