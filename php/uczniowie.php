@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION['funkcja'] != 1))
+/* if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION['funkcja'] != 1))
 {
 	header('Location:../index.php');
 	exit();
 } 
-
+*/
 ?> 
 
 <!DOCTYPE HTML>
@@ -28,7 +28,36 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
 
 
     <h1>Platforma Szkolna - Nauczyciel - uczniowie</h1>
-    
+<?php
+require_once "polaczenieZBaza.php";
+$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+
+// wyswietlanie wszystkich uczniow
+$profil = "SELECT imie, nazwisko, funkcja, id FROM uzytkownicy WHERE funkcja = 0";
+
+$rezultat = $polaczenie->query($profil);
+
+if ($rezultat->num_rows > 0) {
+    $petla = 0;
+	while($wiersz = $rezultat->fetch_assoc()) {
+		$petla++;
+		echo "Uczen " . $wiersz["id"] . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . "<br>";
+	}
+}
+echo '<br>';
+// usuwanie uczniow o id == 5
+$usunProfil = "SELECT id FROM uzytkownicy WHERE funkcja = 0";
+
+$rezultat = $polaczenie->query($usunProfil);
+
+$sql = "DELETE FROM uzytkownicy WHERE id = 5";
+
+if ($polaczenie->query($sql) === TRUE) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error deleting record: " . $rezultat->conect_error;
+}
+?>
 
 </body>
 </html>   
