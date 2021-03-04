@@ -4,6 +4,7 @@ require_once "polaczenieZBaza.php";
 
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
+// wyswietlanie planu
 $lekcja = 
 "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.id
 FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan
@@ -19,9 +20,11 @@ if ($rezultat->num_rows > 0) {
 		//echo 'Lekcja '. $petla. ': <input type="text" name="login" value="'.$wiersz["godzina"].'">';
 	  }
 	}
-	
+
+// drukowanie
 echo '<button onclick="window.print()">Wydrukuj plan</button> <br><br>';
 
+// wyswietlanie wszystkich uczniow
 $profil = "SELECT imie, nazwisko, funkcja, id FROM uzytkownicy WHERE funkcja = 0";
 
 $rezultat = $polaczenie->query($profil);
@@ -34,6 +37,8 @@ if ($rezultat->num_rows > 0) {
 	}
 }
 echo "<br>";
+
+// usuwanie uczniow o id == 5
 $usunProfil = "SELECT id FROM uzytkownicy WHERE funkcja = 0";
 
 $rezultat = $polaczenie->query($usunProfil);
