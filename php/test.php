@@ -22,7 +22,7 @@ if ($rezultat->num_rows > 0) {
 	
 echo '<button onclick="window.print()">Wydrukuj plan</button> <br><br>';
 
-$profil = "SELECT imie, nazwisko, funkcja FROM uzytkownicy WHERE funkcja = 0";
+$profil = "SELECT imie, nazwisko, funkcja, id FROM uzytkownicy WHERE funkcja = 0";
 
 $rezultat = $polaczenie->query($profil);
 
@@ -30,17 +30,17 @@ if ($rezultat->num_rows > 0) {
     $petla = 0;
 	while($wiersz = $rezultat->fetch_assoc()) {
 		$petla++;
-		echo "Uczen: " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . "<br>";
+		echo "Uczen " . $wiersz["id"] . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . "<br>";
 	}
 }
-
+echo "<br>";
 $usunProfil = "SELECT id FROM uzytkownicy WHERE funkcja = 0";
 
 $rezultat = $polaczenie->query($usunProfil);
 
-$sql = "DELETE FROM uzytkownicy WHERE funkcja = 0";
+$sql = "DELETE FROM uzytkownicy WHERE id = 5";
 
-if ($polaczenie->query($usunProfil) === TRUE) {
+if ($polaczenie->query($sql) === TRUE) {
     echo "Record deleted successfully";
 } else {
     echo "Error deleting record: " . $rezultat->conect_error;
