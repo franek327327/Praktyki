@@ -6,9 +6,10 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
 // wyswietlanie planu
 $lekcja = 
-"SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.id
+"SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.id, plan.IdDzien
 FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan
-where plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdKlasa = 3";
+where plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdKlasa = 1
+ORDER BY plan.IdDzien";
 	
 $rezultat = $polaczenie->query($lekcja);
 
@@ -47,7 +48,7 @@ if ($rezultat1->num_rows > 0)
         echo '<option value="' . $wiersz["id"] . '">' . $wiersz["przedmiot"] . "</option>";
         }
     }
-echo "</select><select>";
+echo '</select><select name="klasa">';
     if ($rezultat2->num_rows > 0) 
     {
 	while($wiersz = $rezultat2->fetch_assoc()) 
@@ -55,7 +56,7 @@ echo "</select><select>";
         echo '<option value="' . $wiersz["id"] . '">' . $wiersz["klasa"] . "</option>";
         }
     }
-echo "</select><select>";
+    echo '</select><select name="dzien">';
 if ($rezultat3->num_rows > 0) 
 {
 while($wiersz = $rezultat3->fetch_assoc()) 
@@ -63,7 +64,7 @@ while($wiersz = $rezultat3->fetch_assoc())
     echo '<option value="' . $wiersz["id"] . '">' . $wiersz["dzien"] . "</option>";
     }
 }
-echo "</select><select>";
+echo '</select><select name="godzina">';
 if ($rezultat4->num_rows > 0) 
 {
 while($wiersz = $rezultat4->fetch_assoc()) 
@@ -71,7 +72,7 @@ while($wiersz = $rezultat4->fetch_assoc())
     echo '<option value="' . $wiersz["id"] . '">' . $wiersz["godzina"] . "</option>";
     }
 }
-echo "</select><select>";
+echo '</select><select name="sala">';
 if ($rezultat5->num_rows > 0) 
 {
 while($wiersz = $rezultat5->fetch_assoc()) 
@@ -79,7 +80,7 @@ while($wiersz = $rezultat5->fetch_assoc())
     echo '<option value="' . $wiersz["id"] . '">' . $wiersz["sala"] . "</option>";
     }
 }
-echo "</select><select>";
+echo '</select><select name="imieinazwisko">';
 if ($rezultat6->num_rows > 0) 
 {
 while($wiersz = $rezultat6->fetch_assoc()) 
@@ -87,9 +88,33 @@ while($wiersz = $rezultat6->fetch_assoc())
     echo '<option value="' . $wiersz["id"] . '">' . $wiersz["imie"] . ' ' . $wiersz["nazwisko"] . "</option>";
     }
 }
-
-
+echo '<br>';
+echo '<input type="submit" name="dodawanie" value="Dodaj lekcję!">';
 echo "</form>";
+
+// Dodawanie Lekcji
+
+if(isset($_POST['dodawanie']))
+{
+	unset($_POST['dodawanie']);
+ 
+		$dodawanieLekcji=
+		"INSERT INTO plan (IdPrzedmiot, IdKlasa, IdDzien, IdGodzinaLekcyjna, IdSala, IdNauczyciel)
+		VALUES ('".$_POST['przedmiot']."', '".$_POST['klasa']."', '".$_POST['dzien']."', '".$_POST['godzina']."', '".$_POST['sala']."', '".$_POST['imieinazwisko']."')";
+		if($polaczenie->query($dodawanieLekcji))
+		{
+			echo "Dodano Lekcję!";
+			
+		}else
+		{
+			echo "Nie udało się dodać lekcji!";
+		}
+		
+
+        header("Refresh:0");
+    
+	
+}
 
 $polaczenie->close();
 ?>
