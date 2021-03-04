@@ -143,7 +143,6 @@ if (isset($_POST['emailReg']))
 		catch(Exception $e)
 		{
 			echo '<div class="error">Błąd serwera</div>';
-			echo '<br>'.$e;
 		}
 		
 		

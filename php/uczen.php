@@ -7,6 +7,8 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
 	exit();
 } 
 
+
+
 ?>
 
 
@@ -53,11 +55,11 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
             echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
         ?>
         </h1>
-    <p>Klasa: 
+    <p>
         <?php
-        if(isset($_SESSION['klasa']))
+        if(isset($_SESSION['idKlasy']))
          {
-         echo $_SESSION['klasa'];
+         echo 'Klasa: '.$_SESSION['idKlasy'];
         }else
         {
             echo '<p> Przejdź do zakładki Klasy aby dołączyć do klasy </p>';
