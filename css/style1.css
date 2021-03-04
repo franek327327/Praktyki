@@ -8,7 +8,7 @@ body {
 .blink-text-menu {
     list-style-type: none;
     width: fit-content;
-    margin: 20% auto auto auto;
+    margin: 250px auto auto auto;
 }
 
 .blink-text-menu li a {
@@ -68,106 +68,161 @@ h1 {
     font-size: 39px;
     text-align: center;
     color: rgb(255, 255, 255);
-	top:5%;
+    top: 5%;
 }
+
+
 /*Animacja*/
 
 @keyframes zaloguj {
-  from {display:none}
-  to {background-color: yellow;}
+    from {
+        display: none
+    }
+    to {
+        background-color: yellow;
+    }
 }
 
-.profilAnim
-{
+.profilAnim {
     animation-name: ProfilAnim;
-	animation-duration: 0.7s;
-	animation-timing-function: ease-out;
-	overflow: hidden;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+    overflow: hidden;
 }
 
-.profilAnimRev
-{
+.profilAnimRev {
     animation-name: ProfilAnimRev;
-	animation-duration: 0.7s;
-	animation-timing-function: ease-out;
-	overflow: hidden;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+    overflow: hidden;
     animation-fill-mode: forwards;
 }
 
 
 /*Uczeń i Nauczyciel*/
 
-.tab-contents
-{
-background-color:white;
-width:97%;
-max-width: 1000px;
-height:95%;
-border-radius: 5px;
-margin: 0;
-position: absolute;
-top: 48%;
-left: 50%;
--ms-transform: translate(-50%, -50%);
-transform: translate(-50%, -50%);
-display: none;
-background-color: #B3DBE1;
+.tab-contents {
+    background-color: white;
+    width: 500px;
+    height: 600px;
+    border-radius: 5px;
+    margin: 0;
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: none;
+    background-color: #B3DBE1;
 }
-.tab-content{
+
+.tab-content {
     display: none;
 }
+
 .tab-content-active {
     display: block;
 }
+
 .tab-el {
     background: var(--color);
     border-radius: 15px 15px 0 0;
     transition: 0.5s background-color;
-    background-image: linear-gradient(var(--color) calc(100% - 10px), rgba(0,0,0,0.5));
-    margin-right:2px;
+    background-image: linear-gradient(var(--color) calc(100% - 10px), rgba(0, 0, 0, 0.5));
+    margin-right: 2px;
     transition: 0.1s all;
 }
+
 .tab-el-active {
     background: var(--color-active);
     box-shadow: none;
-    margin-left:0;
+    margin-left: 0;
 }
-.close{
+
+.close {
     text-decoration: none;
+    margin-left: 5px;
 }
-.close:hover{
+
+.close:hover {
     cursor: pointer;
 }
-.plan{
+
+.plan {
     background-color: aquamarine;
     border-radius: 1px;
     border-color: blueviolet;
 }
 
+
 /*Animacje*/
 
 @keyframes ProfilAnim {
-    from 
-    {
+    from {
         height: 0;
         opacity: 0;
     }
-    to 
-    {
-        height: 95%;
+    to {
+        height: 600px%;
         opacity: 1;
     }
-  }
-  @keyframes ProfilAnimRev {
-    from 
-    {
-        height: 95%;
-        opacity: 1;
-    }
-    to 
-    {
-        height: 0;
-        opacity: 0; 
-    }
-  }
+}
 
+@keyframes ProfilAnimRev {
+    from {
+        height: 600px;
+        opacity: 1;
+    }
+    to {
+        height: 0;
+        opacity: 0;
+    }
+}
+
+p {
+    font-size: 25px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.img {
+    text-align: center;
+}
+
+#login {
+    text-align: center;
+}
+
+
+/* unvisited link */
+
+a:link {
+    color: #465973;
+    text-decoration: none;
+}
+
+
+/* visited link */
+
+a:visited {
+    color: #465973;
+}
+
+
+/* mouse over link */
+
+a:hover {
+    color: #14191f;
+}
+
+
+/* selected link */
+
+a:active {
+    color: rgb(255, 255, 255);
+}
