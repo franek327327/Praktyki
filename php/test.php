@@ -38,12 +38,12 @@ $usunProfil = "SELECT id FROM uzytkownicy WHERE funkcja = 0";
 
 $rezultat = $polaczenie->query($usunProfil);
 
-if($a == 'del' and !empty($id)) {
-    
-    mysqli_query('DELETE id FROM test WHERE id="$id"')
-    or die('Blad zapytania: '.mysqli_error());
-    
-    echo 'Rekord został usunęty z bazy';
+$sql = "DELETE FROM uzytkownicy WHERE funkcja = 0";
+
+if ($polaczenie->query($usunProfil) === TRUE) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error deleting record: " . $rezultat->conect_error;
 }
 
 $polaczenie->close();
