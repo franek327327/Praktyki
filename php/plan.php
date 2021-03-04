@@ -89,14 +89,7 @@ while($wiersz = $rezultat6->fetch_assoc())
 }
 
 
-
 echo "</form>";
-
-
-
-
-
-
 
 $polaczenie->close();
 ?>
