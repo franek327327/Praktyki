@@ -12,20 +12,32 @@ where plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzina
 	
 $rezultat = $polaczenie->query($lekcja);
 
-if ($rezultat->num_rows > 0) {
-    $petla = 0;
-	while($wiersz = $rezultat->fetch_assoc()) {
-		$petla++;
+if ($rezultat->num_rows > 0) 
+    {
+	while($wiersz = $rezultat->fetch_assoc()) 
+        {
 		echo "Dzien: " . $wiersz["dzien"]. " - Lekcja: " . $wiersz["godzina"]. " - Przedmiot: " . $wiersz["przedmiot"]. " - Sala: " . $wiersz["sala"]. "<br>";
-		//echo 'Lekcja '. $petla. ': <input type="text" name="login" value="'.$wiersz["godzina"].'">';
-	  }
+	    }
 	}
 
 // drukowanie
-echo '<button onclick="window.print()">Wydrukuj plan</button> <br><br>';
+echo '<br> <button onclick="window.print()">Wydrukuj plan</button> <br><br>';
 
 // dodawanie lekcji do planu
-$dodaj = "INSERT INTO plan (idPrzedmiot, IdKlasa, IdDzien, IdGodzinaLekcyjna, IdSala, IdNauczyciel) VALUES (";
+$przedmiot = "SELECT slownik.id, slownik.przedmiot FROM slownik";
+
+$rezultat = $polaczenie->query($przedmiot);
+echo '<form method="post" action="plan.php"> <select name="przedmiot">';
+
+if ($rezultat->num_rows > 0) 
+    {
+	while($wiersz = $rezultat->fetch_assoc()) 
+        {
+        echo '<option value="' . $wiersz["id"] . '">' . $wiersz["przedmiot"] . "</option>";
+        }
+    }
+echo "</select> </form>";
+
 
 
 
