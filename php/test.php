@@ -4,6 +4,7 @@ require_once "polaczenieZBaza.php";
 
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
+// wyswietlanie planu
 $lekcja = 
 "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.id
 FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan
@@ -19,10 +20,12 @@ if ($rezultat->num_rows > 0) {
 		//echo 'Lekcja '. $petla. ': <input type="text" name="login" value="'.$wiersz["godzina"].'">';
 	  }
 	}
-	
+
+// drukowanie
 echo '<button onclick="window.print()">Wydrukuj plan</button> <br><br>';
 
-$profil = "SELECT imie, nazwisko, funkcja FROM uzytkownicy WHERE funkcja = 0";
+// wyswietlanie wszystkich uczniow
+$profil = "SELECT imie, nazwisko, funkcja, id FROM uzytkownicy WHERE funkcja = 0";
 
 $rezultat = $polaczenie->query($profil);
 
@@ -30,20 +33,22 @@ if ($rezultat->num_rows > 0) {
     $petla = 0;
 	while($wiersz = $rezultat->fetch_assoc()) {
 		$petla++;
-		echo "Uczen: " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . "<br>";
+		echo "Uczen " . $wiersz["id"] . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . "<br>";
 	}
 }
+echo "<br>";
 
+// usuwanie uczniow o id == 5
 $usunProfil = "SELECT id FROM uzytkownicy WHERE funkcja = 0";
 
 $rezultat = $polaczenie->query($usunProfil);
 
-if($a == 'del' and !empty($id)) {
-    
-    mysqli_query('DELETE id FROM test WHERE id="$id"')
-    or die('Blad zapytania: '.mysqli_error());
-    
-    echo 'Rekord został usunęty z bazy';
+$sql = "DELETE FROM uzytkownicy WHERE id = 5";
+
+if ($polaczenie->query($sql) === TRUE) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error deleting record: " . $rezultat->conect_error;
 }
 
 $polaczenie->close();
