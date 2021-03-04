@@ -41,11 +41,11 @@ if ($rezultat->num_rows > 0) {
     $petla = 0;
 	while($wiersz = $rezultat->fetch_assoc()) {
 		$petla++;
-		echo "Uczen " . $wiersz["id"] . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . "<br>";
+		echo "Uczen " . $wiersz["id"] . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] ."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
 	}
 }
 echo '<br>';
-// usuwanie uczniow o id == 5
+// usuwanie bachora
 $usunProfil = "SELECT id FROM uzytkownicy WHERE funkcja = 0";
 
 $rezultat = $polaczenie->query($usunProfil);
@@ -53,12 +53,25 @@ $rezultat = $polaczenie->query($usunProfil);
 $usuwanieBachora = "DELETE FROM uzytkownicy WHERE id = 5";
 
 if ($polaczenie->query($usuwanieBachora) === TRUE) {
-    echo "Record deleted successfully";
+    echo "Dziecko zlikwidowane";
 } else {
-    echo "Error deleting record: " . $rezultat->conect_error;
+    echo "Blad usuwania dziecka: " . $rezultat->conect_error;
 }
-?>
 
+if(isset($_POST['usuwanie']))
+{
+    if($polaczenie->query("DELETE FROM uzytkownicy WHERE id = " . $_POST['usuwanie']))
+    {
+        header("Refresh:0");
+        
+    }else
+    {
+        echo "Nie udalo sie usunac kaszojada!";
+    }
+    unset($_POST['usuwanie']);
+}
+
+?>
 </body>
 </html>   
 
