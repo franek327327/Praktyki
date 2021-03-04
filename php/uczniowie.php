@@ -50,9 +50,9 @@ $usunProfil = "SELECT id FROM uzytkownicy WHERE funkcja = 0";
 
 $rezultat = $polaczenie->query($usunProfil);
 
-$sql = "DELETE FROM uzytkownicy WHERE id = 5";
+$usuwanieBachora = "DELETE FROM uzytkownicy WHERE id = 5";
 
-if ($polaczenie->query($sql) === TRUE) {
+if ($polaczenie->query($usuwanieBachora) === TRUE) {
     echo "Record deleted successfully";
 } else {
     echo "Error deleting record: " . $rezultat->conect_error;
