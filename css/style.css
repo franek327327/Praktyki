@@ -170,13 +170,8 @@ label {
 
 /* 1080p */
 
-<<<<<<< HEAD
 @media only screen and (min-height:1079px) and (min-width: 1919px){
     #bcolor{
-=======
-@media only screen and (max-height:1079px) and (max-width: 1919px) {
-    #bcolor {
->>>>>>> 079392feee65a698d3b72a325a0538ad81374825
         font-size: 35px;
     }
     .reg {
@@ -193,15 +188,9 @@ label {
 
 /* 1440p */
 
-<<<<<<< HEAD
 @media only screen and (min-width: 2549px) and (min-height: 1439px){
     #bcolor{
         font-size: 40px;
-=======
-@media only screen and (max-width: 2549px) and (max-height: 1439px) {
-    #bcolor {
-        font-size: 35px;
->>>>>>> 079392feee65a698d3b72a325a0538ad81374825
     }
     .reg {
         font-size: 20px;
