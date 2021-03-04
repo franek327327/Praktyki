@@ -4,7 +4,7 @@ require_once "polaczenieZBaza.php";
 
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
-// wyswietlanie planu i usuwanie poszczegolnych lekcji
+// wyswietlanie planu
 $lekcja = 
 "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.id, plan.IdDzien, plan.IdGodzinaLekcyjna
 FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan
@@ -17,10 +17,23 @@ if ($rezultat->num_rows > 0)
     {
 	while($wiersz = $rezultat->fetch_assoc()) 
         {
-		echo "Dzien: " . $wiersz["dzien"]. " - Lekcja: " . $wiersz["IdGodzinaLekcyjna"]. " - Przedmiot: " . $wiersz["przedmiot"]. " - Sala: " . $wiersz["sala"]. "<br>";
+		echo "Dzien: " . $wiersz["dzien"] . " - Lekcja: " . $wiersz["IdGodzinaLekcyjna"] . " - Przedmiot: " . $wiersz["przedmiot"] . " - Sala: " . $wiersz["sala"] . "<form style = 'display: inline;' method = 'post' action = 'plan.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
 	    }
 	}
 
+// usuwanie lekcji
+if(isset($_POST['usuwanie']))
+{
+    if($polaczenie->query("DELETE FROM plan WHERE id = " . $_POST['usuwanie']))
+    {
+        header("Refresh:0");
+        
+    }else
+    {
+        echo "Nie udało się dodać lekcji!";
+    }
+    unset($_POST['usuwanie']);
+}
 
 
 // drukowanie
