@@ -4,13 +4,13 @@ require_once "polaczenieZBaza.php";
 
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
-// wyswietlanie planu
+// wyswietlanie planu i usuwanie poszczegolnych lekcji
 $lekcja = 
 "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.id, plan.IdDzien, plan.IdGodzinaLekcyjna
 FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan
 where plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id
 ORDER BY plan.IdDzien , plan.IdGodzinaLekcyjna";
-	
+
 $rezultat = $polaczenie->query($lekcja);
 
 if ($rezultat->num_rows > 0) 
@@ -20,6 +20,8 @@ if ($rezultat->num_rows > 0)
 		echo "Dzien: " . $wiersz["dzien"]. " - Lekcja: " . $wiersz["IdGodzinaLekcyjna"]. " - Przedmiot: " . $wiersz["przedmiot"]. " - Sala: " . $wiersz["sala"]. "<br>";
 	    }
 	}
+
+
 
 // drukowanie
 echo '<br> <button onclick="window.print()">Wydrukuj plan</button> <br><br>';
@@ -124,7 +126,7 @@ if(isset($_POST['dodawanie']))
             }
         }
 
-    if($czyMoznaWyslac)
+        if($czyMoznaWyslac)
     {
             if($polaczenie->query($dodawanieLekcji))
             {
@@ -135,11 +137,12 @@ if(isset($_POST['dodawanie']))
                 echo "Nie udało się dodać lekcji!";
             }
     }
-    else if(!$czyMoznaWyslac)
+        else if(!$czyMoznaWyslac)
     {
         echo "O podanej godzinie podanego dnia dla podanej klasy już istnieje lekcja!";
     }	
 }
+
 
 $polaczenie->close();
 ?>
