@@ -170,12 +170,12 @@ label {
 
 /* 1080p */
 
-@media only screen and (min-height:1079px) and (min-width: 1919px){
+@media only screen and (min-height:1030px) and (min-width:1870px){
     #bcolor{
         font-size: 35px;
     }
     .reg {
-        font-size: 99%;
+        font-size: 20px;
     }
     .logowanie-text {
         display: block;
@@ -188,7 +188,7 @@ label {
 
 /* 1440p */
 
-@media only screen and (min-width: 2549px) and (min-height: 1439px){
+@media only screen and (min-width: 2500px) and (min-height: 1390px){
     #bcolor{
         font-size: 40px;
     }
