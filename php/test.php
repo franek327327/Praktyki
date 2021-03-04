@@ -24,13 +24,13 @@ echo '<button onclick="window.print()">Wydrukuj plan</button> <br><br>';
 
 $profil = "SELECT imie, nazwisko, funkcja FROM uzytkownicy WHERE funkcja = 0";
 
-$rezultat2 = $polaczenie->query($profil);
+$rezultat = $polaczenie->query($profil);
 
-if ($rezultat2->num_rows > 0) {
+if ($rezultat->num_rows > 0) {
     $petla = 0;
-	while($wiersz2 = $rezultat2->fetch_assoc()) {
+	while($wiersz = $rezultat->fetch_assoc()) {
 		$petla++;
-		echo "Uczen: " . $wiersz2["imie"] . " " . $wiersz2["nazwisko"] . "<br>";
+		echo "Uczen: " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . "<br>";
 	}
 }
 
