@@ -151,10 +151,25 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
         </table>
     </div>
 
+<!-- Dodawanie do istniejącej klasy -->
+
     <div class="tab-content" id="Klasy">
         <a class="close">✖</a>
         <p> 
+        <form method="post" action="uczen.php">
+        <select name="dodanieDoKlasy">
         <?php 
+        
+        $rezultatKlas = $polaczenie->query("SELECT id, klasa FROM klasy");
+
+        if ($rezultat1->num_rows > 0) 
+        {
+	        while($wiersz = $rezultat1->fetch_assoc()) 
+            {
+                echo '<option value="' . $wiersz["id"] . '">' . $wiersz["przedmiot"] . "</option>";
+            }
+        }
+
             if(isset($_SESSION['klasa']))
              {
              echo $_SESSION['klasa'];
@@ -163,7 +178,8 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
              echo '<a href="#">Dołącz do klasy</a>';
              }
         ?>
-        Dołączanie do klasy tutaj.
+        </select>
+        </form>
         <!-- PHP od wyświetlenia osób z klasy --> 
         </p>
     </div>

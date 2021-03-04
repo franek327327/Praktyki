@@ -6,10 +6,10 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
 // wyswietlanie planu
 $lekcja = 
-"SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.id, plan.IdDzien
+"SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.id, plan.IdDzien, plan.IdGodzinaLekcyjna
 FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan
 where plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdKlasa = 1
-ORDER BY plan.IdDzien";
+ORDER BY plan.IdDzien , plan.IdGodzinaLekcyjna";
 	
 $rezultat = $polaczenie->query($lekcja);
 
@@ -17,7 +17,7 @@ if ($rezultat->num_rows > 0)
     {
 	while($wiersz = $rezultat->fetch_assoc()) 
         {
-		echo "Dzien: " . $wiersz["dzien"]. " - Lekcja: " . $wiersz["godzina"]. " - Przedmiot: " . $wiersz["przedmiot"]. " - Sala: " . $wiersz["sala"]. "<br>";
+		echo "Dzien: " . $wiersz["dzien"]. " - Lekcja: " . $wiersz["IdGodzinaLekcyjna"]. " - Przedmiot: " . $wiersz["przedmiot"]. " - Sala: " . $wiersz["sala"]. "<br>";
 	    }
 	}
 
@@ -69,7 +69,7 @@ if ($rezultat4->num_rows > 0)
 {
 while($wiersz = $rezultat4->fetch_assoc()) 
     {
-    echo '<option value="' . $wiersz["id"] . '">' . $wiersz["godzina"] . "</option>";
+    echo '<option value="' . $wiersz["id"] . '">' . $wiersz['id'] . '.' . $wiersz["godzina"] . "</option>";
     }
 }
 echo '</select><select name="sala">';
@@ -97,21 +97,50 @@ echo "</form>";
 if(isset($_POST['dodawanie']))
 {
 	unset($_POST['dodawanie']);
+
+    $czyMoznaWyslac = true;
  
 		$dodawanieLekcji=
 		"INSERT INTO plan (IdPrzedmiot, IdKlasa, IdDzien, IdGodzinaLekcyjna, IdSala, IdNauczyciel)
 		VALUES ('".$_POST['przedmiot']."', '".$_POST['klasa']."', '".$_POST['dzien']."', '".$_POST['godzina']."', '".$_POST['sala']."', '".$_POST['imieinazwisko']."')";
+
+        $sprawdzanieLekcji=
+        "SELECT idDzien, idGodzinaLekcyjna, idKlasa
+        FROM plan
+        ";
+
+        $rezultatSprawdzania = $polaczenie->query($sprawdzanieLekcji);
+
+        // Sprawdzanie czy lekcja na daną godzinę danego dnia już istnieje dla klasy
+
+        if ($rezultatSprawdzania->num_rows > 0) 
+        {
+        while($wiersz = $rezultatSprawdzania->fetch_assoc()) 
+            {
+                if($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['idKlasa'] == 1)
+                {
+                    $czyMoznaWyslac = false;
+                }
+            }
+        }
+
+if($czyMoznaWyslac)
+{
 		if($polaczenie->query($dodawanieLekcji))
 		{
-			echo "Dodano Lekcję!";
+            header("Refresh:0");
 			
 		}else
 		{
 			echo "Nie udało się dodać lekcji!";
 		}
+}else if(!$czyMoznaWyslac)
+{
+    echo "O podanej godzinie podanego dnia dla podanej klasy już istnieje lekcja!";
+}
 		
 
-        header("Refresh:0");
+        
     
 	
 }
