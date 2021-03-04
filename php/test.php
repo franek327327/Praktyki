@@ -19,7 +19,7 @@ if ($rezultat->num_rows > 0) {
 		//echo 'Lekcja '. $petla. ': <input type="text" name="login" value="'.$wiersz["godzina"].'">';
 	  }
 	}
-
-
+	
+echo '<button onclick="window.print()">Wydrukuj plan</button>';
 $polaczenie->close();
 ?>

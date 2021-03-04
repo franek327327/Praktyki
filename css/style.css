@@ -30,7 +30,6 @@ h1 {
     font-size: 45px;
     text-align: center;
     color: rgb(255, 255, 255);
-    
 }
 
 h2 {
@@ -40,21 +39,19 @@ h2 {
 
 /* Logowanie */
 
-.logAnim
-{
-	animation-name: zaloguj;
-	animation-duration: 0.7s;
-	animation-timing-function: ease-out;
-	overflow: hidden
-}
-.regAnim
-{
-	animation-name: rejestracja;
-	animation-duration: 0.7s;
-	animation-timing-function: ease-out;
-	overflow: hidden
+.logAnim {
+    animation-name: zaloguj;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+    overflow: hidden
 }
 
+.regAnim {
+    animation-name: rejestracja;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+    overflow: hidden
+}
 
 .log-btn:hover,
 .reg-btn:hover {
@@ -72,7 +69,6 @@ h2 {
     color: rgb(245, 234, 234);
     text-decoration: none;
     display: block;
-
 }
 
 .logo-detail-act {
@@ -97,15 +93,15 @@ input:focus {
 
 button {
     margin-top: 10px;
-	font-weight: bold;
+    font-weight: bold;
 }
 
 p {
     margin-top: 20px;
 }
-a
-{
-	color:white;
+
+a {
+    color: white;
 }
 
 .zobaczHaslo {
@@ -117,23 +113,22 @@ a
     background-color: white;
     border-radius: 3px;
 }
-input[type="radio"]
-{
-	display: inline;
-	box-shadow: 0 0 0;
+
+input[type="radio"] {
+    display: inline;
+    box-shadow: 0 0 0;
 }
-label
-{
-	color: white;
+
+label {
+    color: white;
 }
-.error
-{
-	color:red;
+
+.error {
+    color: red;
 }
 
 
 /* Koncepcja */
-
 
 #stopka {
     position: fixed;
@@ -148,61 +143,70 @@ label
 }
 
 @keyframes zaloguj {
-  from 
-  {
-	  height: 0;
-	  opacity: 0;
-  }
-  to 
-  {
-	  height: 175px;
-	  opacity: 1;
-  }
+    from {
+        height: 0;
+        opacity: 0;
+    }
+    to {
+        height: 175px;
+        opacity: 1;
+    }
 }
 
 @keyframes rejestracja {
-  from 
-  {
-	  height: 0;
-	  opacity: 0;
-  }
-  to 
-  {
-	  height:387px;
-	  opacity: 1;
-  }
+    from {
+        height: 0;
+        opacity: 0;
+    }
+    to {
+        height: 387px;
+        opacity: 1;
+    }
 }
 
+
 /* Responsywność */
+
+
 /* 1080p */
 
+<<<<<<< HEAD
 @media only screen and (min-height:1079px) and (min-width: 1919px){
     #bcolor{
+=======
+@media only screen and (max-height:1079px) and (max-width: 1919px) {
+    #bcolor {
+>>>>>>> 079392feee65a698d3b72a325a0538ad81374825
         font-size: 35px;
-        
     }
-    .reg{
+    .reg {
         font-size: 99%;
     }
-    .logowanie-text{
-        display:block;
+    .logowanie-text {
+        display: block;
     }
-    #stopka{
+    #stopka {
         bottom: 1;
     }
 }
 
+
 /* 1440p */
 
+<<<<<<< HEAD
 @media only screen and (min-width: 2549px) and (min-height: 1439px){
     #bcolor{
         font-size: 40px;
+=======
+@media only screen and (max-width: 2549px) and (max-height: 1439px) {
+    #bcolor {
+        font-size: 35px;
+>>>>>>> 079392feee65a698d3b72a325a0538ad81374825
     }
-    .reg{
-        font-size: 80%;
+    .reg {
+        font-size: 20px;
     }
-    input{
-        height: 26px;
-        font-size: 22px;
+    input {
+        font-size: 18px;
     }
 }

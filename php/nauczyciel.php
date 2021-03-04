@@ -53,16 +53,23 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
         </li>
     </ul>
 </div>
+
     
 <div class="tab-contents">
+<a class="close">✖</a>
+
     <div class="tab-content" id="profil">
-         <a class="close">✖</a>
+   <div id="login">
         <img src="../img/avatar.png">
-         <h1 class="profilText">
+         <h2 class="profilText">
              <?php
              echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
             ?>
-        </h1>
+        </h2>
+
+      
+        </div>
+        
         <br><br>
         <p>Klasa: 
             <?php 
@@ -74,12 +81,12 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
                 echo '<a href="#">Dołącz do klasy</a>';
             } 
             ?>
-                
+                <P><a href="#">Edytuj nazwę użytkownika</a></P>
         </p>
     </div>
         
     <div class="tab-content" id="plan">
-        <a class="close">✖</a>
+       
             <table class="plan">
                 <thead>
                 <tr>
@@ -160,15 +167,9 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
             </table>
     </div>
 
-        <div class="tab-contnet" id="plan">
-                <a class="close">✖</a>
-                <div>
-                
-                </div>
-        </div>
-
+       
         <div class="tab-content" id="lekcje">
-                <a class="close">✖</a>
+               
                 <div>
                 <!-- tutaj php od wyświetlania LISTY lekcji -->
                 </div>
