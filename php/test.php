@@ -24,22 +24,6 @@ if ($rezultat->num_rows > 0) {
 // drukowanie
 echo '<button onclick="window.print()">Wydrukuj plan</button> <br><br>';
 
-
-echo "<br>";
-
-// usuwanie uczniow o id == 5
-$usunProfil = "SELECT id FROM uzytkownicy WHERE funkcja = 0";
-
-$rezultat = $polaczenie->query($usunProfil);
-
-$sql = "DELETE FROM uzytkownicy WHERE id = 5";
-
-if ($polaczenie->query($sql) === TRUE) {
-    echo "Record deleted successfully";
-} else {
-    echo "Error deleting record: " . $rezultat->conect_error;
-}
-
 // dodawanie lekcji do planu
 $dodaj = "INSERT INTO plan (idPrzedmiot, IdKlasa, IdDzien, IdGodzinaLekcyjna, IdSala, IdNauczyciel) VALUES (";
 
