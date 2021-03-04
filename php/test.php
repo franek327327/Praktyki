@@ -34,5 +34,17 @@ if ($rezultat->num_rows > 0) {
 	}
 }
 
+$usunProfil = "SELECT id FROM uzytkownicy WHERE funkcja = 0";
+
+$rezultat = $polaczenie->query($usunProfil);
+
+if($a == 'del' and !empty($id)) {
+    
+    mysqli_query('DELETE id FROM test WHERE id="$id"')
+    or die('Blad zapytania: '.mysqli_error());
+    
+    echo 'Rekord został usunęty z bazy';
+}
+
 $polaczenie->close();
 ?>

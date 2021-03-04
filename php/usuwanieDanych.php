@@ -6,7 +6,7 @@ $id = trim($_GET['id']);
 if($a == 'del' and !empty($id)) {
     
     mysqli_query("DELETE FROM test WHERE id='$id'")
-    or die('Błąd zapytania: '.mysql_error());
+    or die('Błąd zapytania: '.mysqli_error());
     
     echo 'Rekord został usunęty z bazy';
 }
