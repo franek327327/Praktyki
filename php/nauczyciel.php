@@ -71,18 +71,7 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
         </div>
         
         <br><br>
-        <p>Klasa: 
-            <?php 
-            if(isset($_SESSION['klasa']))
-            {
-            echo $_SESSION['klasa'];
-            }else
-            {
-                echo '<a href="#">Dołącz do klasy</a>';
-            } 
-            ?>
-                <P><a href="#">Edytuj nazwę użytkownika</a></P>
-        </p>
+                <p><a href="#">Edytuj nazwę użytkownika</a></p>
     </div>
         
     <div class="tab-content" id="plan">
