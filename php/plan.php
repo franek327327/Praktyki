@@ -24,22 +24,73 @@ if ($rezultat->num_rows > 0)
 echo '<br> <button onclick="window.print()">Wydrukuj plan</button> <br><br>';
 
 // dodawanie lekcji do planu
-$przedmiot = "SELECT slownik.id, slownik.przedmiot FROM slownik";
+$przedmiot = "SELECT id, przedmiot FROM slownik";
+$klasa = "SELECT id, klasa FROM klasy";
+$dzien = "SELECT id, dzien FROM dni";
+$godzina = "SELECT id, godzina FROM godzinylekcyjne";
+$sala = "SELECT id, sala FROM sale";
+$nauczyciel = "SELECT id, imie, nazwisko, funkcja FROM uzytkownicy WHERE funkcja = 1";
 
-$rezultat = $polaczenie->query($przedmiot);
+$rezultat1 = $polaczenie->query($przedmiot);
+$rezultat2 = $polaczenie->query($klasa);
+$rezultat3 = $polaczenie->query($dzien);
+$rezultat4 = $polaczenie->query($godzina);
+$rezultat5 = $polaczenie->query($sala);
+$rezultat6 = $polaczenie->query($nauczyciel);
+
 echo '<form method="post" action="plan.php"> <select name="przedmiot">';
 
-if ($rezultat->num_rows > 0) 
+if ($rezultat1->num_rows > 0) 
     {
-	while($wiersz = $rezultat->fetch_assoc()) 
+	while($wiersz = $rezultat1->fetch_assoc()) 
         {
         echo '<option value="' . $wiersz["id"] . '">' . $wiersz["przedmiot"] . "</option>";
         }
     }
-echo "</select> </form>";
+echo "</select><select>";
+    if ($rezultat2->num_rows > 0) 
+    {
+	while($wiersz = $rezultat2->fetch_assoc()) 
+        {
+        echo '<option value="' . $wiersz["id"] . '">' . $wiersz["klasa"] . "</option>";
+        }
+    }
+echo "</select><select>";
+if ($rezultat3->num_rows > 0) 
+{
+while($wiersz = $rezultat3->fetch_assoc()) 
+    {
+    echo '<option value="' . $wiersz["id"] . '">' . $wiersz["dzien"] . "</option>";
+    }
+}
+echo "</select><select>";
+if ($rezultat4->num_rows > 0) 
+{
+while($wiersz = $rezultat4->fetch_assoc()) 
+    {
+    echo '<option value="' . $wiersz["id"] . '">' . $wiersz["godzina"] . "</option>";
+    }
+}
+echo "</select><select>";
+if ($rezultat5->num_rows > 0) 
+{
+while($wiersz = $rezultat5->fetch_assoc()) 
+    {
+    echo '<option value="' . $wiersz["id"] . '">' . $wiersz["sala"] . "</option>";
+    }
+}
+echo "</select><select>";
+if ($rezultat6->num_rows > 0) 
+{
+while($wiersz = $rezultat6->fetch_assoc()) 
+    {
+    echo '<option value="' . $wiersz["id"] . '">' . $wiersz["imie"] . ' ' . $wiersz["nazwisko"] . "</option>";
+    }
+}
 
 
 
+echo "</form>";
 
 
 
