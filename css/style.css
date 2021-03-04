@@ -190,12 +190,128 @@ label {
 
 @media only screen and (min-width: 2500px) and (min-height: 1390px){
     #bcolor{
-        font-size: 40px;
-    }
-    .reg {
         font-size: 20px;
     }
+    .reg {
+        font-size: 25px;
+    }
+    .log-btn,
+    .reg-btn {
+    font-size: 40px; 
+    }
     input {
+        height: auto;
         font-size: 18px;
     }
+
+    @keyframes zaloguj {
+        from {
+            height: 0;
+            opacity: 0;
+        }
+        to {
+            height: 151px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes rejestracja {
+        from {
+            height: 0;
+            opacity: 0;
+        }
+        to {
+            height: 429px;
+            opacity: 1;
+        }
+    }
+
+}
+
+/* Tablet */
+@media only screen and (max-width: 1100px){
+    #bcolor{
+        font-size: 20px;
+    }
+    .reg {
+        font-size: 18px;
+    }
+    .log-btn,
+    .reg-btn {
+    font-size: 30px; 
+    }
+    input {
+        height: auto;
+        font-size: 14px;
+    }
+
+    @keyframes zaloguj {
+        from {
+            height: 0;
+            opacity: 0;
+        }
+        to {
+            height: 147px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes rejestracja {
+        from {
+            height: 0;
+            opacity: 0;
+        }
+        to {
+            height: 345px;
+            opacity: 1;
+        }
+    }
+
+}
+
+
+
+
+/* Phone */
+@media only screen and (max-width: 500px){
+    #bcolor{
+        font-size: 15px;
+    }
+    .log-btn,
+    .reg-btn {
+    font-size: 25px; 
+    }
+    input {
+        height: auto;
+        font-size: 10px;
+    }
+    .logowanie-text{
+        display: none;
+    }
+    h1{
+        font-size:30px;
+    }
+
+    @keyframes zaloguj {
+        from {
+            height: 0;
+            opacity: 0;
+        }
+        to {
+            height: 141px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes rejestracja {
+        from {
+            height: 0;
+            opacity: 0;
+        }
+        to {
+            height: 302px;
+            opacity: 1;
+        }
+    }
+
 }
