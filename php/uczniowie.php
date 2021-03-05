@@ -73,6 +73,4 @@ if(isset($_POST['usuwanie']))
 
 ?>
 </body>
-</html>   
-
-
+</html>
