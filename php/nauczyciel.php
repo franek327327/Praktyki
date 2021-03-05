@@ -66,12 +66,16 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
              echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
             ?>
         </h2>
-
-      
         </div>
-        
+        <p> 
+        <?php
+        echo $_SESSION['email'];
+        echo "<br><br>";
+        echo $_SESSION['login'];
+        ?>
+        </p>
         <br><br>
-                <p><a href="#">Edytuj nazwę użytkownika</a></p>
+                <p><a href="#">Edytuj profil</a></p>
     </div>
         
     <div class="tab-content" id="plan">
