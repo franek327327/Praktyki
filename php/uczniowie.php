@@ -55,7 +55,7 @@ $usuwanieBachora = "DELETE FROM uzytkownicy WHERE id = 5";
 if ($polaczenie->query($usuwanieBachora) === TRUE) {
     echo "Dziecko zlikwidowane";
 } else {
-    echo "Blad usuwania dziecka: " . $rezultat->conect_error;
+    // echo "Blad usuwania dziecka: " . $rezultat->conect_error;
 }
 
 if(isset($_POST['usuwanie']))
