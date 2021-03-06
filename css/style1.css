@@ -230,3 +230,29 @@ a:active {
     color: rgb(255, 255, 255);
 }
 
+/* Responsywność */
+
+
+/* 1080p */
+
+@media only screen and (min-height:1030px) and (min-width:1870px){
+
+}
+
+/* 1440p */
+
+@media only screen and (min-width: 2500px) and (min-height: 1390px){
+    
+}
+
+
+/* Tablet */
+
+@media only screen and (max-width: 1100px){
+
+}
+
+/* Phone */
+@media only screen and (max-width: 500px){
+
+}
