@@ -4,6 +4,9 @@ body {
     background: #465973;
     font-family: 'PT Sans', sans-serif;
 }
+.error {
+    color: red;
+}
 
 .blink-text-menu {
     list-style-type: none;

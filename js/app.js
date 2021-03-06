@@ -30,26 +30,4 @@ buttonRejestracja.addEventListener("click", function() {
 
 });
 
-// Podgląd hasła
-const hasloBtn = document.querySelectorAll(".zobaczHaslo");
 
-
-
-
-for (const btn of hasloBtn) {
-    const hasloHref = btn.getAttribute("href");
-    const haslo = document.querySelector(hasloHref);
-
-    function show() {
-        haslo.setAttribute("type", "text");
-    }
-
-    function hide() {
-        haslo.setAttribute("type", "password");
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        btn.addEventListener("mousedown", show);
-        btn.addEventListener("mouseup", hide);
-    });
-}
