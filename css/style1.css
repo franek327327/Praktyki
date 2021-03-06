@@ -5,6 +5,9 @@ body {
     font-family: 'PT Sans', sans-serif;
 }
 
+
+/*menu*/
+
 .blink-text-menu {
     list-style-type: none;
     width: fit-content;
@@ -72,16 +75,7 @@ h1 {
 }
 
 
-/*Animacja*/
-
-@keyframes zaloguj {
-    from {
-        display: none
-    }
-    to {
-        background-color: yellow;
-    }
-}
+/*animacja karty profilu*/
 
 .profilAnim {
     animation-name: ProfilAnim;
@@ -99,7 +93,7 @@ h1 {
 }
 
 
-/*Uczeń i Nauczyciel*/
+/*Uczeń i Nauczyciel konrad robil*/
 
 .tab-contents {
     background-color: white;
@@ -125,18 +119,8 @@ h1 {
 }
 
 .tab-el {
-    background: var(--color);
     border-radius: 15px 15px 0 0;
-    transition: 0.5s background-color;
-    background-image: linear-gradient(var(--color) calc(100% - 10px), rgba(0, 0, 0, 0.5));
-    margin-right: 2px;
     transition: 0.1s all;
-}
-
-.tab-el-active {
-    background: var(--color-active);
-    box-shadow: none;
-    margin-left: 0;
 }
 
 .close {
@@ -146,38 +130,17 @@ h1 {
 
 .close:hover {
     cursor: pointer;
+    /*pokazuje palec po najechaniu*/
 }
 
 .plan {
-    background-color: aquamarine;
     border-radius: 1px;
+    /*zaokragla rogi*/
     border-color: blueviolet;
 }
 
 
-/*Animacje*/
-
-@keyframes ProfilAnim {
-    from {
-        height: 0;
-        opacity: 0;
-    }
-    to {
-        height: 600px;
-        opacity: 1;
-    }
-}
-
-@keyframes ProfilAnimRev {
-    from {
-        height: 600px;
-        opacity: 1;
-    }
-    to {
-        height: 0;
-        opacity: 0;
-    }
-}
+/*w karcie profilu*/
 
 p {
     font-size: 25px;
@@ -227,29 +190,50 @@ a:active {
     color: rgb(255, 255, 255);
 }
 
+
 /* Responsywność */
 
 
 /* 1080p */
 
-@media only screen and (min-height:1030px) and (min-width:1870px){
+@media only screen and (min-height:1030px) and (min-width:1870px) {}
 
-}
 
 /* 1440p */
 
-@media only screen and (min-width: 2500px) and (min-height: 1390px){
-    
-}
+@media only screen and (min-width: 2500px) and (min-height: 1390px) {}
 
 
 /* Tablet */
 
-@media only screen and (max-width: 1100px){
+@media only screen and (max-width: 1100px) {}
 
-}
 
 /* Phone */
-@media only screen and (max-width: 500px){
 
+@media only screen and (max-width: 500px) {}
+
+
+/*Animacje*/
+
+@keyframes ProfilAnim {
+    from {
+        height: 0;
+        opacity: 0;
+    }
+    to {
+        height: 600px;
+        opacity: 1;
+    }
+}
+
+@keyframes ProfilAnimRev {
+    from {
+        height: 600px;
+        opacity: 1;
+    }
+    to {
+        height: 0;
+        opacity: 0;
+    }
 }
