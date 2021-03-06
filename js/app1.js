@@ -52,7 +52,7 @@ profilCloseBtn.addEventListener("click", function() {
  const buttons = document.querySelectorAll(".tab-el");
 
  for(const btn of buttons){
-    
+
     btn.addEventListener("click", function(){
         const contentHref = btn.children[0].getAttribute("href");
         const content = document.querySelector(contentHref);
