@@ -182,7 +182,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>plan lekcji</title>
+    <title>Uczeń</title>
     <link rel="stylesheet" href="../css/style1.css">
     <script src="../js/app1.js" defer></script>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
@@ -212,14 +212,17 @@
     </ul>
     </div>
 <div class="tab-contents">
+<a class="close">✖</a>
     <div class="tab-content" id="profil">
-        <a class="close">✖</a>
+    <div id="login">
+        
         <img src="../img/avatar.png">
-        <div class="wyswietlanieDanych"><h1 class="profilText">
+        <div class="wyswietlanieDanych"><h2 class="profilText">
         <?php
             echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
         ?>
-        </h1>
+        </div>
+        </h2>
         <p> 
        
        <?php 
@@ -249,7 +252,7 @@
                     $rezultat->close();
                 }
                 echo "</select>";
-                echo '<input type="submit" name="dolaczanie" value="Dołącz do klasy!"></form>';       //Przycisk
+                echo '<input  type="submit" name="dolaczanie" value="Dołącz do klasy!"></form>';       //Przycisk
             }
 
 
@@ -272,19 +275,25 @@
         }
         
             echo "<br><br>";
-            echo "Email: " . $_SESSION['email'];
+            echo "<b>Email:</b> " . $_SESSION['email'];
             echo "<br><br>";
-            echo "Login : " . $_SESSION['login'];
+            echo "<b>Login:</b> " . $_SESSION['login'];
         ?>
+        
         <form method="post">
         <input type="submit" name="edycjaDanych" value="Edytuj dane"></form>
-       
+  
        </p>
        </div>
        <div class="edytowanieDanych" style="display:none">
        <p>
-       <form method="post">  <!-- Edytowanie Danych użytkownika -->
-       Imie: 
+       <form method="post">  
+           
+       <!-- Edytowanie Danych użytkownika -->
+      
+      <div id="dane">
+      <div class="tlo">
+      <b> Imie:</b> 
        <input type="text" value="<?php
             if(isset($_SESSION['imie']))
             {
@@ -292,7 +301,7 @@
             }
        ?>" name="imieEdit">
        <br>
-       Nazwisko:
+     <b>Nazwisko:</b>
        <input type="text" value="<?php
             if(isset($_SESSION['nazwisko']))
             {
@@ -307,7 +316,7 @@
 				}
         ?>
        <br>
-       Email:
+       <b>Email:</b>
        <input type="email" value="<?php
             if(isset($_SESSION['email']))
             {
@@ -322,7 +331,7 @@
 				}
         ?>
        <br>
-       Login:
+            <b> Login:</b>
        <input type="text" value="<?php
             if(isset($_SESSION['login']))
             {
@@ -337,7 +346,8 @@
 				}
         ?>
        <br>
-       Haslo:
+       
+            <b>Haslo:</b>
        <input type="password"  name="hasloEdit">
        <?php
 			if(isset($_SESSION['error_haslo']))
@@ -347,12 +357,13 @@
 				}
         ?>
        <br>
-       <input type="submit" name="zapisz" value="Zapisz!">
+      <u> <input type="submit" name="zapisz" value="Zapisz!"></u>
+            </div>
        </form>
        </p>
        </div>
     </div>
-
+            
     <div class="tab-content" id="plan">
         <a class="close">✖</a>
        <?php
@@ -581,6 +592,7 @@
         <a class="close">✖</a>
         
     </div>
+</div>
 </div>
     <div id="stopka">
         PLAN LEKCJI &copy; Praktyka gr2

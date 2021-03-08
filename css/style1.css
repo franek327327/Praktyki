@@ -4,6 +4,7 @@ body {
     background: #465973;
     font-family: 'PT Sans', sans-serif;
 }
+
 .error {
     color: red;
 }
@@ -99,7 +100,6 @@ h1 {
 /*Uczeń i Nauczyciel konrad robil*/
 
 .tab-contents {
-    background-color: white;
     width: 500px;
     height: 600px;
     border-radius: 5px;
@@ -162,6 +162,42 @@ h2 {
 
 #login {
     text-align: center;
+}
+
+
+/*
+input {
+    
+}
+*/
+
+#dane {
+    text-align: center;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+input {
+    border: none;
+    border-radius: 5px;
+}
+
+.tlo input {
+    border: none;
+    border-radius: 5px;
+    background-color: #B3DBE1;
+}
+
+.tlo {
+    background-color: rgba(0, 139, 139, 0.275);
+    width: auto;
+    height: auto;
+    border-radius: 19px;
+}
+
+input:hover {
+    cursor: pointer;
+    /*pokazuje palec po najechaniu*/
 }
 
 
