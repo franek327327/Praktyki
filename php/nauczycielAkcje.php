@@ -16,7 +16,7 @@ if(isset($_POST['dodawanie']))
                     VALUES ('".$_POST['przedmiot']."', '".$_POST['klasa']."', '".$_POST['dzien']."', '".$_POST['godzina']."', '".$_POST['sala']."', '".$_POST['imieinazwisko']."')";
 
                     $sprawdzanieLekcji=
-                    "SELECT idDzien, idGodzinaLekcyjna, idKlasa
+                    "SELECT idDzien, idGodzinaLekcyjna, idKlasa, IdNauczyciel
                     FROM plan
                     ";
 
@@ -28,7 +28,7 @@ if(isset($_POST['dodawanie']))
                     {
                     while($wiersz = $rezultatSprawdzania->fetch_assoc()) 
                         {
-                            if($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['idKlasa'] == 1)
+                            if(($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['idKlasa'] == $_POST['klasa']) || ($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['IdNauczyciel'] == $_POST['imieinazwisko']))
                             {
                                 $czyMoznaWyslac = false;
                             }
@@ -279,7 +279,7 @@ else if(isset($_POST['aktualizacjaLekcji']))
         $polaczenie->close();
         header("Location:planNauczyciel.php");
       } else {
-        $_SESSION['wiadomoscDodawania'] = "Nie udało się zaaktualizować lekcji!".$conn->error;
+        $_SESSION['wiadomoscDodawania'] = "Nie udało się zaaktualizować lekcji!";
         $polaczenie->close();
         header("Location:planNauczyciel.php");
       }
@@ -295,11 +295,77 @@ else if(isset($_POST['usuniecieLekcji']))
         $polaczenie->close();
         header("Location:planNauczyciel.php");
       } else {
-        $_SESSION['wiadomoscDodawania'] = "Nie udało się usunąć lekcji!".$conn->error;
+        $_SESSION['wiadomoscDodawania'] = "Nie udało się usunąć lekcji!";
         $polaczenie->close();
         header("Location:planNauczyciel.php");
       }
+
 }
+//edytowanie klasy
+else if(isset($_POST['edytowanieKlasy']))
+{
+    echo '<form method="post" action="nauczycielAkcje.php">';
+    echo '<input type="text" name="zmianaKlasy" >';
+    echo '<input type="submit" name="edytuj" value="edytuj klase">';
+    echo "</form>";
+    $_SESSION["KlasaID"]=$_POST["edytowanieKlasy"];
+   
+}  
+elseif(isset($_POST["zmianaKlasy"]))
+{
+    $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+    
+    
+    $update = "UPDATE klasy SET klasa ='" .$_POST['zmianaKlasy']. "' WHERE id=" .$_SESSION['KlasaID'];
+    if ($polaczenie->query($update) == TRUE) 
+    {
+        $_SESSION['wiadomoscDodawania'] = "Udało się zmienić nazwę klasy!";
+        $polaczenie->close();
+        header("Location:nauczyciel.php");
+    }
+    else
+    {
+        $_SESSION['wiadomoscDodawania'] = "Nie udało się zmienić nazwy klasy!";
+        $polaczenie->close();
+        header("Location:nauczyciel.php");
+    }
+    
+
+}
+//edytowanie przedmiotu
+else if(isset($_POST['edytowaniePrzedmiotu']))
+{
+    echo '<form method="post" action="nauczycielAkcje.php">';
+    echo '<input type="text" name="zmianaPrzedmiotu" >';
+    echo '<input type="submit" name="edytuj" value="edytuj przedmiot">';
+    echo "</form>";
+    $_SESSION["PrzedmiotID"]=$_POST["edytowaniePrzedmiotu"];
+   
+}  
+elseif(isset($_POST["zmianaPrzedmiotu"]))
+{
+    $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+    
+    
+    $update = "UPDATE slownik SET przedmiot ='" .$_POST['zmianaPrzedmiotu']. "' WHERE id=" .$_SESSION['PrzedmiotID'];
+    if ($polaczenie->query($update) == TRUE) 
+    {
+        $_SESSION['wiadomoscDodawania'] = "Udało się zmienić nazwę przedmiotu!";
+        $polaczenie->close();
+        header("Location:nauczyciel.php");
+    }
+    else
+    {
+        $_SESSION['wiadomoscDodawania'] = "Nie udało się zmienić nazwy przedmiotu!";
+        $polaczenie->close();
+        header("Location:nauczyciel.php");
+    }
+    
+
+}
+
+
+
 else
 {
     header("Location:nauczyciel.php");
