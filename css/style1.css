@@ -13,6 +13,7 @@ body {
 /*menu*/
 
 .blink-text-menu {
+    font-size: 50px;
     list-style-type: none;
     width: fit-content;
     margin: 250px auto auto auto;
@@ -29,6 +30,7 @@ body {
 }
 
 .blink-text-menu li a span {
+    
     position: relative;
     overflow: hidden;
     transition: 0.6s;
@@ -165,12 +167,6 @@ h2 {
 }
 
 
-/*
-input {
-    
-}
-*/
-
 #dane {
     text-align: center;
     margin-left: 70px;
@@ -235,22 +231,79 @@ a:active {
 
 /* 1080p */
 
-@media only screen and (min-height:1030px) and (min-width:1870px) {}
+@media only screen and (min-height:1030px) and (min-width:1870px) {
+
+    h1{
+        font-size: 40px;
+    }
+
+    .tab-content{
+        font-size:20px;
+    }
+    
+    #stopka{
+        font-size:15px;
+    }
+}
 
 
 /* 1440p */
 
-@media only screen and (min-width: 2500px) and (min-height: 1390px) {}
+@media only screen and (min-width: 2500px) and (min-height: 1390px) {
+    h1{
+        font-size: 50px;
+    }
+    .tab-content{
+        font-size:25px;
+    }
+    
+    #stopka{
+        font-size:20px;
+    }
+
+}
 
 
 /* Tablet */
 
-@media only screen and (max-width: 1100px) {}
+@media only screen and (max-width: 1100px) {
+    h1{
+        font-size: 30px;
+    }
+
+    .close{
+        position: relative;
+    }
+    .tab-content{
+        font-size:15px;
+    }
+    
+    #stopka{
+        font-size:20px;
+    }
+}
 
 
 /* Phone */
 
-@media only screen and (max-width: 500px) {}
+@media only screen and (max-width: 500px){
+    h1{
+        font-size: 20px;
+    }
+
+    .blink-text-menu{
+        font-size:15px;
+    }
+
+    .tab-content{
+        font-size:15px;
+    }
+    
+    #stopka{
+        font-size:15px;
+    }
+    
+}
 
 
 /*Animacje*/

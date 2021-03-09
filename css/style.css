@@ -244,6 +244,9 @@ label {
         height: auto;
         font-size: 14px;
     }
+    h1{
+        font-size:35px;
+    }
 
     @keyframes zaloguj {
         from {
@@ -289,7 +292,7 @@ label {
         display: none;
     }
     h1{
-        font-size:30px;
+        font-size:25px;
     }
 
     @keyframes zaloguj {
@@ -298,7 +301,7 @@ label {
             opacity: 0;
         }
         to {
-            height: 141px;
+            height: 111px;
             opacity: 1;
         }
     }
@@ -309,7 +312,7 @@ label {
             opacity: 0;
         }
         to {
-            height: 302px;
+            height: 333px;
             opacity: 1;
         }
     }

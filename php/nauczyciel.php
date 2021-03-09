@@ -158,6 +158,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
     <link rel="stylesheet" href="../css/style1.css">
     <script src="../js/app1.js" defer></script>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=PT+Sans&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -171,7 +172,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
     
 <div id="menu">
-    <ul class="blink-text-menu tab">
+    <ul class="blink-text-menu">
         <li class="tab-el">
             <a href="#profil">Profil</a>
         </li>
@@ -209,7 +210,6 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
         
         <p> 
        <?php 
-            echo "<br><br>";
             echo "<b>Email:</b> " . $_SESSION['email'];
             echo "<br><br>";
             echo "<b>Login:</b> " . $_SESSION['login'];
