@@ -354,3 +354,23 @@ a:active {
         opacity: 0;
     }
 }
+
+@media print {
+    .drukuj {
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        font-size: 14px;
+        line-height: 18px;
+    }
+}
+table, th, td, tr
+{
+border :1px solid black;
+text-align: center;
+font-size: 13px;
+}

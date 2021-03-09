@@ -72,5 +72,6 @@ if(isset($_POST['usuwanie']))
 }
 
 ?>
+<button onclick="location.href='nauczyciel.php'">Powrót</button>
 </body>
 </html>

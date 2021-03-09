@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8" />
-    <title>Plan lekcji dla nauczyciela</title>
+    <title>Plan lekcji</title>
     <link rel="stylesheet" href="../css/style1.css">
     <script src="../js/app1.js" defer></script>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
@@ -16,40 +16,32 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 $lekcje1 = 
             "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
-            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 1
+            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdKlasa = ".$_SESSION['idKlasy']." AND plan.IdDzien = 1
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje2 = 
             "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
-            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 2
+            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdKlasa = ".$_SESSION['idKlasy']." AND plan.IdDzien = 2
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje3 = 
             "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
-            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 3
+            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdKlasa = ".$_SESSION['idKlasy']." AND plan.IdDzien = 3
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje4 = 
             "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
-            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 4
+            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdKlasa = ".$_SESSION['idKlasy']." AND plan.IdDzien = 4
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje5 = 
             "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
-            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 5
+            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdKlasa = ".$_SESSION['idKlasy']." AND plan.IdDzien = 5
             ORDER BY plan.idGodzinaLekcyjna ASC";
-        
-            $przedmioty =
-            "SELECT slownik.id, slownik.przedmiot
-            From slownik slownik";
-        
-            $sala = 
-            "SELECT sale.id, sale.sala
-            FROM sale sale";
         
         
             for($i = 1; $i <= 5; $i++)
@@ -61,23 +53,13 @@ $lekcje1 =
                     while($wiersz = $rezultat->fetch_assoc()) 
                     { 
                         $petla++;
-                        $GLOBALS["Lekcja".$i."_".$wiersz["IdGodzinaLekcyjna"]] = "<form id='edycja' method='post' action='nauczycielAkcje.php'>
-                        <input type='hidden' name='przedmiot' value='".$wiersz['przedmiot']."'/>
-                        <input type='hidden' name='sala' value='".$wiersz['sala']."'/>
-                        <input type='hidden' name='klasa' value='".$wiersz['klasa']."'/>
-                        <input type='hidden' name='godzina' value='".$wiersz['godzina']."'/>
-                        <input type='hidden' name='imie' value='".$wiersz['imie']."'/>
-                        <input type='hidden' name='nazwisko' value='".$wiersz['nazwisko']."'/>
-                        <input type='hidden' name='dzien' value='".$wiersz['dzien']."'/>
-                        <input type='hidden' name='id' value='".$wiersz['id']."'/>
-                        <input type='hidden' name='lekcja' value='".$wiersz['gId']."'/>
-                        <button class='plan' type='submit' name='edycjaLekcji' value='".$wiersz['id']."'>".$wiersz["przedmiot"]." ".$wiersz["sala"]." ".$wiersz['klasa']."</button></form>";
+                        $GLOBALS["Lekcja".$i."_".$wiersz["IdGodzinaLekcyjna"]] = $wiersz['przedmiot']." ".$wiersz['sala']." ".$wiersz['imie']." ".$wiersz['nazwisko'];
                     }
                     $rezultat->close();
                 }
             }
             echo
-            "<div class='drukuj'><table>
+            "Plan lekcji dla klasy ".$_SESSION['klasa']."<div class='drukuj'><table>
             <tr>
             <th>Nr</th>
             <th>Godzina</th>
@@ -240,82 +222,11 @@ $lekcje1 =
             "</td>
             </tr>
             </table></div>";
-
-             $przedmiot = "SELECT id, przedmiot FROM slownik";
-             $klasa = "SELECT id, klasa FROM klasy";
-             $dzien = "SELECT id, dzien FROM dni";
-             $godzina = "SELECT id, godzina FROM godzinylekcyjne";
-             $sala = "SELECT id, sala FROM sale";
-             $nauczyciel = "SELECT id, imie, nazwisko, funkcja FROM uzytkownicy WHERE funkcja = 1";
-             
-             $rezultat1 = $polaczenie->query($przedmiot);
-             $rezultat2 = $polaczenie->query($klasa);
-             $rezultat3 = $polaczenie->query($dzien);
-             $rezultat4 = $polaczenie->query($godzina);
-             $rezultat5 = $polaczenie->query($sala);
-             $rezultat6 = $polaczenie->query($nauczyciel);
-                   
-             echo '<form method="post" action="nauczycielAkcje.php"> <select name="przedmiot">';
-             if ($rezultat1->num_rows > 0) 
-                 {
-                     while($wiersz = $rezultat1->fetch_assoc()) 
-                     {
-                         echo '<option value="' . $wiersz["id"] . '">' . $wiersz["przedmiot"] . "</option>";
-                     }
-                 }
-             echo '</select><select name="klasa">';
-             if ($rezultat2->num_rows > 0) 
-                 {
-                     while($wiersz = $rezultat2->fetch_assoc()) 
-                     {
-                     echo '<option value="' . $wiersz["id"] . '">' . $wiersz["klasa"] . "</option>";
-                     }
-                 }
-             echo '</select><select name="dzien">';
-             if ($rezultat3->num_rows > 0) 
-                 {
-                     while($wiersz = $rezultat3->fetch_assoc()) 
-                     {
-                     echo '<option value="' . $wiersz["id"] . '">' . $wiersz["dzien"] . "</option>";
-                     }
-                 }
-             echo '</select><select name="godzina">';
-             if ($rezultat4->num_rows > 0) 
-                 {
-                     while($wiersz = $rezultat4->fetch_assoc()) 
-                         {
-                             echo '<option value="' . $wiersz["id"] . '">' . $wiersz['id'] . '. ' . $wiersz["godzina"] . "</option>";
-                         }
-                 }
-             echo '</select><select name="sala">';
-             if ($rezultat5->num_rows > 0) 
-                 {
-                     while($wiersz = $rezultat5->fetch_assoc()) 
-                         {
-                             echo '<option value="' . $wiersz["id"] . '">' . $wiersz["sala"] . "</option>";
-                         }
-                 }
-             echo '</select><select name="imieinazwisko">';
-             if ($rezultat6->num_rows > 0) 
-                 {
-                     while($wiersz = $rezultat6->fetch_assoc()) 
-                         {
-                             echo '<option value="' . $wiersz["id"] . '">' . $wiersz["imie"] . ' ' . $wiersz["nazwisko"] . "</option>";
-                         }
-                 }
-             echo '<br>';
-             echo '<input type="submit" name="dodawanie" value="Dodaj lekcję!">';
-             echo "</form>";  
-             if(isset($_SESSION['wiadomoscDodawania']))
-             {
-             echo $_SESSION['wiadomoscDodawania'];  
-             unset($_SESSION['wiadomoscDodawania']);
-             }
             
             $polaczenie->close();
 ?>
 <button onclick="window.print();">Drukuj</button>
-<button onclick="location.href='nauczyciel.php'">Powrót</button>
+<button onclick="location.href='uczen.php'">Powrót</button>
 
 </body>
 </html>

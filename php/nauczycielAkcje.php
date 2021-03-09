@@ -305,4 +305,4 @@ else
     header("Location:nauczyciel.php");
 }
 ?>
-
+<button onclick="location.href='planNauczyciel.php'">Powrót</button>
