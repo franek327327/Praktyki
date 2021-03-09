@@ -33,7 +33,7 @@ require_once "polaczenieZBaza.php";
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
 // wyswietlanie wszystkich uczniow
-$profil = "SELECT imie, nazwisko, funkcja, id FROM uzytkownicy WHERE funkcja = 0";
+$profil = "SELECT u.imie, u.nazwisko, u.email, u.funkcja, u.id, k.klasa FROM uzytkownicy u, klasy k WHERE u.IdKlasa = k.id and funkcja = 0";
 
 $rezultat = $polaczenie->query($profil);
 
@@ -41,7 +41,7 @@ if ($rezultat->num_rows > 0) {
     $petla = 0;
 	while($wiersz = $rezultat->fetch_assoc()) {
 		$petla++;
-		echo "Uczen " . $wiersz["id"] . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] ."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
+		echo "Uczen " . $petla . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . " ". $wiersz['klasa'] . " " . $wiersz['email']."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
 	}
 }
 echo '<br>';

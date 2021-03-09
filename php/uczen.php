@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "polaczenieZBaza.php";
+    require "polaczenieZBaza.php";
 
     if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION['funkcja'] != 0))
     {
@@ -73,8 +73,6 @@
                     }
 
                 }
-
-            require_once "polaczenieZBaza.php";
             mysqli_report(MYSQLI_REPORT_STRICT);     
                 try
                     {
@@ -207,9 +205,6 @@
         </li>
         <li class="tab-el">
             <a href="#plan">Plan</a>
-        </li>
-        <li class="tab-el">
-            <a href="#Klasy">Klasy</a>
         </li>
 		<li class="tab-el">
             <a href="procesWylogowania.php">Wyloguj</a>
@@ -370,7 +365,6 @@
             </div>
         </div>
     </div>
-            
     <div class="tab-content" id="plan">
        <?php
             $lekcje1 = 
@@ -591,10 +585,6 @@
             </tr>
             </table>";
        ?>
-    </div>
-
-    <div class="tab-content" id="Klasy">
-
     </div>
 </div>
 </div>
