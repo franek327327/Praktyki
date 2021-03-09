@@ -279,7 +279,7 @@ else if(isset($_POST['aktualizacjaLekcji']))
         $polaczenie->close();
         header("Location:planNauczyciel.php");
       } else {
-        $_SESSION['wiadomoscDodawania'] = "Nie udało się zaaktualizować lekcji!".$conn->error;
+        $_SESSION['wiadomoscDodawania'] = "Nie udało się zaaktualizować lekcji!";
         $polaczenie->close();
         header("Location:planNauczyciel.php");
       }
