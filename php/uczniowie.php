@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-/* if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION['funkcja'] != 1))
+ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION['funkcja'] != 1))
 {
 	header('Location:../index.php');
 	exit();
 } 
-*/
+
 ?> 
 
 <!DOCTYPE HTML>
@@ -35,7 +35,7 @@ require_once "polaczenieZBaza.php";
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
 // wyswietlanie wszystkich uczniow
-$profil = "SELECT u.imie, u.nazwisko, u.email, u.funkcja, u.id, k.klasa FROM uzytkownicy u, klasy k WHERE u.IdKlasa = k.id and funkcja = 0";
+$profil = "SELECT u.IdKlasa, u.imie, u.nazwisko, u.email, u.funkcja, u.id, k.klasa FROM uzytkownicy u, klasy k WHERE k.id = u.IdKlasa and funkcja = 0";
 
 $rezultat = $polaczenie->query($profil);
 
@@ -43,7 +43,7 @@ if ($rezultat->num_rows > 0) {
     $petla = 0;
 	while($wiersz = $rezultat->fetch_assoc()) {
 		$petla++;
-		echo "Uczen " . $petla . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . " ". $wiersz['klasa'] . " " . $wiersz['email']."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
+		echo "Uczen " . $petla . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . " ". ($wiersz['klasa'] == NULL ? "Brak klasy" : $wiersz['klasa']) . " " . $wiersz['email']."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
 	}
 }
 echo '<br>';
@@ -52,13 +52,6 @@ $usunProfil = "SELECT id FROM uzytkownicy WHERE funkcja = 0";
 
 $rezultat = $polaczenie->query($usunProfil);
 
-$usuwanieBachora = "DELETE FROM uzytkownicy WHERE id = 5";
-
-if ($polaczenie->query($usuwanieBachora) === TRUE) {
-    // echo "Dziecko zlikwidowane";
-} else {
-    echo "Blad usuwania dziecka: " . $rezultat->conect_error;
-}
 
 if(isset($_POST['usuwanie']))
 {

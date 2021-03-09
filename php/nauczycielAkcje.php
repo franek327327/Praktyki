@@ -16,7 +16,7 @@ if(isset($_POST['dodawanie']))
                     VALUES ('".$_POST['przedmiot']."', '".$_POST['klasa']."', '".$_POST['dzien']."', '".$_POST['godzina']."', '".$_POST['sala']."', '".$_POST['imieinazwisko']."')";
 
                     $sprawdzanieLekcji=
-                    "SELECT idDzien, idGodzinaLekcyjna, idKlasa
+                    "SELECT idDzien, idGodzinaLekcyjna, idKlasa, IdNauczyciel
                     FROM plan
                     ";
 
@@ -28,7 +28,7 @@ if(isset($_POST['dodawanie']))
                     {
                     while($wiersz = $rezultatSprawdzania->fetch_assoc()) 
                         {
-                            if($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['idKlasa'] == 1)
+                            if(($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['idKlasa'] == $_POST['klasa']) || ($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['IdNauczyciel'] == $_POST['imieinazwisko']))
                             {
                                 $czyMoznaWyslac = false;
                             }
@@ -299,6 +299,12 @@ else if(isset($_POST['usuniecieLekcji']))
         $polaczenie->close();
         header("Location:planNauczyciel.php");
       }
+
+}
+else if(isset($_POST['edytowanieKlasy']))
+{
+    $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+    echo $_POST['nazwaKlasy'];
 }
 else
 {
