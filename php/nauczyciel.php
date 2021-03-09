@@ -318,19 +318,23 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                     $petla = 0;
                     while($wiersz = $rezultat->fetch_assoc()) {
                         $petla++;
-                        echo $petla . ". " . $wiersz["przedmiot"]."<form style = 'display: inline;' method = 'post' action = 'dodawanieDoPlany.php'> <button name = 'usuwaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
+                        echo $petla . ". " . $wiersz["przedmiot"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
                     }
                     $rezultat->close();
                 }
                 if(isset($_SESSION['przedmioty']))
                 {
-                    echo $_SESSION['przedmioty'];
+                    ?>
+                    <script>
+                    alert(<?php echo '"'.$_SESSION["przedmioty"].'"'; ?>);
+                    </script>
+                    <?php
                     unset($_SESSION['przedmioty']);
                 }
             ?>
         </div>
         <!-- Dodawanie przedmiotów -->
-        <form method="post" action="dodawanieDoPlany.php">
+        <form method="post" action="nauczycielAkcje.php">
         <input type="text" name="dodawanyPrzedmiot">
         <input type="submit" name="dodawaniePrzedmiotu" value="Dodaj przedmiot!">
         </form>
@@ -347,20 +351,24 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                 $petla = 0;
                 while($wiersz = $rezultat->fetch_assoc()) {
                     $petla++;
-                    echo $petla . ". " . $wiersz["klasa"]."<form style = 'display: inline;' method = 'post' action = 'dodawanieDoPlany.php'> <button name = 'usuwanieKlasy' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
+                    echo $petla . ". " . $wiersz["klasa"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwanieKlasy' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
                 }
                 $rezultat->close();
             }
             if(isset($_SESSION['klasy']))
             {
-                echo $_SESSION['klasy'];
+                ?>
+                    <script>
+                    alert(<?php echo '"'.$_SESSION["klasy"].'"'; ?>);
+                    </script>
+                    <?php
                 unset($_SESSION['klasy']);
             }
         ?>
         
         </div>
         <!-- Dodawanie klasy -->
-        <form method="post" action="dodawanieDoPlany.php">
+        <form method="post" action="nauczycielAkcje.php">
         <input type="text" name="dodawanaKlasa">
         <input type="submit" name="dodawanieKlasy" value="Dodaj klasę!">
         </form>

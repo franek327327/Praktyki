@@ -39,27 +39,27 @@ if(isset($_POST['dodawanie']))
                 {
                         if($polaczenie->query($dodawanieLekcji))
                         {
-                            $_SESSION['wiadomoscDodawania'] = "<div class ='alert'><span class='closebtn' onclick='this.parentElement.style.display='".'"none;"'."'>&times;</span> Udało się dodać lekcję!</div>";
+                            $_SESSION['wiadomoscDodawania'] = "Udało się dodać lekcję!";
                             $polaczenie->close();
                             header("Location:planNauczyciel.php");
                             
                         }else
                         {
-                            $_SESSION['wiadomoscDodawania'] = "<div class ='alert'><span class='closebtn' onclick='this.parentElement.style.display='"."none;"."'>&times;</span> Udało się dodać lekcję!</div>";
+                            $_SESSION['wiadomoscDodawania'] = "Nie udało się dodać lekcji!";
                             $polaczenie->close();
                             header("Location:planNauczyciel.php");
                         }
                 }
                     else if(!$czyMoznaWyslac)
                 {
-                    $_SESSION['wiadomoscDodawania'] = "<div class ='alert'><span class='closebtn' onclick='this.parentElement.style.display='"."none;"."'>&times;</span> Udało się dodać lekcję!</div>";
+                    $_SESSION['wiadomoscDodawania'] = "Podana lekcja już istnieje!";
                     $polaczenie->close();
                     header("Location:planNauczyciel.php");
                 }	
 }
 
 // Usuwanie przedmiotu
-if(isset($_POST['usuwaniePrzedmiotu']))
+else if(isset($_POST['usuwaniePrzedmiotu']))
 {
     
     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
@@ -82,7 +82,7 @@ if(isset($_POST['usuwaniePrzedmiotu']))
 }
 
 // Dodawanie przedmiotu
-if(isset($_POST['dodawaniePrzedmiotu']))
+else if(isset($_POST['dodawaniePrzedmiotu']))
 {
     $czyMoznaWyslac = true;
     unset($_POST['dodawaniePrzedmiotu']);
@@ -125,7 +125,7 @@ if(isset($_POST['dodawaniePrzedmiotu']))
 }
 
 // Usuwanie klasy
-if(isset($_POST['usuwanieKlasy']))
+elseif(isset($_POST['usuwanieKlasy']))
 {
     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
@@ -146,7 +146,7 @@ if(isset($_POST['usuwanieKlasy']))
 }
 
 // Dodawanie klasy
-if(isset($_POST['dodawanieKlasy']))
+else if(isset($_POST['dodawanieKlasy']))
 {
     $czyMoznaWyslac = true;
     unset($_POST['dodawanieKlasy']);
@@ -187,6 +187,122 @@ if(isset($_POST['dodawanieKlasy']))
 
 
 }
-            
+   
+// Edytowanie lekcji
+else if(isset($_POST['edycjaLekcji']))
+{
+    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+    $przedmiot = "SELECT id, przedmiot FROM slownik";
+             $klasa = "SELECT id, klasa FROM klasy";
+             $dzien = "SELECT id, dzien FROM dni";
+             $godzina = "SELECT id, godzina FROM godzinylekcyjne";
+             $sala = "SELECT id, sala FROM sale";
+             $nauczyciel = "SELECT id, imie, nazwisko, funkcja FROM uzytkownicy WHERE funkcja = 1";
+             $_SESSION['idLekcji'] = $_POST['id'];
+             
+             $rezultat1 = $polaczenie->query($przedmiot);
+             $rezultat2 = $polaczenie->query($klasa);
+             $rezultat3 = $polaczenie->query($sala);
+             $rezultat4 = $polaczenie->query($nauczyciel);
+                   
+             echo "Edycja lekcji ".$_POST['lekcja']. ". <br>Dzień: ".$_POST['dzien'];
+             echo '<form method="post" action=""> <select name="przedmiot">';
+             if ($rezultat1->num_rows > 0) 
+                 {
+                     while($wiersz = $rezultat1->fetch_assoc()) 
+                     {
+                         if($wiersz['przedmiot'] == $_POST['przedmiot'])
+                         {
+                         echo '<option value="' . $wiersz["id"] . '" selected>' . $wiersz["przedmiot"] . "</option>";
+                         }else
+                         {
+                            echo '<option value="' . $wiersz["id"] . '">' . $wiersz["przedmiot"] . "</option>"; 
+                         }
+                     }
+                 }
+             echo '</select><select name="klasa">';
+             if ($rezultat2->num_rows > 0) 
+                 {
+                     while($wiersz = $rezultat2->fetch_assoc()) 
+                     {
+                        if($wiersz['klasa'] == $_POST['klasa'])
+                         {
+                         echo '<option value="' . $wiersz["id"] . '" selected>' . $wiersz["klasa"] . "</option>";
+                         }else
+                         {
+                            echo '<option value="' . $wiersz["id"] . '">' . $wiersz["klasa"] . "</option>"; 
+                         }
+                    }
+                 }
+             echo '</select><select name="sala">';
+             if ($rezultat3->num_rows > 0) 
+                 {
+                     while($wiersz = $rezultat3->fetch_assoc()) 
+                         {
+                            if($wiersz['sala'] == $_POST['sala'])
+                            {
+                            echo '<option value="' . $wiersz["id"] . '" selected>' . $wiersz["sala"] . "</option>";
+                            }else
+                            {
+                               echo '<option value="' . $wiersz["id"] . '">' . $wiersz["sala"] . "</option>"; 
+                            }
+                         }
+                 }
+             echo '</select><select name="imieinazwisko">';
+             if ($rezultat4->num_rows > 0) 
+                 {
+                     while($wiersz = $rezultat4->fetch_assoc()) 
+                         {
+                            if($wiersz['imie'] == $_POST['imie'] && $wiersz['nazwisko'] == $_POST['nazwisko'])
+                            {
+                            echo '<option value="' . $wiersz["id"] . '" selected>' . $wiersz["imie"] . " " . $wiersz["nazwisko"] . "</option>";
+                            }else
+                            {
+                               echo '<option value="' . $wiersz["id"] . '">' . $wiersz["imie"] . " " . $wiersz["nazwisko"] . "</option>"; 
+                            }
+                 }
+             echo '<br>';
+             echo '<input type="submit" name="aktualizacjaLekcji" value="Zapisz zmiany!">';
+             echo '<input type="submit" name="usuniecieLekcji" value="Usuń lekcję!">';
+             echo "</form>";  
+
+            }
+}
+// Aktualizacja lekcji po edycji
+else if(isset($_POST['aktualizacjaLekcji']))
+{
+    $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+    $zapytanie ="UPDATE plan SET IdPrzedmiot='".$_POST['przedmiot']."', IdKlasa='".$_POST['klasa']."', IdSala='".$_POST['sala']."', IdNauczyciel='".$_POST['imieinazwisko']."' WHERE id=".$_SESSION['idLekcji'];
+    unset($_SESSION['idLekcji']);
+    if ($polaczenie->query($zapytanie) === TRUE) {
+        $_SESSION['wiadomoscDodawania'] = "Poprawanie zaaktualizowano lekcję!";
+        $polaczenie->close();
+        header("Location:planNauczyciel.php");
+      } else {
+        $_SESSION['wiadomoscDodawania'] = "Nie udało się zaaktualizować lekcji!".$conn->error;
+        $polaczenie->close();
+        header("Location:planNauczyciel.php");
+      }
+}
+//Usunięcie lekcji
+else if(isset($_POST['usuniecieLekcji']))
+{
+    $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+    $usuwanie = "DELETE FROM plan WHERE id=".$_SESSION['idLekcji'];
+    unset($_SESSION['idLekcji']);
+    if ($polaczenie->query($usuwanie) === TRUE) {
+        $_SESSION['wiadomoscDodawania'] = "Poprawanie usunięto lekcję!";
+        $polaczenie->close();
+        header("Location:planNauczyciel.php");
+      } else {
+        $_SESSION['wiadomoscDodawania'] = "Nie udało się usunąć lekcji!".$conn->error;
+        $polaczenie->close();
+        header("Location:planNauczyciel.php");
+      }
+}
+else
+{
+    header("Location:nauczyciel.php");
+}
 ?>
 

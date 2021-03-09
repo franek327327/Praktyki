@@ -13,31 +13,31 @@ require_once "polaczenieZBaza.php";
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
 $lekcje1 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko
+            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
             where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 1
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje2 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko
+            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
             where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 2
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje3 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko
+            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
             where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 3
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje4 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko
+            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
             where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 4
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje5 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko
+            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
             where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 5
             ORDER BY plan.idGodzinaLekcyjna ASC";
@@ -60,7 +60,17 @@ $lekcje1 =
                     while($wiersz = $rezultat->fetch_assoc()) 
                     { 
                         $petla++;
-                        $GLOBALS["Lekcja".$i."_".$wiersz["IdGodzinaLekcyjna"]] = "<form method='post' action='dodawanieDoPlany.php'><input class='plan' type='submit' name='edycjaLekcji' value='".$wiersz["przedmiot"]." ".$wiersz["sala"]." ".$wiersz['imie']." ".$wiersz['nazwisko']."'></button></form>";
+                        $GLOBALS["Lekcja".$i."_".$wiersz["IdGodzinaLekcyjna"]] = "<form id='edycja' method='post' action='nauczycielAkcje.php'>
+                        <input type='hidden' name='przedmiot' value='".$wiersz['przedmiot']."'/>
+                        <input type='hidden' name='sala' value='".$wiersz['sala']."'/>
+                        <input type='hidden' name='klasa' value='".$wiersz['klasa']."'/>
+                        <input type='hidden' name='godzina' value='".$wiersz['godzina']."'/>
+                        <input type='hidden' name='imie' value='".$wiersz['imie']."'/>
+                        <input type='hidden' name='nazwisko' value='".$wiersz['nazwisko']."'/>
+                        <input type='hidden' name='dzien' value='".$wiersz['dzien']."'/>
+                        <input type='hidden' name='id' value='".$wiersz['id']."'/>
+                        <input type='hidden' name='lekcja' value='".$wiersz['gId']."'/>
+                        <button class='plan' type='submit' name='edycjaLekcji' value='".$wiersz['id']."'>".$wiersz["przedmiot"]." ".$wiersz["sala"]." ".$wiersz['klasa']."</button></form>";
                     }
                     $rezultat->close();
                 }
@@ -244,7 +254,7 @@ $lekcje1 =
              $rezultat5 = $polaczenie->query($sala);
              $rezultat6 = $polaczenie->query($nauczyciel);
                    
-             echo '<form method="post" action="dodawanieDoPlany.php"> <select name="przedmiot">';
+             echo '<form method="post" action="nauczycielAkcje.php"> <select name="przedmiot">';
              if ($rezultat1->num_rows > 0) 
                  {
                      while($wiersz = $rezultat1->fetch_assoc()) 
