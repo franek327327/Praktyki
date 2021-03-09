@@ -328,7 +328,10 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                     $petla = 0;
                     while($wiersz = $rezultat->fetch_assoc()) {
                         $petla++;
-                        echo $petla . ". " . $wiersz["przedmiot"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
+                        echo $petla . ". " . $wiersz["przedmiot"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "
+                        <form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> 
+                        <input type='hidden' name='nazwaPrzedmiotu' value='".$wiersz['przedmiot']."'/>
+                        <button name = 'edytowaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Edytuj</button> </form>" . "<br>";
                     }
                     $rezultat->close();
                 }
