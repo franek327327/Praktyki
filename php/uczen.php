@@ -2,6 +2,12 @@
     session_start();
     require_once "polaczenieZBaza.php";
 
+    if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION['funkcja'] != 0))
+    {
+        header('Location:../index.php');
+        exit();
+    } 
+
     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
     if(isset($_POST['edycjaDanych']))
     {
@@ -212,21 +218,21 @@
     </ul>
     </div>
 <div class="tab-contents">
-<a class="close">✖</a>
+    <a class="close">✖</a>
     <div class="tab-content" id="profil">
-    <div id="login">
+        <div id="login">
         
-        <img src="../img/avatar.png">
-        <div class="wyswietlanieDanych"><h2 class="profilText">
-        <?php
-            echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
-        ?>
+            <img src="../img/avatar.png">
+            <div class="wyswietlanieDanych"><h2 class="profilText">
+            <?php
+                echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
+            ?>
+            </h2>
         </div>
-        </h2>
+        
         <p> 
-       
+        <!-- Wyświetlanie klasy i dołączenie do klasy -->
        <?php 
-        // Wyświetlanie klasy i dołączenie do klasy
         
 
         if(isset($_SESSION['idKlasy']))
@@ -284,88 +290,88 @@
         <input type="submit" name="edycjaDanych" value="Edytuj dane"></form>
   
        </p>
-       </div>
-       <div class="edytowanieDanych" style="display:none">
-       <p>
-       <form method="post">  
-           
-       <!-- Edytowanie Danych użytkownika -->
-      
-      <div id="dane">
-      <div class="tlo">
-      <b> Imie:</b> 
-       <input type="text" value="<?php
-            if(isset($_SESSION['imie']))
-            {
-                echo $_SESSION['imie'];
-            }
-       ?>" name="imieEdit">
-       <br>
-     <b>Nazwisko:</b>
-       <input type="text" value="<?php
-            if(isset($_SESSION['nazwisko']))
-            {
-                echo $_SESSION['nazwisko'];
-            }
-       ?>" name="nazwiskoEdit">
-        <?php
-			if(isset($_SESSION['error_Ina']))
-				{
-					echo '<div class="error">'.$_SESSION['error_Ina'].'</div>';
-					unset($_SESSION['error_Ina']);
-				}
-        ?>
-       <br>
-       <b>Email:</b>
-       <input type="email" value="<?php
-            if(isset($_SESSION['email']))
-            {
-                echo $_SESSION['email'];
-            }
-       ?>" name="emailEdit">
-       <?php
-			if(isset($_SESSION['error_email']))
-				{
-					echo '<div class="error">'.$_SESSION['error_email'].'</div>';
-					unset($_SESSION['error_email']);
-				}
-        ?>
-       <br>
-            <b> Login:</b>
-       <input type="text" value="<?php
-            if(isset($_SESSION['login']))
-            {
-                echo $_SESSION['login'];
-            }
-       ?>" name="loginEdit">
-        <?php
-			if(isset($_SESSION['error_login']))
-				{
-					echo '<div class="error">'.$_SESSION['error_login'].'</div>';
-					unset($_SESSION['error_login']);
-				}
-        ?>
-       <br>
-       
-            <b>Haslo:</b>
-       <input type="password"  name="hasloEdit">
-       <?php
-			if(isset($_SESSION['error_haslo']))
-				{
-					echo '<div class="error">'.$_SESSION['error_haslo'].'</div>';
-					unset($_SESSION['error_haslo']);
-				}
-        ?>
-       <br>
-      <u> <input type="submit" name="zapisz" value="Zapisz!"></u>
+    </div>
+    <div class="edytowanieDanych" style="display:none">
+        <p>
+        <form method="post">  
+            
+        <!-- Edytowanie Danych użytkownika -->
+        
+        <div id="dane">
+            <div class="tlo">
+            <b> Imie:</b> 
+            <input type="text" value="<?php
+                    if(isset($_SESSION['imie']))
+                    {
+                        echo $_SESSION['imie'];
+                    }
+            ?>" name="imieEdit">
+            <br>
+            <b>Nazwisko:</b>
+            <input type="text" value="<?php
+                    if(isset($_SESSION['nazwisko']))
+                    {
+                        echo $_SESSION['nazwisko'];
+                    }
+            ?>" name="nazwiskoEdit">
+                <?php
+                    if(isset($_SESSION['error_Ina']))
+                        {
+                            echo '<div class="error">'.$_SESSION['error_Ina'].'</div>';
+                            unset($_SESSION['error_Ina']);
+                        }
+                ?>
+            <br>
+            <b>Email:</b>
+            <input type="email" value="<?php
+                    if(isset($_SESSION['email']))
+                    {
+                        echo $_SESSION['email'];
+                    }
+            ?>" name="emailEdit">
+            <?php
+                    if(isset($_SESSION['error_email']))
+                        {
+                            echo '<div class="error">'.$_SESSION['error_email'].'</div>';
+                            unset($_SESSION['error_email']);
+                        }
+                ?>
+            <br>
+                    <b> Login:</b>
+            <input type="text" value="<?php
+                    if(isset($_SESSION['login']))
+                    {
+                        echo $_SESSION['login'];
+                    }
+            ?>" name="loginEdit">
+                <?php
+                    if(isset($_SESSION['error_login']))
+                        {
+                            echo '<div class="error">'.$_SESSION['error_login'].'</div>';
+                            unset($_SESSION['error_login']);
+                        }
+                ?>
+            <br>
+            
+                    <b>Haslo:</b>
+            <input type="password"  name="hasloEdit">
+            <?php
+                    if(isset($_SESSION['error_haslo']))
+                        {
+                            echo '<div class="error">'.$_SESSION['error_haslo'].'</div>';
+                            unset($_SESSION['error_haslo']);
+                        }
+                ?>
+            <br>
+            <u> <input type="submit" name="zapisz" value="Zapisz!"></u>
+                    </div>
+            </form>
+            </p>
             </div>
-       </form>
-       </p>
-       </div>
+        </div>
     </div>
             
     <div class="tab-content" id="plan">
-        <a class="close">✖</a>
        <?php
             $lekcje1 = 
             "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien
@@ -585,12 +591,10 @@
             </tr>
             </table>";
        ?>
-</div>
-<!-- Dodawanie do istniejącej klasy -->
+    </div>
 
     <div class="tab-content" id="Klasy">
-        <a class="close">✖</a>
-        
+
     </div>
 </div>
 </div>
