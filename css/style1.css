@@ -35,7 +35,7 @@ body {
 }
 
 
-/*menu*/
+/*menu
 
 .blink-text-menu {
     font-size: 50px;
@@ -80,6 +80,19 @@ body {
 .blink-text-menu li a:hover span .in {
     opacity: 1;
     transform: translateX(0);
+}
+*/
+
+#meni {
+    font-size: 22px;
+    margin-top: 250px;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 a:link {
@@ -227,7 +240,7 @@ input:hover {
 /* unvisited link */
 
 a:link {
-    color: #465973;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -235,14 +248,14 @@ a:link {
 /* visited link */
 
 a:visited {
-    color: #465973;
+    color: #ffffff;
 }
 
 
 /* mouse over link */
 
 a:hover {
-    color: #14191f;
+    color: #99a4ba;
 }
 
 
@@ -377,9 +390,12 @@ a:active {
         line-height: 18px;
     }
 }
-table, th, td, tr
-{
-border :1px solid black;
-text-align: center;
-font-size: 13px;
+
+table,
+th,
+td,
+tr {
+    border: 1px solid black;
+    text-align: center;
+    font-size: 13px;
 }
