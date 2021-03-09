@@ -110,7 +110,11 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                             {
                                 if($polaczenie->query("UPDATE uzytkownicy SET imie='$imie', nazwisko='$nazwisko', email='$email', login='$login', haslo='$haslo' WHERE id=".$_SESSION['id']))
                                 {
-                                    $_SESSION['rejestracjaUdana']=true;
+                                    ?>
+                                        <script>
+                                        alert("Pomyślnie zaaktualizowano dane!");
+                                        </script>
+                                    <?php
                                     unset($_SESSION['edycjaDanych']);
                                 }else
                                 {
@@ -209,17 +213,23 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                 echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
             ?>
             </h2>
+            <?php  
+                echo "<b>Email:</b> " . $_SESSION['email'];
+                echo "<br><br>";
+                echo "<b>Login:</b> " . $_SESSION['login'];
+                echo "<br><br>";
+            ?>
+            <form method="post">
+        <input type="submit" name="edycjaDanych" value="Edytuj dane"></form>
+            
         </div>
         
         <p> 
        <?php 
-            echo "<b>Email:</b> " . $_SESSION['email'];
-            echo "<br><br>";
-            echo "<b>Login:</b> " . $_SESSION['login'];
+            
         ?>
         
-        <form method="post">
-        <input type="submit" name="edycjaDanych" value="Edytuj dane"></form>
+        
   
        </p>
     </div>

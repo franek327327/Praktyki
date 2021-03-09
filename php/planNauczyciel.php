@@ -1,6 +1,9 @@
+<?php
+session_start();
+?>
 <head>
     <meta charset="utf-8" />
-    <title>Plan lekcji dla nauczyciela</title>
+    <title>Plan lekcji dla użytkownika o id równym <?php echo " ".$_SESSION['id'];?></title>
     <link rel="stylesheet" href="../css/style1.css">
     <script src="../js/app1.js" defer></script>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
@@ -9,7 +12,6 @@
 <body>
 <?php
 // wyswietlanie planu
-session_start();
 require_once "polaczenieZBaza.php";
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
