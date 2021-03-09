@@ -595,6 +595,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
        ?>
     </div>
 </div>
+
     <div id="stopka">
         PLAN LEKCJI &copy; Praktyka gr2
     </div>

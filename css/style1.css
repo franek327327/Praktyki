@@ -302,10 +302,15 @@ a:active {
     #stopka{
         font-size:15px;
     }
+
     
 }
 
-
+@media only screen and (max-width: 900px) and (orientation:landscape){
+    body{
+        transform: rotate(-90deg);
+    }
+}
 /*Animacje*/
 
 @keyframes ProfilAnim {
