@@ -28,6 +28,8 @@ session_start();
 
 
     <h1>Platforma Szkolna - Nauczyciel - uczniowie</h1>
+
+    
 <?php
 require_once "polaczenieZBaza.php";
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
@@ -72,6 +74,11 @@ if(isset($_POST['usuwanie']))
 }
 
 ?>
-<button onclick="location.href='nauczyciel.php'">Powrót</button>
+
+<a class="back" href="nauczyciel.php">Powrót</a>
+
+<div id="stopka">
+        PLAN LEKCJI &copy; Praktyka gr2
+    </div>
 </body>
 </html>
