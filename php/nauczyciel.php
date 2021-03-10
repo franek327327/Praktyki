@@ -231,8 +231,12 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
             
     <div class="tab-content" id="lekcje">
         <!-- Usuwanie i wyświetlanie przedmiotów-->
-        <div class="wyswietlanie">
         <h3>Dodaj Przedmiot</h3>
+        <div class="wyswietlanie">
+
+        
+        <div class="obw1">
+       
             <?php
                 $przedmioty = "SELECT id, przedmiot FROM slownik";
 
@@ -259,17 +263,24 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                     unset($_SESSION['przedmioty']);
                 }
             ?>
-        </div>
+            </div>
+            </div>
+       
+            
         <!-- Dodawanie przedmiotów -->
         <form class="dodaj" method="post" action="nauczycielAkcje.php">
         
         <input type="text" name="dodawanyPrzedmiot">
         <input type="submit" name="dodawaniePrzedmiotu" value="Dodaj przedmiot!">
         </form>
-    </div>
+        </div>
     <div class="tab-content" id="klasy">
         <!-- Usuwanie i wyświetlanie klas-->
         <div class="wyswietlanie">
+            
+       
+        <div class="obw1">
+        <h3>Klasy</h3>
         <?php
             $klasy = "SELECT id, klasa FROM klasy";
 
@@ -296,7 +307,8 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                 unset($_SESSION['klasy']);
             }
         ?>
-        
+       
+        </div>
         </div>
         <!-- Dodawanie klasy -->
         

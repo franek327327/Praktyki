@@ -28,8 +28,8 @@ session_start();
 
 
     <h1>Platforma Szkolna - Nauczyciel - uczniowie</h1>
-
-    
+    <a class="back" href="nauczyciel.php">Powrót</a>
+    <div id="student">
 <?php
 require_once "polaczenieZBaza.php";
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
@@ -44,7 +44,7 @@ if ($rezultat->num_rows > 0) {
     
 	while($wiersz = $rezultat->fetch_assoc()) {
 		$petla++;
-		echo "Uczen " . $petla . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . " | Brak Klasy | " . $wiersz['email']. " | ".$wiersz['adres']."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
+		echo "<div class='student1'> Uczen " . $petla . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . " | Brak Klasy | " . $wiersz['email']. " | ".$wiersz['adres']."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form></div>" ;
 	}
 }
 //Uczniowie z klasą
@@ -53,13 +53,13 @@ $rezultat = $polaczenie->query($uczenKlasa);
 if ($rezultat->num_rows > 0) {
 	while($wiersz = $rezultat->fetch_assoc()) {
 		$petla++;
-		echo "Uczen " . $petla . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . " | ".$wiersz['klasa']. " | " . $wiersz['email']. " | ".$wiersz['adres']."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
+		echo "<div class='student1'> Uczen " . $petla . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . " | ".$wiersz['klasa']. " | " . $wiersz['email']. " | ".$wiersz['adres']."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form></div>" ;
 	}
 }
 echo '<br>';
 // usuwanie ucznia
 ?>
-<a class="back" href="nauczyciel.php">Powrót</a>
+
 <?php
 if(isset($_SESSION['usunWiadomosc']))
 {
@@ -83,7 +83,7 @@ if(isset($_POST['usuwanie']))
 }
 $polaczenie->close();
 ?>
-
+</div>
 
 <div id="stopka">
         PLAN LEKCJI &copy; Praktyka gr2

@@ -5,9 +5,12 @@
     <script src="../js/app1.js" defer></script>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=PT+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>Platforma Szkolna - Uczeń</h1>
+<h1>Platforma Szkolna - Plan</h1>
 
 <?php
 // wyswietlanie planu
@@ -76,7 +79,7 @@ $lekcje1 =
                 }
             }
             echo
-            "Plan lekcji dla klasy ".$_SESSION['klasa']."<div class='drukuj'><table>
+            "<div id='planUcz'>Plan lekcji dla klasy".$_SESSION['klasa']." <div class='drukuj'><table>
             <tr>
             <th>Nr</th>
             <th>Godzina</th>
@@ -243,6 +246,10 @@ $lekcje1 =
             $polaczenie->close();
 ?>
 <button id="pl" onclick="printDiv();">Drukuj</button>
-
+</div>
+<div id="stopka">
+        PLAN LEKCJI &copy; Praktyka gr2
+    </div>
+    
 </body>
 </html>
