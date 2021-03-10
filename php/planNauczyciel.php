@@ -320,7 +320,13 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                  {
                      while($wiersz = $rezultat6->fetch_assoc()) 
                          {
-                             echo '<option value="' . $wiersz["id"] . '">' . $wiersz["imie"] . ' ' . $wiersz["nazwisko"] . "</option>";
+                             if($wiersz['id'] == $_SESSION['id'])
+                             {
+                                echo '<option value="' . $wiersz["id"] . '"selected>' . $wiersz["imie"] . ' ' . $wiersz["nazwisko"] . "</option>";
+                             }else
+                             {
+                                echo '<option value="' . $wiersz["id"] . '">' . $wiersz["imie"] . ' ' . $wiersz["nazwisko"] . "</option>";
+                             }
                          }
                  }
              echo '<br>';
