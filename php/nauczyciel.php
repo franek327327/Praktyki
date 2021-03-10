@@ -340,9 +340,6 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
         </div>
     </div>
             
-    <div class="tab-content" id="plan">
-       
-    </div>
     <div class="tab-content" id="lekcje">
         <!-- Usuwanie i wyświetlanie przedmiotów-->
         <div class="wyswietlanie">
