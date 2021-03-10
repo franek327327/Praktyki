@@ -15,44 +15,43 @@ session_start();
 </head>
 <body>
 
-<h1>Platforma Szkolna - Nauczyciel</h1>
+<h1>Platforma Szkolna - Plan Lekcji</h1>
 <a class="back" href="nauczyciel.php">Powrót</a>
-    
+    <div id="plan">
+        <h3>Plan Lekcji</h3>
 <?php
 // wyswietlanie planu
 require_once "polaczenieZBaza.php";
-$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
-  
-
-            $lekcje1 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id AS gId
+$lekcje1 = 
+            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
-            WHERE plan.IdNauczyciel = uzytkownicy.id AND plan.IdPrzedmiot = slownik.id AND plan.IdDzien = dni.id AND plan.IdGodzinaLekcyjna = godzinylekcyjne.id AND plan.IdSala = sale.id AND plan.IdKlasa = klasy.id AND plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 1
+            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 1
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje2 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id AS gId
+            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
-            WHERE plan.IdNauczyciel = uzytkownicy.id AND plan.IdPrzedmiot = slownik.id AND plan.IdDzien = dni.id AND plan.IdGodzinaLekcyjna = godzinylekcyjne.id AND plan.IdSala = sale.id AND plan.IdKlasa = klasy.id AND plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 2
+            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 2
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje3 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id AS gId
+            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
-            WHERE plan.IdNauczyciel = uzytkownicy.id AND plan.IdPrzedmiot = slownik.id AND plan.IdDzien = dni.id AND plan.IdGodzinaLekcyjna = godzinylekcyjne.id AND plan.IdSala = sale.id AND plan.IdKlasa = klasy.id AND plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 3
+            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 3
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje4 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id AS gId
+            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
-            WHERE plan.IdNauczyciel = uzytkownicy.id AND plan.IdPrzedmiot = slownik.id AND plan.IdDzien = dni.id AND plan.IdGodzinaLekcyjna = godzinylekcyjne.id AND plan.IdSala = sale.id AND plan.IdKlasa = klasy.id AND plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 4
+            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 4
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $lekcje5 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id AS gId
+            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id as gId
             FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan, uzytkownicy uzytkownicy
-            WHERE plan.IdNauczyciel = uzytkownicy.id AND plan.IdPrzedmiot = slownik.id AND plan.IdDzien = dni.id AND plan.IdGodzinaLekcyjna = godzinylekcyjne.id AND plan.IdSala = sale.id AND plan.IdKlasa = klasy.id AND plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 5
+            where plan.IdNauczyciel = uzytkownicy.id and plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 5
             ORDER BY plan.idGodzinaLekcyjna ASC";
         
             $przedmioty =
@@ -63,11 +62,10 @@ $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
             "SELECT sale.id, sale.sala
             FROM sale sale";
         
-
+        
             for($i = 1; $i <= 5; $i++)
             {
                 $rezultat = $polaczenie->query(${'lekcje'.$i});
-                
                 if ($rezultat->num_rows > 0) 
                 {
                     $petla = 0;
@@ -330,7 +328,7 @@ $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
 ?>
 <button id="pl" onclick="window.print();">Drukuj</button>
 <button id="pl" onclick="location.href='nauczyciel.php'">Powrót</button>
-            
+            </div>
 
             <div id="stopka">
         PLAN LEKCJI &copy; Praktyka gr2
