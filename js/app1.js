@@ -79,3 +79,17 @@ profilCloseBtn.addEventListener("click", function() {
         contener.classList.add("profilAnimRev");
     })
  }
+// Drukowanie planu
+function printDiv()
+{
+            console.log("print");
+			var printContents = document.querySelector(".drukuj").innerHTML;
+			var originalContents = document.body.innerHTML;
+
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+
+}

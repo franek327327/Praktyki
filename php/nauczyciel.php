@@ -7,6 +7,8 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
 	exit();
 } 
 
+
+
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
     if(isset($_POST['edycjaDanych']))
     {
@@ -21,12 +23,13 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
             $login=$_POST['loginEdit'];
             $email=$_POST['emailEdit'];
             $haslo=$_POST['hasloEdit'];
+            $adres=$_POST['adresEdit'];
 
             //walidacja imienia, nazwiska i adresu
-            if(strlen($imie) < 1 || strlen($nazwisko) < 1)
+            if(strlen($imie) < 1 || strlen($nazwisko) < 1 || strlen($adres) < 1)
                 {
                     $ok=false;
-                    $_SESSION['error_Ina']="Nie wpisano imienia lub nazwiska";
+                    $_SESSION['error_Ina']="Nie wpisano imienia, nazwiska lub adresu";
                 }
 
             //walidacja loginu	
@@ -108,9 +111,13 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                             }
                             if($ok==true)
                             {
-                                if($polaczenie->query("UPDATE uzytkownicy SET imie='$imie', nazwisko='$nazwisko', email='$email', login='$login', haslo='$haslo' WHERE id=".$_SESSION['id']))
+                                if($polaczenie->query("UPDATE uzytkownicy SET adres='$adres', imie='$imie', nazwisko='$nazwisko', email='$email', login='$login', haslo='$haslo' WHERE id=".$_SESSION['id']))
                                 {
-                                    $_SESSION['rejestracjaUdana']=true;
+                                    ?>
+                                        <script>
+                                        alert("Pomyślnie zaaktualizowano dane!");
+                                        </script>
+                                    <?php
                                     unset($_SESSION['edycjaDanych']);
                                 }else
                                 {
@@ -139,12 +146,13 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                 $_SESSION['imie'] = $wiersz['imie'];
                 $_SESSION['nazwisko'] = $wiersz['nazwisko'];
                 $_SESSION['funkcja'] = $wiersz['funkcja'];
+                $_SESSION['adres'] = $wiersz['adres'];
                 
                 $rezultat->close();
             }
         }
     
-    // Sprawdzanie czy użytkownik jest zalogowany i ma dobrą funkcję    
+    
 
 ?> 
 
@@ -166,11 +174,14 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 </head>
 
 <body>
-
-
+<!--
+<div class ="alert">
+<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+</div>
+-->
     <h1>Platforma Szkolna - Nauczyciel</h1>
 
-    
+    <!--
 <div id="menu">
     <ul class="blink-text-menu">
         <li class="tab-el">
@@ -183,7 +194,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
             <a href="#klasy">Klasy</a>
         </li>
         <li class="tab-el">
-            <a href="#plan">Kalendarium</a>
+            <a href="planNauczyciel.php">Kalendarium</a>
         </li>
         <li class="tab-el">
             <a href="#lekcje">Lekcje</a>
@@ -193,7 +204,20 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
         </li>
     </ul>
 </div>
+-->
 
+<div id="meni">
+
+<ul>
+
+  <li class="tab-el"><a href="#profil">Profil</a></li>
+  <li class="tab-el"><a href="uczniowie.php">Uczniowie</a></li>
+  <li class="tab-el"><a href="#klasy">Klasy</a></li>
+  <li class="tab-el"><a href="planNauczyciel.php">Plan</a></li>
+  <li class="tab-el"><a href="#lekcje">Przedmioty</a></li>
+  <li class="tab-el"><a href="procesWylogowania.php">Wyloguj</a></li>
+</ul>
+    </div>
     
 <div class="tab-contents">
     <a class="close">✖</a>
@@ -206,17 +230,25 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                 echo $_SESSION['imie']." ".$_SESSION['nazwisko'];
             ?>
             </h2>
+            <?php  
+                echo "<b>Email:</b> " . $_SESSION['email'];
+                echo "<br><br>";
+                echo "<b>Login:</b> " . $_SESSION['login'];
+                echo "<br><br>";
+                echo "<b>Adres:</b> " . $_SESSION['adres'];
+                echo "<br><br>";
+            ?>
+            <form method="post">
+        <input type="submit" name="edycjaDanych" value="Edytuj dane"></form>
+            
         </div>
         
         <p> 
        <?php 
-            echo "<b>Email:</b> " . $_SESSION['email'];
-            echo "<br><br>";
-            echo "<b>Login:</b> " . $_SESSION['login'];
+            
         ?>
         
-        <form method="post">
-        <input type="submit" name="edycjaDanych" value="Edytuj dane"></form>
+        
   
        </p>
     </div>
@@ -243,6 +275,14 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                         echo $_SESSION['nazwisko'];
                     }
             ?>" name="nazwiskoEdit">
+            <br>
+            <b>Adres:</b>
+            <input type="text" value="<?php
+                    if(isset($_SESSION['adres']))
+                    {
+                        echo $_SESSION['adres'];
+                    }
+            ?>" name="adresEdit">
                 <?php
                     if(isset($_SESSION['error_Ina']))
                         {
@@ -301,298 +341,80 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
     </div>
             
     <div class="tab-content" id="plan">
-       <?php
-            $lekcje1 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien
-            FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan
-            where plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 1
-            ORDER BY plan.idGodzinaLekcyjna ASC";
-        
-            $lekcje2 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien
-            FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan
-            where plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 2
-            ORDER BY plan.idGodzinaLekcyjna ASC";
-        
-            $lekcje3 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien
-            FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan
-            where plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 3
-            ORDER BY plan.idGodzinaLekcyjna ASC";
-        
-            $lekcje4 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien
-            FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan
-            where plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 4
-            ORDER BY plan.idGodzinaLekcyjna ASC";
-        
-            $lekcje5 = 
-            "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien
-            FROM slownik slownik, dni dni, godzinylekcyjne godzinylekcyjne, sale sale, klasy klasy, plan plan
-            where plan.IdPrzedmiot = slownik.id and plan.IdDzien = dni.id and plan.IdGodzinaLekcyjna = godzinylekcyjne.id and plan.IdSala = sale.id and plan.IdKlasa = klasy.id and plan.IdNauczyciel = ".$_SESSION['id']." AND plan.IdDzien = 5
-            ORDER BY plan.idGodzinaLekcyjna ASC";
-        
-            $przedmioty =
-            "SELECT slownik.id, slownik.przedmiot
-            From slownik slownik";
-        
-            $sala = 
-            "SELECT sale.id, sale.sala
-            FROM sale sale";
-        
-        
-            for($i = 1; $i <= 5; $i++)
-            {
-                $rezultat = $polaczenie->query(${'lekcje'.$i});
-                if ($rezultat->num_rows > 0) 
-                {
-                    $petla = 0;
-                    while($wiersz = $rezultat->fetch_assoc()) 
-                    { 
+       
+    </div>
+    <div class="tab-content" id="lekcje">
+        <!-- Usuwanie i wyświetlanie przedmiotów-->
+        <div class="wyswietlanie">
+            <?php
+                $przedmioty = "SELECT id, przedmiot FROM slownik";
+
+                $rezultat = $polaczenie->query($przedmioty);
+
+                if ($rezultat->num_rows > 0) {
+                    $petla=0;
+                    while($wiersz = $rezultat->fetch_assoc()) {
                         $petla++;
-                        $GLOBALS["Lekcja".$i."_".$wiersz["IdGodzinaLekcyjna"]] = $wiersz["przedmiot"];
+                        echo $petla. ". " . $wiersz["przedmiot"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "
+                        <form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> 
+                        <input type='hidden' name='nazwaPrzedmiotu' value='".$wiersz['przedmiot']."'/>
+                        <button name = 'edytowaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Edytuj</button> </form>" . "<br>";
                     }
                     $rezultat->close();
                 }
-            }
-            echo
-            "<table>
-            <tr>
-            <th>Nr</th>
-            <th>Godzina</th>
-            <th>Poniedziałek</th>
-            <th>Wtorek</th>
-            <th>Środa</th>
-            <th>Czwartek</th>
-            <th>Piątek</th>
-            </tr>
-            <tr>
-            <td>1</td>
-            <td>8:00 - 8:45</td>
-            <td>"
-            .(isset($Lekcja1_1) ? $Lekcja1_1 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja2_1) ? $Lekcja2_1 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja3_1) ? $Lekcja3_1 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja4_1) ? $Lekcja4_1 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja5_1) ? $Lekcja5_1 : "-").
-            "</td>
-            </tr>
-            <tr>
-            <td>2</td>
-            <td>8:50 - 9:35</td>
-            <td>"
-            .(isset($Lekcja1_2) ? $Lekcja1_2 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja2_2) ? $Lekcja2_2 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja3_2) ? $Lekcja3_2 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja4_2) ? $Lekcja4_2 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja5_2) ? $Lekcja5_2 : "-").
-            "</td>
-            </tr>
-            <tr>
-            <td>3</td>
-            <td>9:45 - 10:30</td>
-            <td>"
-            .(isset($Lekcja1_3) ? $Lekcja1_3 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja2_3) ? $Lekcja2_3 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja3_3) ? $Lekcja3_3 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja4_3) ? $Lekcja4_3 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja5_3) ? $Lekcja5_3 : "-").
-            "</td>
-            </tr>
-            <tr>
-            <td>4</td>
-            <td>10:50 - 11:35</td>
-            <td>"
-            .(isset($Lekcja1_4) ? $Lekcja1_4 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja2_4) ? $Lekcja2_4 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja3_4) ? $Lekcja3_4 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja4_4) ? $Lekcja4_4 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja5_4) ? $Lekcja5_4 : "-").
-            "</td>
-            </tr>
-            <tr>
-            <td>5</td>
-            <td>11:40 - 12:25</td>
-            <td>"
-            .(isset($Lekcja1_5) ? $Lekcja1_5 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja2_5) ? $Lekcja2_5 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja3_5) ? $Lekcja3_5 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja4_5) ? $Lekcja4_5 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja5_5) ? $Lekcja5_5 : "-").
-            "</td>
-            </tr>
-            <tr>
-            <td>6</td>
-            <td>12:30 - 13:15</td>
-            <td>"
-            .(isset($Lekcja1_6) ? $Lekcja1_6 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja2_6) ? $Lekcja2_6 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja3_6) ? $Lekcja3_6 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja4_6) ? $Lekcja4_6 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja5_6) ? $Lekcja5_6 : "-").
-            "</td>
-            </tr>
-            <tr>
-            <td>7</td>
-            <td>13:20 - 14:05</td>
-            <td>"
-            .(isset($Lekcja1_7) ? $Lekcja1_7 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja2_7) ? $Lekcja2_7 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja3_7) ? $Lekcja3_7 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja4_7) ? $Lekcja4_7 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja5_7) ? $Lekcja5_7 : "-").
-            "</td>
-            </tr>
-            <tr>
-            <td>8</td>
-            <td>14:10 - 14:55</td>
-            <td>"
-            .(isset($Lekcja1_8) ? $Lekcja1_8 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja2_8) ? $Lekcja2_8 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja3_8) ? $Lekcja3_8 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja4_8) ? $Lekcja4_8 : "-").
-            "</td>
-            <td>"
-            .(isset($Lekcja5_8) ? $Lekcja5_8 : "-").
-            "</td>
-            </tr>
-            </table>";
-       ?>
-       <!-- Dodawanie lekcji do planu -->
-       <?php
-       $przedmiot = "SELECT id, przedmiot FROM slownik";
-       $klasa = "SELECT id, klasa FROM klasy";
-       $dzien = "SELECT id, dzien FROM dni";
-       $godzina = "SELECT id, godzina FROM godzinylekcyjne";
-       $sala = "SELECT id, sala FROM sale";
-       $nauczyciel = "SELECT id, imie, nazwisko, funkcja FROM uzytkownicy WHERE funkcja = 1";
-       
-       $rezultat1 = $polaczenie->query($przedmiot);
-       $rezultat2 = $polaczenie->query($klasa);
-       $rezultat3 = $polaczenie->query($dzien);
-       $rezultat4 = $polaczenie->query($godzina);
-       $rezultat5 = $polaczenie->query($sala);
-       $rezultat6 = $polaczenie->query($nauczyciel);
-              
-        echo '<form method="post" action="dodawanieDoPlany.php"> <select name="przedmiot">';
-        if ($rezultat1->num_rows > 0) 
-            {
-                while($wiersz = $rezultat1->fetch_assoc()) 
+                if(isset($_SESSION['przedmioty']))
                 {
-                    echo '<option value="' . $wiersz["id"] . '">' . $wiersz["przedmiot"] . "</option>";
+                    ?>
+                    <script>
+                    alert(<?php echo '"'.$_SESSION["przedmioty"].'"'; ?>);
+                    </script>
+                    <?php
+                    unset($_SESSION['przedmioty']);
                 }
-            }
-        echo '</select><select name="klasa">';
-        if ($rezultat2->num_rows > 0) 
-            {
-                while($wiersz = $rezultat2->fetch_assoc()) 
-                {
-                echo '<option value="' . $wiersz["id"] . '">' . $wiersz["klasa"] . "</option>";
+            ?>
+        </div>
+        <!-- Dodawanie przedmiotów -->
+        <form method="post" action="nauczycielAkcje.php">
+        <input type="text" name="dodawanyPrzedmiot">
+        <input type="submit" name="dodawaniePrzedmiotu" value="Dodaj przedmiot!">
+        </form>
+    </div>
+    <div class="tab-content" id="klasy">
+        <!-- Usuwanie i wyświetlanie klas-->
+        <div class="wyswietlanie">
+        <?php
+            $klasy = "SELECT id, klasa FROM klasy";
+
+            $rezultat = $polaczenie->query($klasy);
+
+            if ($rezultat->num_rows > 0) {
+                $petla = 0;
+                while($wiersz = $rezultat->fetch_assoc()) {
+                    $petla++;
+                    echo $petla . ". " . $wiersz["klasa"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwanieKlasy' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>
+                    <form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> 
+                    <input type='hidden' name='nazwaKlasy' value='".$wiersz['klasa']."'/>
+                    <button name = 'edytowanieKlasy' type = 'submit' value = '". $wiersz['id'] ."'>" . "Edytuj</button> </form>" . "<br>";
                 }
+                $rezultat->close();
             }
-        echo '</select><select name="dzien">';
-        if ($rezultat3->num_rows > 0) 
+            if(isset($_SESSION['klasy']))
             {
-                while($wiersz = $rezultat3->fetch_assoc()) 
-                {
-                echo '<option value="' . $wiersz["id"] . '">' . $wiersz["dzien"] . "</option>";
-                }
+                ?>
+                    <script>
+                    alert(<?php echo '"'.$_SESSION["klasy"].'"'; ?>);
+                    </script>
+                    <?php
+                unset($_SESSION['klasy']);
             }
-        echo '</select><select name="godzina">';
-        if ($rezultat4->num_rows > 0) 
-            {
-                while($wiersz = $rezultat4->fetch_assoc()) 
-                    {
-                        echo '<option value="' . $wiersz["id"] . '">' . $wiersz['id'] . '. ' . $wiersz["godzina"] . "</option>";
-                    }
-            }
-        echo '</select><select name="sala">';
-        if ($rezultat5->num_rows > 0) 
-            {
-                while($wiersz = $rezultat5->fetch_assoc()) 
-                    {
-                        echo '<option value="' . $wiersz["id"] . '">' . $wiersz["sala"] . "</option>";
-                    }
-            }
-        echo '</select><select name="imieinazwisko">';
-        if ($rezultat6->num_rows > 0) 
-            {
-                while($wiersz = $rezultat6->fetch_assoc()) 
-                    {
-                        echo '<option value="' . $wiersz["id"] . '">' . $wiersz["imie"] . ' ' . $wiersz["nazwisko"] . "</option>";
-                    }
-            }
-        echo '<br>';
-        echo '<input type="submit" name="dodawanie" value="Dodaj lekcję!">';
-        echo "</form>";  
-        if(isset($_SESSION['wiadomoscDodawania']))
-        {
-        echo $_SESSION['wiadomoscDodawania'];  
-        unset($_SESSION['wiadomoscDodawania']);
-        }
-       ?>
+        ?>
+        
+        </div>
+        <!-- Dodawanie klasy -->
+        <form method="post" action="nauczycielAkcje.php">
+        <input type="text" name="dodawanaKlasa">
+        <input type="submit" name="dodawanieKlasy" value="Dodaj klasę!">
+        </form>
     </div>
 </div>
 
