@@ -275,7 +275,7 @@
     }
 
     
-}
+
 
 @media only screen and (max-width: 900px) and (orientation:landscape){
     body{
@@ -289,7 +289,7 @@
     .back:hover {
         color: rgb(197, 180, 180);
     }
-    
+
     /* Responsywność */
     /* 1080p */
     
