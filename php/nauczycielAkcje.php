@@ -37,8 +37,13 @@ if(isset($_POST['dodawanie']))
                     {
                     while($wiersz = $rezultatSprawdzania->fetch_assoc()) 
                         {
-                            if(($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['idKlasa'] == $_POST['klasa']) || ($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['IdNauczyciel'] == $_POST['imieinazwisko']))
+                            if($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['idKlasa'] == $_POST['klasa'])
                             {
+                                $_SESSION['wiadomoscDodawania'] = "Ta klasa już ma lekcję w tym czasie!";
+                                $czyMoznaWyslac = false;
+                            }else if($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['IdNauczyciel'] == $_POST['imieinazwisko'])
+                            {
+                                $_SESSION['wiadomoscDodawania'] = "Ten nauczyciel już ma lekcję w tym czasie!";
                                 $czyMoznaWyslac = false;
                             }
                         }
@@ -61,7 +66,6 @@ if(isset($_POST['dodawanie']))
                 }
                     else if(!$czyMoznaWyslac)
                 {
-                    $_SESSION['wiadomoscDodawania'] = "Podana lekcja już istnieje!";
                     $polaczenie->close();
                     header("Location:planNauczyciel.php");
                 }	
@@ -156,6 +160,48 @@ elseif(isset($_POST['usuwanieKlasy']))
 
 // Dodawanie klasy
 else if(isset($_POST['dodawanieKlasy']))
+{
+    $czyMoznaWyslac = true;
+    unset($_POST['dodawanieKlasy']);
+    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+    $dodawanie = "INSERT INTO klasy (klasa) VALUES ('".$_POST['dodawanaKlasa']."')";
+    $sprawdzanie = "SELECT id, klasa FROM klasy WHERE klasa=".$_POST['dodawanaKlasa'];
+    $rezultat = $polaczenie->query($sprawdzanie);
+    
+    if(strlen($_POST['dodawanaKlasa']) == 0)
+    {
+            $czyMoznaWyslac=false;
+            $_SESSION['klasy']="Nie wpisano klasy!";
+            $polaczenie->close();
+            header("Location:nauczyciel.php");
+    }
+    if($rezultat->num_rows > 0)
+        {
+            $czyMoznaWyslac = false;
+            $_SESSION['klasy'] = "Podana klasa jest już w bazie danych!";
+            $polaczenie->close();
+            header("Location:nauczyciel.php");
+        }
+    
+
+    if($czyMoznaWyslac)
+    {
+        if ($polaczenie->query($dodawanie) === TRUE) {
+            $_SESSION['klasy']="Dodano klasę!";
+            $polaczenie->close();
+            header("Location:nauczyciel.php");
+          } else {
+            $_SESSION['klasy']="Nie udało się dodać klasy!";
+            $polaczenie->close();
+            header("Location:nauczyciel.php");
+          }
+    }
+
+
+
+}
+// Dodawanie sali
+else if(isset($_POST['dodawanieSali']))
 {
     $czyMoznaWyslac = true;
     unset($_POST['dodawanieKlasy']);
