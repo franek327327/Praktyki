@@ -266,7 +266,7 @@ else if(isset($_POST['edycjaLekcji']))
              echo '<input type="submit" name="usuniecieLekcji" value="Usuń lekcję!">';
              echo "</form>";  
              ?>
-            <button onclick="location.href='planNauczyciel.php'">powrót</button>
+            <button onclick="location.href='plannauczyciel.php'">powrót</button>
             <?php 
 
             }

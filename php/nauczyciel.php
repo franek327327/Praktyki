@@ -7,6 +7,8 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
 	exit();
 } 
 
+
+
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
     if(isset($_POST['edycjaDanych']))
     {
@@ -212,7 +214,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
   <li class="tab-el"><a href="uczniowie.php">Uczniowie</a></li>
   <li class="tab-el"><a href="#klasy">Klasy</a></li>
   <li class="tab-el"><a href="planNauczyciel.php">Plan</a></li>
-  <li class="tab-el"><a href="#lekcje">lekcje</a></li>
+  <li class="tab-el"><a href="#lekcje">Przedmioty</a></li>
   <li class="tab-el"><a href="procesWylogowania.php">Wyloguj</a></li>
 </ul>
     </div>
@@ -350,10 +352,10 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                 $rezultat = $polaczenie->query($przedmioty);
 
                 if ($rezultat->num_rows > 0) {
-                    $petla = 0;
+                    $petla=0;
                     while($wiersz = $rezultat->fetch_assoc()) {
                         $petla++;
-                        echo $petla . ". " . $wiersz["przedmiot"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "
+                        echo $petla. ". " . $wiersz["przedmiot"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "
                         <form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> 
                         <input type='hidden' name='nazwaPrzedmiotu' value='".$wiersz['przedmiot']."'/>
                         <button name = 'edytowaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Edytuj</button> </form>" . "<br>";

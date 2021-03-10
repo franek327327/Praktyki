@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Platforma Szkolna - Uczeń</h1>
-<a class="back" href="nauczyciel.php">Powrót</a>
+
 <?php
 // wyswietlanie planu
 session_start();
@@ -19,6 +19,9 @@ if(!isset($_SESSION['jestKlasa']))
     $_SESSION['edycjaDanych'] = 1;
     exit();
 }
+?>
+<a class="back" href="nauczyciel.php">Powrót</a>
+<?php
 require_once "polaczenieZBaza.php";
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 

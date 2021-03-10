@@ -34,41 +34,55 @@ session_start();
 require_once "polaczenieZBaza.php";
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
-// wyswietlanie wszystkich uczniow
-$profil = "SELECT u.IdKlasa, u.imie, u.nazwisko, u.email, u.funkcja, u.id, k.klasa FROM uzytkownicy u, klasy k WHERE k.id = u.IdKlasa and funkcja = 0";
 
-$rezultat = $polaczenie->query($profil);
-
+// Wyswietlanie wszystkich uczniow
+//Uczniowie bez klasy
+$uczenBezKlasa = "SELECT adres, IdKlasa, imie, nazwisko, email, funkcja, id FROM uzytkownicy WHERE IdKlasa IS NULL and funkcja = 0";
+$rezultat = $polaczenie->query($uczenBezKlasa);
 if ($rezultat->num_rows > 0) {
     $petla = 0;
 	while($wiersz = $rezultat->fetch_assoc()) {
 		$petla++;
-		echo "Uczen " . $petla . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . " ". ($wiersz['klasa'] == NULL ? "Brak klasy" : $wiersz['klasa']) . " " . $wiersz['email']."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
+		echo "Uczen " . $petla . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . " | Brak Klasy | " . $wiersz['email']. " | ".$wiersz['adres']."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
+	}
+}
+//Uczniowie z klasą
+$uczenKlasa = "SELECT u.IdKlasa, u.imie, u.nazwisko, u.email, u.funkcja, u.id, u.adres, k.klasa FROM uzytkownicy u, klasy k WHERE k.id = u.IdKlasa and funkcja = 0";
+$rezultat = $polaczenie->query($uczenKlasa);
+if ($rezultat->num_rows > 0) {
+	while($wiersz = $rezultat->fetch_assoc()) {
+		$petla++;
+		echo "Uczen " . $petla . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . " | ".$wiersz['klasa']. " | " . $wiersz['email']. " | ".$wiersz['adres']."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";
 	}
 }
 echo '<br>';
-// usuwanie bachora
-$usunProfil = "SELECT id FROM uzytkownicy WHERE funkcja = 0";
-
-$rezultat = $polaczenie->query($usunProfil);
-
+// usuwanie ucznia
+?>
+<a class="back" href="nauczyciel.php">Powrót</a>
+<?php
+if(isset($_SESSION['usunWiadomosc']))
+{
+    echo $_SESSION['usunWiadomosc'];
+    unset($_SESSION['usunWiadomosc']);
+}
 
 if(isset($_POST['usuwanie']))
 {
-    if($polaczenie->query("DELETE FROM uzytkownicy WHERE id = " . $_POST['usuwanie']))
+    if($polaczenie->query("DELETE FROM uzytkownicy WHERE id = ".$_POST['usuwanie']))
     {
+        
+        $_SESSION['usunWiadomosc'] = "Pomyślnie usunięto ucznia!";
         header("Refresh:0");
         
     }else
     {
-        echo "Nie udalo sie usunac kaszojada!";
+        echo "Nie udalo sie usunac ucznia!";
     }
     unset($_POST['usuwanie']);
 }
-
+$polaczenie->close();
 ?>
 
-<a class="back" href="nauczyciel.php">Powrót</a>
 
 <div id="stopka">
         PLAN LEKCJI &copy; Praktyka gr2
