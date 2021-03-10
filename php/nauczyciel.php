@@ -259,7 +259,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
             ?>
         </div>
         <!-- Dodawanie przedmiotów -->
-        <form id="dodaj" method="post" action="nauczycielAkcje.php">
+        <form class="dodaj" method="post" action="nauczycielAkcje.php">
         
         <input type="text" name="dodawanyPrzedmiot">
         <input type="submit" name="dodawaniePrzedmiotu" value="Dodaj przedmiot!">
@@ -298,7 +298,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
         </div>
         <!-- Dodawanie klasy -->
         
-        <form id="dodaj" method="post" action="nauczycielAkcje.php">
+        <form class="dodaj" method="post" action="nauczycielAkcje.php">
         <input  type="text" name="dodawanaKlasa">
         <input  type="submit" name="dodawanieKlasy" value="Dodaj klasę!">
         </form>
