@@ -1,3 +1,12 @@
+<head>
+    <meta charset="utf-8" />
+    <title>Nauczyciel - Edycja</title>
+    <link rel="stylesheet" href="../css/style1.css">
+    <script src="../js/app1.js" defer></script>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 <?php
 session_start();
 require "polaczenieZBaza.php";
@@ -371,12 +380,9 @@ elseif(isset($_POST["zmianaPrzedmiotu"]))
     }
 
 }
-
-
-
 else
 {
     header("Location:nauczyciel.php");
 }
 ?>
-
+</body>
