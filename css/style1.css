@@ -31,18 +31,15 @@
     
     .wyswietlanie {
         text-align: center;
-        height: 200px;
         overflow: auto;
         margin: auto;
         margin-bottom: 10px;
         border: 2px solid rgb(255, 255, 255);
         width: fit-content;
+        height: 450px;
     }
     
-    #lekcje,
-    #klasy {
-        margin-top: 150px;
-    }
+
     
     h3 {
         text-align: center;
@@ -95,12 +92,6 @@
 }
 */
     
-    #planUcz {
-        text-align: center;
-        font-size: large;
-        color: white;
-        margin-bottom: 10px;
-    }
     
     #meni {
         font-size: 22px;
@@ -109,7 +100,9 @@
     
     #plan {
         text-align: center;
-        margin-top: 200px;
+        font-size: large;
+        color: white;
+        margin-bottom: 10px;
     }
     
     #student {
@@ -127,9 +120,10 @@
     }
     
     .obw1 {
-        margin-left: 20px;
-        margin-right: 20px;
-        margin-bottom: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
     
     ul {

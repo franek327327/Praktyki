@@ -79,7 +79,7 @@ $lekcje1 =
                 }
             }
             echo
-            "<div id='planUcz'>Plan lekcji dla klasy".$_SESSION['klasa']." <div class='drukuj'><table>
+            "<div id='plan'><h3>Plan lekcji dla klasy ".$_SESSION['klasa']."</h3> <div class='drukuj'><table>
             <tr>
             <th>Nr</th>
             <th>Godzina</th>

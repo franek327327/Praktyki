@@ -53,7 +53,7 @@ if($rezultat = @$polaczenie->query(
 			}
 		}else
 		{
-			$_SESSION['blad'] = '<span style="color:red">Zły login lub hasło!</span>';
+			$_SESSION['blad'] = '<span class="error">Zły login lub hasło!</span>';
 		header('Location:../index.php');
 		}
 		{

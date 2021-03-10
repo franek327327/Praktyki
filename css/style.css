@@ -24,6 +24,7 @@ body {
     background-color: #465973;
     padding: 30px 60px 30px 60px;
     font-size: 40px;
+    border-radius: 10px;
 }
 
 h1 {
@@ -125,6 +126,7 @@ label {
 
 .error {
     color: red;
+    font-size: 20px;
 }
 
 

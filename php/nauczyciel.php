@@ -276,11 +276,12 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
         </div>
     <div class="tab-content" id="klasy">
         <!-- Usuwanie i wyświetlanie klas-->
+        <h3>Klasy</h3>
         <div class="wyswietlanie">
             
-       
+        
         <div class="obw1">
-        <h3>Klasy</h3>
+        
         <?php
             $klasy = "SELECT id, klasa FROM klasy";
 
