@@ -1,5 +1,10 @@
 <?php
 session_start();
+if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION['funkcja'] != 1))
+{
+	header('Location:../index.php');
+	exit();
+} 
 ?>
 <head>
     <meta charset="utf-8" />
@@ -323,7 +328,11 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
              echo "</form>";  
              if(isset($_SESSION['wiadomoscDodawania']))
              {
-             echo $_SESSION['wiadomoscDodawania'];  
+                 ?>
+                 <script>
+                 alert(<?php echo '"'.$_SESSION['wiadomoscDodawania'].'"'; ?>)
+                 </script>
+                 <?php
              unset($_SESSION['wiadomoscDodawania']);
              }
             

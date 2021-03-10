@@ -372,21 +372,7 @@
             opacity: 0;
         }
     }
-    
-    @media print {
-        .drukuj {
-            height: 100%;
-            width: 100%;
-            position: fixed;
-            top: 100px;
-            left: 0;
-            margin: 0;
-            font-size: 14px;
-            line-height: 18px;
-            
-        }
-    }
-    
+
     table,
     th,
     td,
@@ -400,3 +386,15 @@
         margin-bottom: 15px;
         text-align: -webkit-center;
     }
+    
+    @media print 
+    {
+        .drukuj 
+        {
+             margin: auto;
+        }
+
+    }
+    
+    
+    
