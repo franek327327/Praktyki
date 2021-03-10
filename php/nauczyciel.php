@@ -10,129 +10,9 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
 
 
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
-    if(isset($_POST['edycjaDanych']))
-    {
-        $_SESSION['edycjaDanych'] = 1;
-    }
+    
     // Zapisywanie danych z edycji do bazy danych
-    if (isset($_POST['zapisz']))
-        {
-            $ok = true;
-            $imie=$_POST['imieEdit'];
-            $nazwisko=$_POST['nazwiskoEdit'];
-            $login=$_POST['loginEdit'];
-            $email=$_POST['emailEdit'];
-            $haslo=$_POST['hasloEdit'];
-            $adres=$_POST['adresEdit'];
-
-            //walidacja imienia, nazwiska i adresu
-            if(strlen($imie) < 1 || strlen($nazwisko) < 1 || strlen($adres) < 1)
-                {
-                    $ok=false;
-                    $_SESSION['error_Ina']="Nie wpisano imienia, nazwiska lub adresu";
-                }
-
-            //walidacja loginu	
-            if (ctype_alnum($login)==false)
-                {
-                    $ok=false;
-                    $_SESSION['error_login']="Login może się składać tylko z cyfr i liter (bez polskich znaków)";
-                }
-            
-            if((strlen($login)<1) || (strlen($login)>50))
-                {
-                    $ok=false;
-                    $_SESSION["error_login"]="Nie wpisano loginu lub login ma więcej niż 50 znaków";
-                }
-            
-            //walidacja emaila	
-            if(strlen($email)<1)
-                {
-                    $ok=false;
-                    $_SESSION['error_email']="Nie podano emaila";
-                }
-
-            $emailVal = filter_var($email, FILTER_SANITIZE_EMAIL);
-            //walidacja hasla
-            if(strlen($haslo)==0)
-                {
-                    $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
-                    $rezultat = $polaczenie->query("SELECT haslo FROM uzytkownicy WHERE id=".$_SESSION['id']);
-                    $czyZnaleziono = $rezultat->num_rows;
-                    if($czyZnaleziono>0)
-                    {   
-                        $wiersz = $rezultat->fetch_assoc();
-                        $haslo=$wiersz['haslo'];
-                    }
-                    $rezultat->close();
-                    $polaczenie->close();
-                }
-            else if(strlen($haslo)<5 || (strlen($haslo)>50))
-                {
-                    {
-                        $ok=false;
-                        $_SESSION["error_haslo"]="Hasło musi zawierać od 5 do 50 znaków";
-                    }
-
-                }
-
-            require_once "polaczenieZBaza.php";
-            mysqli_report(MYSQLI_REPORT_STRICT);     
-                try
-                    {
-                        $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
-                        if($polaczenie->connect_errno!=0)
-                        {
-                            throw new Exception(mysqli_connect_errno());
-                        }
-                        else
-                        {
-                            //Czy mail istnieje
-                            $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE email='$email' AND id <> ".$_SESSION['id']);
-                            if(!$rezultat) throw new Exception($polaczenie->error);
-                            
-                            $ileMaili = $rezultat->num_rows;
-                            if($ileMaili>0)
-                            {
-                                $ok=false;
-                                $_SESSION['error_email']="Podany email już istnieje w bazie";
-                            }
-                            $rezultat->close();
-                            
-                            //czy login istnieje
-                            $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE BINARY login='$login' AND id <> ".$_SESSION['id']);
-                            if(!$rezultat) throw new Exception($polaczenie->error);
-                            
-                            $ileLogin = $rezultat->num_rows;
-                            if($ileLogin>0)
-                            {
-                                $ok=false;
-                                $_SESSION['error_login']="Podany login już istnieje w bazie";
-                            }
-                            if($ok==true)
-                            {
-                                if($polaczenie->query("UPDATE uzytkownicy SET adres='$adres', imie='$imie', nazwisko='$nazwisko', email='$email', login='$login', haslo='$haslo' WHERE id=".$_SESSION['id']))
-                                {
-                                    ?>
-                                        <script>
-                                        alert("Pomyślnie zaaktualizowano dane!");
-                                        </script>
-                                    <?php
-                                    unset($_SESSION['edycjaDanych']);
-                                }else
-                                {
-                                    throw new Exception($polaczenie->error);
-                                }
-                            }
-                            
-                            
-                        }
-                    }
-                catch(Exception $e)
-                    {
-                        echo '<div class="error">Błąd serwera</div>';
-                    }
-        }
+    
     // Zaaktualizowanie danych z bazy danych w zmiennych sesyjnych
     if($rezultat = @$polaczenie->query("SELECT * FROM uzytkownicy WHERE id=".$_SESSION['id']))
         {
@@ -152,7 +32,14 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
             }
         }
     
-    
+    if(isset($_SESSION['wiadomosc']))
+    {
+
+        ?>
+        <script>alert(<?php echo '"'.$_SESSION['wiadomosc'].'"'?>)</script>
+        <?php
+        unset($_SESSION['wiadomosc']);
+    }
 
 ?> 
 
@@ -238,7 +125,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                 echo "<b>Adres:</b> " . $_SESSION['adres'];
                 echo "<br><br>";
             ?>
-            <form method="post">
+            <form method="post" action="nauczycielAkcje.php">
         <input type="submit" name="edycjaDanych" value="Edytuj dane"></form>
             
         </div>
@@ -254,7 +141,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
     </div>
     <div class="edytowanieDanych" style="display:none">
         <p>
-        <form method="post">  
+        <form method="post" action="nauczycielAkcje.php">  
             
         <!-- Edytowanie Danych użytkownika -->
         
@@ -445,6 +332,6 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
         
         </script>';
         }
-        unset($_POST['edycjaDanych']);
+        unset($_SESSION['edycjaDanych']);
 ?>
 
