@@ -23,7 +23,7 @@ session_start();
 require_once "polaczenieZBaza.php";
 $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
 
-  }
+  
 
             $lekcje1 = 
             "SELECT slownik.przedmiot, dni.dzien, godzinylekcyjne.godzina, sale.sala, klasy.klasa, plan.IdGodzinaLekcyjna, plan.IdPrzedmiot, plan.IdSala, plan.IdDzien, uzytkownicy.imie, uzytkownicy.nazwisko, plan.id, godzinyLekcyjne.id AS gId
