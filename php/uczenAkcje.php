@@ -121,5 +121,8 @@ else if (isset($_POST['zapisz']))
                 {
                     echo '<div class="error">Błąd serwera</div>';
                 }
+}else
+{
+    header("Location:uczen.php");
 }
 ?>
