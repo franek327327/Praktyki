@@ -30,8 +30,9 @@
     }
     
     .wyswietlanie {
-        height: 500px;
-        overflow: auto;
+        text-align: center;
+        height: 200px;
+        margin-top: 150px;
     }
     /*menu
 
@@ -96,6 +97,10 @@
         text-align: center;
         margin: 0;
         padding: 0;
+    }
+    
+    #dodaj {
+        text-align: center;
     }
     
     button {
@@ -273,15 +278,13 @@
     .back:visited {
         color: azure;
     }
-
     
-
-
-@media only screen and (max-width: 900px) and (orientation:landscape){
-    body{
-        transform: rotate(-90deg);
+    @media only screen and (max-width: 900px) and (orientation:landscape) {
+        body {
+            transform: rotate(-90deg);
+        }
     }
-}
+    
     .back:active {
         color: rgb(67, 60, 60);
     }
@@ -289,7 +292,6 @@
     .back:hover {
         color: rgb(197, 180, 180);
     }
-
     /* Responsywność */
     /* 1080p */
     
@@ -372,7 +374,7 @@
             opacity: 0;
         }
     }
-
+    
     table,
     th,
     td,
@@ -387,14 +389,8 @@
         text-align: -webkit-center;
     }
     
-    @media print 
-    {
-        .drukuj 
-        {
-             margin: auto;
+    @media print {
+        .drukuj {
+            margin: auto;
         }
-
     }
-    
-    
-    
