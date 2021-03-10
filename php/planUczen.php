@@ -7,9 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<h1>Platforma Szkolna - Uczeń</h1>
+<a class="back" href="nauczyciel.php">Powrót</a>
 <?php
 // wyswietlanie planu
 session_start();
+
+if(!isset($_SESSION['jestKlasa']))
+{
+    echo "<a href='uczen.php'>Kliknij by dodać klasę</a>";
+    $_SESSION['edycjaDanych'] = 1;
+    exit();
+}
 require_once "polaczenieZBaza.php";
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
@@ -53,7 +62,7 @@ $lekcje1 =
                     while($wiersz = $rezultat->fetch_assoc()) 
                     { 
                         $petla++;
-                        $GLOBALS["Lekcja".$i."_".$wiersz["IdGodzinaLekcyjna"]] = $wiersz['przedmiot']." ".$wiersz['sala']." ".$wiersz['imie']." ".$wiersz['nazwisko'];
+                        $GLOBALS["Lekcja".$i."_".$wiersz["IdGodzinaLekcyjna"]] = $wiersz['przedmiot']." ".$wiersz['sala']."<br> ".$wiersz['imie']." ".$wiersz['nazwisko'];
                     }
                     $rezultat->close();
                 }
@@ -225,8 +234,7 @@ $lekcje1 =
             
             $polaczenie->close();
 ?>
-<button onclick="window.print();">Drukuj</button>
-<button onclick="location.href='uczen.php'">Powrót</button>
+<button id="pl" onclick="printDiv();">Drukuj</button>
 
 </body>
 </html>

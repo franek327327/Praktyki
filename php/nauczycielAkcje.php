@@ -265,6 +265,9 @@ else if(isset($_POST['edycjaLekcji']))
              echo '<input type="submit" name="aktualizacjaLekcji" value="Zapisz zmiany!">';
              echo '<input type="submit" name="usuniecieLekcji" value="Usuń lekcję!">';
              echo "</form>";  
+             ?>
+            <button onclick="location.href='planNauczyciel.php'">powrót</button>
+            <?php 
 
             }
 }
@@ -309,6 +312,9 @@ else if(isset($_POST['edytowanieKlasy']))
     echo '<input type="submit" name="edytuj" value="edytuj klase">';
     echo "</form>";
     $_SESSION["KlasaID"]=$_POST["edytowanieKlasy"];
+    ?>
+    <button onclick="location.href='nauczyciel.php'">powrót</button>
+    <?php 
    
 }  
 elseif(isset($_POST["zmianaKlasy"]))
@@ -340,6 +346,9 @@ else if(isset($_POST['edytowaniePrzedmiotu']))
     echo '<input type="submit" name="edytuj" value="edytuj przedmiot">';
     echo "</form>";
     $_SESSION["PrzedmiotID"]=$_POST["edytowaniePrzedmiotu"];
+    ?>
+    <button onclick="location.href='nauczyciel.php'">powrót</button>
+    <?php 
    
 }  
 elseif(isset($_POST["zmianaPrzedmiotu"]))
@@ -360,7 +369,6 @@ elseif(isset($_POST["zmianaPrzedmiotu"]))
         $polaczenie->close();
         header("Location:nauczyciel.php");
     }
-    
 
 }
 
@@ -371,4 +379,4 @@ else
     header("Location:nauczyciel.php");
 }
 ?>
-<button onclick="location.href='planNauczyciel.php'">Powrót</button>
+
