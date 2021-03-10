@@ -39,8 +39,9 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 //Uczniowie bez klasy
 $uczenBezKlasa = "SELECT adres, IdKlasa, imie, nazwisko, email, funkcja, id FROM uzytkownicy WHERE IdKlasa IS NULL and funkcja = 0";
 $rezultat = $polaczenie->query($uczenBezKlasa);
+$petla = 0;
 if ($rezultat->num_rows > 0) {
-    $petla = 0;
+    
 	while($wiersz = $rezultat->fetch_assoc()) {
 		$petla++;
 		echo "Uczen " . $petla . ": " . $wiersz["imie"] . " " . $wiersz["nazwisko"] . " | Brak Klasy | " . $wiersz['email']. " | ".$wiersz['adres']."<form style = 'display: inline;' method = 'post' action = 'uczniowie.php'> <button name = 'usuwanie' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "<br>";

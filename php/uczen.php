@@ -7,13 +7,18 @@
         header('Location:../index.php');
         exit();
     } 
+    if(isset($_SESSION['wiadomosc']))
+    {
+
+        ?>
+        <script>alert(<?php echo '"'.$_SESSION['wiadomosc'].'"'?>)</script>
+        <?php
+        unset($_SESSION['wiadomosc']);
+    }
 
     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
-    if(isset($_POST['edycjaDanych']))
-    {
-        $_SESSION['edycjaDanych'] = 1;
-    }
-   
+    
+    
     // Zaaktualizowanie danych z bazy danych w zmiennych sesyjnych
     if($rezultat = @$polaczenie->query("SELECT * FROM uzytkownicy WHERE id=".$_SESSION['id']))
         {
@@ -146,7 +151,7 @@
                 echo "<b>Adres:</b> " . $_SESSION['adres'];
                 echo "<br><br>";
             ?>
-            <form method="post">
+            <form method="post" action="uczenAkcje.php">
             <input type="submit" name="edycjaDanych" value="Edytuj dane"></form>
             </h2>
         </div>
@@ -180,7 +185,7 @@
     </div>
     <div class="edytowanieDanych" style="display:none">
         <p>
-        <form method="post">  
+        <form method="post" action="uczenAkcje.php">  
             
         <!-- Edytowanie danych użytkownika -->
         
