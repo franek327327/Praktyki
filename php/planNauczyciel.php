@@ -8,8 +8,16 @@ session_start();
     <script src="../js/app1.js" defer></script>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=PT+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<h1>Platforma Szkolna - Nauczyciel</h1>
+<a class="back" href="nauczyciel.php">Powrót</a>
+    
 <?php
 // wyswietlanie planu
 require_once "polaczenieZBaza.php";
@@ -82,6 +90,7 @@ $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
                 }
             }
             echo
+
             "<div class='drukuj'><table>
             <tr>
             <th>Nr</th>
@@ -319,8 +328,12 @@ $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
             
             $polaczenie->close();
 ?>
-<button onclick="window.print();">Drukuj</button>
-<button onclick="location.href='nauczyciel.php'">Powrót</button>
+<button id="pl" onclick="window.print();">Drukuj</button>
+<button id="pl" onclick="location.href='nauczyciel.php'">Powrót</button>
+            
 
+            <div id="stopka">
+        PLAN LEKCJI &copy; Praktyka gr2
+    </div>
 </body>
 </html>
