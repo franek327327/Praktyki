@@ -215,7 +215,9 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
   <li class="tab-el"><a href="#klasy">Klasy</a></li>
   <li class="tab-el"><a href="planNauczyciel.php">Plan</a></li>
   <li class="tab-el"><a href="#lekcje">Przedmioty</a></li>
+  <li class="tab-el"><a href="#sale">Sale</a></li>
   <li class="tab-el"><a href="procesWylogowania.php">Wyloguj</a></li>
+  
 </ul>
     </div>
     
