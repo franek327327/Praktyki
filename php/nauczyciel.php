@@ -21,12 +21,13 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
             $login=$_POST['loginEdit'];
             $email=$_POST['emailEdit'];
             $haslo=$_POST['hasloEdit'];
+            $adres=$_POST['adresEdit'];
 
             //walidacja imienia, nazwiska i adresu
-            if(strlen($imie) < 1 || strlen($nazwisko) < 1)
+            if(strlen($imie) < 1 || strlen($nazwisko) < 1 || strlen($adres) < 1)
                 {
                     $ok=false;
-                    $_SESSION['error_Ina']="Nie wpisano imienia lub nazwiska";
+                    $_SESSION['error_Ina']="Nie wpisano imienia, nazwiska lub adresu";
                 }
 
             //walidacja loginu	
@@ -108,7 +109,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                             }
                             if($ok==true)
                             {
-                                if($polaczenie->query("UPDATE uzytkownicy SET imie='$imie', nazwisko='$nazwisko', email='$email', login='$login', haslo='$haslo' WHERE id=".$_SESSION['id']))
+                                if($polaczenie->query("UPDATE uzytkownicy SET adres='$adres', imie='$imie', nazwisko='$nazwisko', email='$email', login='$login', haslo='$haslo' WHERE id=".$_SESSION['id']))
                                 {
                                     ?>
                                         <script>
@@ -143,6 +144,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                 $_SESSION['imie'] = $wiersz['imie'];
                 $_SESSION['nazwisko'] = $wiersz['nazwisko'];
                 $_SESSION['funkcja'] = $wiersz['funkcja'];
+                $_SESSION['adres'] = $wiersz['adres'];
                 
                 $rezultat->close();
             }
@@ -209,7 +211,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
   <li class="tab-el"><a href="#profil">Profil</a></li>
   <li class="tab-el"><a href="uczniowie.php">Uczniowie</a></li>
   <li class="tab-el"><a href="#klasy">Klasy</a></li>
-  <li class="tab-el"><a href="planNauczyciel.ph">Plan</a></li>
+  <li class="tab-el"><a href="planNauczyciel.php">Plan</a></li>
   <li class="tab-el"><a href="#lekcje">lekcje</a></li>
   <li class="tab-el"><a href="procesWylogowania.php">Wyloguj</a></li>
 </ul>
@@ -230,6 +232,8 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                 echo "<b>Email:</b> " . $_SESSION['email'];
                 echo "<br><br>";
                 echo "<b>Login:</b> " . $_SESSION['login'];
+                echo "<br><br>";
+                echo "<b>Adres:</b> " . $_SESSION['adres'];
                 echo "<br><br>";
             ?>
             <form method="post">
@@ -269,6 +273,14 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                         echo $_SESSION['nazwisko'];
                     }
             ?>" name="nazwiskoEdit">
+            <br>
+            <b>Adres:</b>
+            <input type="text" value="<?php
+                    if(isset($_SESSION['adres']))
+                    {
+                        echo $_SESSION['adres'];
+                    }
+            ?>" name="adresEdit">
                 <?php
                     if(isset($_SESSION['error_Ina']))
                         {

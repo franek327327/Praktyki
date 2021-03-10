@@ -23,12 +23,13 @@
             $idKlasy=$_POST['klasaEdit'];
             $email=$_POST['emailEdit'];
             $haslo=$_POST['hasloEdit'];
+            $adres=$_POST['adresEdit'];
 
             //walidacja imienia, nazwiska i adresu
-            if(strlen($imie) < 1 || strlen($nazwisko) < 1)
+            if(strlen($imie) < 1 || strlen($nazwisko) < 1 || strlen($adres) < 1)
                 {
                     $ok=false;
-                    $_SESSION['error_Ina']="Nie wpisano imienia lub nazwiska";
+                    $_SESSION['error_Ina']="Nie wpisano imienia, nazwiska lub adresu!";
                 }
 
             //walidacja loginu	
@@ -108,7 +109,7 @@
                             }
                             if($ok==true)
                             {
-                                if($polaczenie->query("UPDATE uzytkownicy SET IdKlasa='$idKlasy', imie='$imie', nazwisko='$nazwisko', email='$email', login='$login', haslo='$haslo' WHERE id=".$_SESSION['id']))
+                                if($polaczenie->query("UPDATE uzytkownicy SET adres ='$adres', IdKlasa='$idKlasy', imie='$imie', nazwisko='$nazwisko', email='$email', login='$login', haslo='$haslo' WHERE id=".$_SESSION['id']))
                                 {
                                     $_SESSION['rejestracjaUdana']=true;
                                     unset($_SESSION['edycjaDanych']);
@@ -146,6 +147,7 @@
                 $_SESSION['imie'] = $wiersz['imie'];
                 $_SESSION['nazwisko'] = $wiersz['nazwisko'];
                 $_SESSION['funkcja'] = $wiersz['funkcja'];
+                $_SESSION['adres'] = $wiersz['adres'];
                 
                 $rezultat->close();
             }
@@ -247,6 +249,8 @@
                 echo "<br><br>";
                 echo "<b>Login:</b> " . $_SESSION['login'];
                 echo "<br><br>";
+                echo "<b>Adres:</b> " . $_SESSION['adres'];
+                echo "<br><br>";
             ?>
             <form method="post">
             <input type="submit" name="edycjaDanych" value="Edytuj dane"></form>
@@ -255,12 +259,7 @@
         
         <p> 
         <!-- Wyświetlanie klasy -->
-       <?php 
-        
-
-        
-
-
+       <?php
 
         if(isset($_POST['dolaczanie']))
         {
@@ -275,11 +274,10 @@
                 echo $_POST['dodanieDoKlasy'];
             }
 
-            unset($_POST);
+            unset($_POST['dolaczanie']);
 
         }
-        
-            
+             
         ?>
         
         
@@ -325,6 +323,14 @@
                         echo $_SESSION['nazwisko'];
                     }
             ?>" name="nazwiskoEdit">
+            <br>
+            <b>Adres:</b>
+            <input type="text" value="<?php
+                    if(isset($_SESSION['adres']))
+                    {
+                        echo $_SESSION['adres'];
+                    }
+            ?>" name="adresEdit">
                 <?php
                     if(isset($_SESSION['error_Ina']))
                         {

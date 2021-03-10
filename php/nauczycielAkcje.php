@@ -319,13 +319,13 @@ elseif(isset($_POST["zmianaKlasy"]))
     $update = "UPDATE klasy SET klasa ='" .$_POST['zmianaKlasy']. "' WHERE id=" .$_SESSION['KlasaID'];
     if ($polaczenie->query($update) == TRUE) 
     {
-        $_SESSION['wiadomoscDodawania'] = "Udało się zmienić nazwę klasy!";
+        $_SESSION['klasy'] = "Udało się zmienić nazwę klasy!";
         $polaczenie->close();
         header("Location:nauczyciel.php");
     }
     else
     {
-        $_SESSION['wiadomoscDodawania'] = "Nie udało się zmienić nazwy klasy!";
+        $_SESSION['klasy'] = "Nie udało się zmienić nazwy klasy!";
         $polaczenie->close();
         header("Location:nauczyciel.php");
     }
@@ -350,7 +350,7 @@ elseif(isset($_POST["zmianaPrzedmiotu"]))
     $update = "UPDATE slownik SET przedmiot ='" .$_POST['zmianaPrzedmiotu']. "' WHERE id=" .$_SESSION['PrzedmiotID'];
     if ($polaczenie->query($update) == TRUE) 
     {
-        $_SESSION['wiadomoscDodawania'] = "Udało się zmienić nazwę przedmiotu!";
+        $_SESSION['przedmioty'] = "Udało się zmienić nazwę przedmiotu!";
         $polaczenie->close();
         header("Location:nauczyciel.php");
     }

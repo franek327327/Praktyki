@@ -40,6 +40,7 @@ if($rezultat = @$polaczenie->query(
 			$_SESSION['email'] = $wiersz['email'];
 			$_SESSION['imie'] = $wiersz['imie'];
 			$_SESSION['nazwisko'] = $wiersz['nazwisko'];
+			$_SESSION['adres'] = $wiersz['adres'];
 			$_SESSION['funkcja'] = $wiersz['funkcja'];
 			
 			$rezultat->close();

@@ -9,6 +9,7 @@ if (isset($_POST['emailReg']))
 	
 	$imie=$_POST['imieReg'];
 	$nazwisko=$_POST['nazwiskoReg'];
+	$adres=$_POST['adresReg'];
 	$login=$_POST['loginReg'];
 	$email=$_POST['emailReg'];
 	$haslo1=$_POST['haslo1'];
@@ -24,10 +25,10 @@ if (isset($_POST['emailReg']))
 
 	//walidacja imienia, nazwiska i adresu
 
-	if(strlen($imie) < 1 || strlen($nazwisko) < 1)
+	if(strlen($imie) < 1 || strlen($nazwisko) < 1 || strlen($adres) < 1)
 	{
 		$ok=false;
-		$_SESSION['error_Ina']="Nie wpisano imienia lub nazwiska";
+		$_SESSION['error_Ina']="Nie wpisano imienia, nazwiska lub adresu";
 	}
 
 	//walidacja loginu	
@@ -79,6 +80,7 @@ if (isset($_POST['emailReg']))
 	$_SESSION['fr_email'] = $email;
 	$_SESSION['fr_imie'] = $imie;
 	$_SESSION['fr_nazwisko'] = $nazwisko;
+	$_SESSION['fr_adres'] = $adres;
 
 	if (isset($_POST['uN']))
 	{
@@ -126,7 +128,7 @@ if (isset($_POST['emailReg']))
 				}
 				if($ok==true)
 				{
-					if($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL, '$imie', '$nazwisko', '$funkcja', '$email', '$login', '$haslo1', NULL)"))
+					if($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL, '$imie', '$nazwisko', '$funkcja', '$email', '$login', '$haslo1', NULL, '$adres')"))
 					{
 						$_SESSION['rejestracjaUdana']=true;
 						
@@ -244,7 +246,7 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 					?>">
 						<form method="POST">
 						
-							<a>Imię:</a> <input type="imie" value="<?php
+							<a>Imię:</a> <input type="text" value="<?php
 							if(isset($_SESSION['fr_imie']))
 							{
 								echo $_SESSION['fr_imie'];
@@ -252,7 +254,7 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 							}
 							?>" name="imieReg"> 
 
-                            <a>Nazwisko:</a> <input type="nazwisko" value="<?php
+                            <a>Nazwisko:</a> <input type="text" value="<?php
 							if(isset($_SESSION['fr_nazwisko']))
 							{
 								echo $_SESSION['fr_nazwisko'];
@@ -260,6 +262,13 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 							}
 							?>" name="nazwiskoReg"> 
 
+							<a>Adres:</a> <input type="text" value="<?php
+							if(isset($_SESSION['fr_adres']))
+							{
+								echo $_SESSION['fr_adres'];
+								unset($_SESSION['fr_adres']);
+							}
+							?>" name="adresReg"> 
 							
 							
 							<?php
