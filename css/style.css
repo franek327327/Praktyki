@@ -304,7 +304,8 @@ label {
     .reg-btn {
     font-size: 25px; 
     }
-    input {
+    input[type="radio"] {
+        margin-right:10px;
         height: auto;
         font-size: 10px;
     }
@@ -314,8 +315,12 @@ label {
     h1{
         font-size:25px;
     }
-    label{
-        margin-left: 15px;
+    .error{
+        font-size: 15px;
+    }
+    .reg{
+        overflow: auto;
+        max-height: 372px;
     }
 
     @keyframes zaloguj {
