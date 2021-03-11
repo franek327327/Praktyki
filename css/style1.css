@@ -282,6 +282,29 @@
         border: 1px solid black;
         text-align: center;
     }
+
+     /* Animacje */
+     @keyframes ProfilAnim {
+        from {
+            height: 0;
+            opacity: 0;
+        }
+        to {
+            height: 700px;
+            opacity: 1;
+        }
+    }
+    @keyframes ProfilAnimRev {
+        from {
+            height: 700px;
+            opacity: 1;
+        }
+        to {
+            height: 0;
+            opacity: 0;
+        }
+    }
+    
     /* Responsywność */
     /* 1080p */
     
