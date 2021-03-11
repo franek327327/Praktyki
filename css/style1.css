@@ -202,23 +202,23 @@
         /*pokazuje palec po najechaniu*/
     }
     
-    .close:hover {
+    input:hover {
         cursor: pointer;
         /*pokazuje palec po najechaniu*/
     }
     
-    .plan {
-        background: none;
-        border: none;
+    .close:hover {
+        cursor: pointer;
+        /*pokazuje palec po najechaniu*/
     }
     
     .plan:hover {
         cursor: pointer;
     }
     
-    input:hover {
-        cursor: pointer;
-        /*pokazuje palec po najechaniu*/
+    .plan {
+        background: none;
+        border: none;
     }
     /* unvisited link */
     
