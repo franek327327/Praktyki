@@ -4,6 +4,45 @@ body {
     font-family: 'PT Sans', sans-serif;
 }
 
+h1 {
+    font-size: 45px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+h2 {
+    font-size: 39px;
+}
+
+input {
+    display: block;
+    margin: auto;
+    border-radius: 5px;
+    border: 0;
+    height: 18px;
+    margin-top: 5px;
+    box-shadow: 0 0 5px black;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid;
+    box-shadow: 0 0 5px black;
+}
+
+button {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+p {
+    margin-top: 20px;
+}
+
+a {
+    color: white;
+}
+
 #container {
     width: 100%;
     margin-left: auto;
@@ -27,18 +66,8 @@ body {
     border-radius: 10px;
 }
 
-h1 {
-    font-size: 45px;
-    text-align: center;
-    color: rgb(255, 255, 255);
-}
 
-h2 {
-    font-size: 39px;
-}
-
-
-/* Logowanie */
+/* Logowanie LUKASZ */
 
 .logAnim {
     animation-name: zaloguj;
@@ -76,46 +105,8 @@ h2 {
     display: block;
 }
 
-input {
-    display: block;
-    margin: auto;
-    border-radius: 5px;
-    border: 0;
-    height: 18px;
-    margin-top: 5px;
-    box-shadow: 0 0 5px black;
-}
-
-input:focus {
-    outline: none;
-    border: 1px solid;
-    box-shadow: 0 0 5px black;
-}
-
-button {
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-p {
-    margin-top: 20px;
-}
-
-a {
-    color: white;
-}
-
-.zobaczHaslo {
-    float: right;
-    left: 220px;
-    bottom: 15px;
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-radius: 3px;
-}
-
 input[type="radio"] {
+    /*moesz to i to*/
     display: inline;
     box-shadow: 0 0 0;
 }
@@ -123,6 +114,9 @@ input[type="radio"] {
 label {
     color: white;
 }
+
+
+/*koniec*/
 
 .error {
     color: red;
@@ -169,8 +163,8 @@ label {
 
 /* 1080p */
 
-@media only screen and (min-height:1030px) and (min-width:1850px){
-    #bcolor{
+@media only screen and (min-height:1030px) and (min-width:1850px) {
+    #bcolor {
         font-size: 35px;
     }
     .reg {
@@ -192,7 +186,6 @@ label {
             opacity: 1;
         }
     }
-
     @keyframes rejestracja {
         from {
             height: 0;
@@ -208,8 +201,8 @@ label {
 
 /* 1440p */
 
-@media only screen and (min-width: 2500px) and (min-height: 1380px){
-    #bcolor{
+@media only screen and (min-width: 2500px) and (min-height: 1380px) {
+    #bcolor {
         font-size: 20px;
     }
     .reg {
@@ -217,13 +210,12 @@ label {
     }
     .log-btn,
     .reg-btn {
-    font-size: 40px; 
+        font-size: 40px;
     }
     input {
         height: auto;
         font-size: 18px;
     }
-
     @keyframes zaloguj {
         from {
             height: 0;
@@ -234,7 +226,6 @@ label {
             opacity: 1;
         }
     }
-
     @keyframes rejestracja {
         from {
             height: 0;
@@ -245,12 +236,13 @@ label {
             opacity: 1;
         }
     }
-
 }
 
+
 /* Tablet */
-@media only screen and (min-width: 500px){
-    #bcolor{
+
+@media only screen and (min-width: 500px) {
+    #bcolor {
         font-size: 20px;
     }
     .reg {
@@ -258,16 +250,15 @@ label {
     }
     .log-btn,
     .reg-btn {
-    font-size: 30px; 
+        font-size: 30px;
     }
     input {
         height: auto;
         font-size: 14px;
     }
-    h1{
-        font-size:35px;
+    h1 {
+        font-size: 35px;
     }
-
     @keyframes zaloguj {
         from {
             height: 0;
@@ -278,7 +269,6 @@ label {
             opacity: 1;
         }
     }
-
     @keyframes rejestracja {
         from {
             height: 0;
@@ -289,31 +279,29 @@ label {
             opacity: 1;
         }
     }
-
 }
 
 
-
-
 /* Phone */
-@media only screen and (max-width: 500px){
-    #bcolor{
+
+@media only screen and (max-width: 500px) {
+    #bcolor {
         font-size: 15px;
     }
     .log-btn,
     .reg-btn {
-    font-size: 25px; 
+        font-size: 25px;
     }
     input[type="radio"] {
         margin-right:10px;
         height: auto;
         font-size: 10px;
     }
-    .logowanie-text{
+    .logowanie-text {
         display: none;
     }
-    h1{
-        font-size:25px;
+    h1 {
+        font-size: 25px;
     }
     .error{
         font-size: 15px;
@@ -322,7 +310,6 @@ label {
         overflow: auto;
         max-height: 372px;
     }
-
     @keyframes zaloguj {
         from {
             height: 0;
@@ -333,7 +320,6 @@ label {
             opacity: 1;
         }
     }
-
     @keyframes rejestracja {
         from {
             height: 0;
@@ -344,5 +330,4 @@ label {
             opacity: 1;
         }
     }
-
 }
