@@ -129,9 +129,6 @@ label {
     font-size: 20px;
 }
 
-
-/* Koncepcja */
-
 #stopka {
     position: fixed;
     height: 40px;
@@ -231,7 +228,7 @@ label {
 }
 
 /* Tablet */
-@media only screen and (max-width: 1100px){
+@media only screen and (min-width: 500px) and (max-width:1869px){
     #bcolor{
         font-size: 20px;
     }
