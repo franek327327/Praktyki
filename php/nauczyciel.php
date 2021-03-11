@@ -319,6 +319,72 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
         </form>
         
     </div>
+
+
+
+
+
+    <div class="tab-content" id="sale">
+        <!-- Usuwanie i wyświetlanie sal-->
+        <h3>Sale</h3>
+        <div class="wyswietlanie">
+            
+        
+        <div class="obw1">
+        
+        <?php
+            $sale = "SELECT id, sala FROM sale";
+
+            $rezultat = $polaczenie->query($sale);
+
+            if ($rezultat->num_rows > 0) {
+                $petla = 0;
+                while($wiersz = $rezultat->fetch_assoc()) {
+                    $petla++;
+                    echo $petla . ". " . $wiersz["sala"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwanieSali' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>
+                    <form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> 
+                    <input type='hidden' name='nazwaSali' value='".$wiersz['sala']."'/>
+                    <button name = 'edytowanieSali' type = 'submit' value = '". $wiersz['id'] ."'>" . "Edytuj</button> </form>" . "<br>";
+                }
+                $rezultat->close();
+            }
+            if(isset($_SESSION['sale']))
+            {
+                ?>
+                    <script>
+                    alert(<?php echo '"'.$_SESSION["sale"].'"'; ?>);
+                    </script>
+                    <?php
+                unset($_SESSION['sale']);
+            }
+        ?>
+       
+        </div>
+        </div>
+        <!-- Dodawanie Sali -->
+        
+        <form class="dodaj" method="post" action="nauczycielAkcje.php">
+        <input  type="text" name="dodawanaSala">
+        <input  type="submit" name="dodawanieSali" value="Dodaj sale!">
+        </form>
+        
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
     <div id="stopka">

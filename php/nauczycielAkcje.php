@@ -200,48 +200,8 @@ else if(isset($_POST['dodawanieKlasy']))
 
 
 }
-// Dodawanie sali
-else if(isset($_POST['dodawanieSali']))
-{
-    $czyMoznaWyslac = true;
-    unset($_POST['dodawanieKlasy']);
-    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
-    $dodawanie = "INSERT INTO klasy (klasa) VALUES ('".$_POST['dodawanaKlasa']."')";
-    $sprawdzanie = "SELECT id, klasa FROM klasy WHERE klasa=".$_POST['dodawanaKlasa'];
-    $rezultat = $polaczenie->query($sprawdzanie);
-    
-    if(strlen($_POST['dodawanaKlasa']) == 0)
-    {
-            $czyMoznaWyslac=false;
-            $_SESSION['klasy']="Nie wpisano klasy!";
-            $polaczenie->close();
-            header("Location:nauczyciel.php");
-    }
-    if($rezultat->num_rows > 0)
-        {
-            $czyMoznaWyslac = false;
-            $_SESSION['klasy'] = "Podana klasa jest już w bazie danych!";
-            $polaczenie->close();
-            header("Location:nauczyciel.php");
-        }
-    
-
-    if($czyMoznaWyslac)
-    {
-        if ($polaczenie->query($dodawanie) === TRUE) {
-            $_SESSION['klasy']="Dodano klasę!";
-            $polaczenie->close();
-            header("Location:nauczyciel.php");
-          } else {
-            $_SESSION['klasy']="Nie udało się dodać klasy!";
-            $polaczenie->close();
-            header("Location:nauczyciel.php");
-          }
-    }
 
 
-
-}
    
 // Edytowanie lekcji
 else if(isset($_POST['edycjaLekcji']))
@@ -553,6 +513,104 @@ else if (isset($_POST['zapisz']))
                     echo '<div class="error">Błąd serwera</div>';
                 }
 }
+// dodawanie sali
+else if(isset($_POST['dodawanieSali']))
+{
+    $czyMoznaWyslac = true;
+    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+    $dodawanie = "INSERT INTO sale (sala) VALUES ('".$_POST['dodawanaSala']."')";
+    $sprawdzanie = "SELECT id, sala FROM sale WHERE sala=".$_POST['dodawanaSala'];
+    $rezultat = $polaczenie->query($sprawdzanie);
+    
+    if(strlen($_POST['dodawanaSala']) == 0)
+    {
+            $czyMoznaWyslac=false;
+            $_SESSION['sale']="Nie wpisano sali!";
+            $polaczenie->close();
+            header("Location:nauczyciel.php");
+    }
+    if($rezultat->num_rows > 0)
+        {
+            $czyMoznaWyslac = false;
+            $_SESSION['sale'] = "Podana sala jest już w bazie danych!";
+            $polaczenie->close();
+            header("Location:nauczyciel.php");
+        }
+    
+
+    if($czyMoznaWyslac)
+    {
+        if ($polaczenie->query($dodawanie) === TRUE) {
+            $_SESSION['sale']="Dodano sale!";
+            $polaczenie->close();
+            header("Location:nauczyciel.php");
+          } else {
+            $_SESSION['sale']="Nie udało się dodać sali!";
+            $polaczenie->close();
+            header("Location:nauczyciel.php");
+          }
+    }
+}
+// edytowanie sali
+else if(isset($_POST['edytowanieSali']))
+{
+    echo '<form method="post" action="nauczycielAkcje.php">';
+    echo '<input type="text" name="zmianaSali" value="'.$_POST['nazwaSali'].'">';
+    echo '<input type="submit" name="edytuj" value="Zapisz!">';
+    echo "</form>";
+    $_SESSION["SalaID"]=$_POST["edytowanieSali"];
+    ?>
+    <button onclick="location.href='nauczyciel.php'">powrót</button>
+    <?php 
+   
+}  
+elseif(isset($_POST["zmianaSali"]))
+{
+    $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+    
+    
+    $update = "UPDATE sale SET sala ='" .$_POST['zmianaSali']. "' WHERE id=" .$_SESSION['SalaID'];
+    if ($polaczenie->query($update) == TRUE) 
+    {
+        $_SESSION['sale'] = "Udało się zmienić nazwę sali!";
+        $polaczenie->close();
+        header("Location:nauczyciel.php");
+    }
+    else
+    {
+        $_SESSION['sale'] = "Nie udało się zmienić nazwy sali!";
+        $polaczenie->close();
+        header("Location:nauczyciel.php");
+    }
+
+}
+// usuwanie sali
+elseif(isset($_POST["usuwanieSali"]))
+{
+    $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+    $usuwanie = "DELETE FROM sale WHERE id=".$_POST["usuwanieSali"];
+    if ($polaczenie->query($usuwanie) == TRUE)
+    {
+        $_SESSION['sale'] = "Udało się usunąć sale!";
+        $polaczenie->close();
+        header("Location:nauczyciel.php");
+    }
+    else
+    {
+        $_SESSION['sale'] = "Nie udało się usunąć sali!";
+        $polaczenie->close();
+        header("Location:nauczyciel.php");
+    }
+    
+}
+
+
+
+
+
+
+
+
 else
 {
     header("Location:nauczyciel.php");
