@@ -93,3 +93,59 @@ function printDiv()
 			document.body.innerHTML = originalContents;
 
 }
+
+
+
+
+ function SendMail()
+  {
+    html2canvas(document.getElementById('conas')).then(function(canvas) {
+        var img=canvas.toDataURL();
+        $.ajax({
+            type: "POST",
+            url: "test.php",
+            data: {zdj : img},
+            success : function(response) {
+                console.log(response);
+            },
+            error : function(response) {
+                console.log(response);
+            }
+        });
+       });
+       
+
+
+
+  }
+  function Download()
+  {
+    html2canvas(document.getElementById('conas')).then(function(canvas) {
+        SaveAs(canvas.toDataURL(), 'plan lekcji.png');
+        });
+  }
+
+  function SaveAs(url, filename) {
+
+    var link = document.createElement('a');
+
+    if (typeof link.download == 'string') {
+
+        link.href = url;
+        link.download = filename;
+
+        //Firefox wymaga by element znajdował się w body
+        document.body.appendChild(link);
+
+        //Symuluje kliknięcie
+        link.click();
+
+        //Usunięcie elemenetu po wykonaniu
+        document.body.removeChild(link);
+
+    } else {
+
+        window.open(url);
+
+    }
+}
