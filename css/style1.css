@@ -5,6 +5,35 @@
         font-family: 'PT Sans', sans-serif;
     }
     
+    p {
+        font-size: 25px;
+        text-align: center;
+    }
+    
+    h1 {
+        font-size: 39px;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        top: 5%;
+    }
+    
+    h2 {
+        font-size: 40px;
+        text-align: center;
+        margin-top: 2px;
+    }
+    
+    h3 {
+        text-align: center;
+    }
+    
+    ul {
+        list-style-type: none;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    
     .error {
         color: rgb(255, 0, 0);
     }
@@ -22,7 +51,7 @@
         margin-left: 15px;
         color: white;
         font-weight: bold;
-        float: right; 
+        float: right;
         font-size: 22px;
         line-height: 20px;
         cursor: pointer;
@@ -38,14 +67,6 @@
         width: fit-content;
         height: 450px;
     }
-    
-
-    
-    h3 {
-        text-align: center;
-    }
-    
-    
     
     #meni {
         font-size: 22px;
@@ -80,48 +101,12 @@
         padding-bottom: 10px;
     }
     
-    ul {
-        list-style-type: none;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-    }
-    
     .dodaj {
         text-align: center;
     }
     
-    button {
-        border-radius: 5px;
-        border: none;
-    }
-    
-    button:hover {
-        cursor: pointer;
-        /*pokazuje palec po najechaniu*/
-    }
-    
     a:link {
         color: white;
-    }
-    
-    #stopka {
-        position: fixed;
-        height: 40px;
-        width: 100%;
-        right: 0.5px;
-        background-color: #465973;
-        bottom: 0;
-        text-align: center;
-        font-size: 19px;
-        color: white;
-    }
-    
-    h1 {
-        font-size: 39px;
-        text-align: center;
-        color: rgb(255, 255, 255);
-        top: 5%;
     }
     /*animacja karty profilu*/
     
@@ -139,7 +124,7 @@
         overflow: hidden;
         animation-fill-mode: forwards;
     }
-    /*Uczeń i Nauczyciel konrad robil*/
+    /*Uczeń i Nauczyciel KONRAD robil*/
     
     .tab-contents {
         width: 500px;
@@ -172,32 +157,7 @@
         text-decoration: none;
         margin-left: 5px;
     }
-    
-    .close:hover {
-        cursor: pointer;
-        /*pokazuje palec po najechaniu*/
-    }
-    
-    .plan {
-        background: none;
-        border: none;
-    }
-    
-    .plan:hover {
-        cursor: pointer;
-    }
     /*w karcie profilu*/
-    
-    p {
-        font-size: 25px;
-        text-align: center;
-    }
-    
-    h2 {
-        font-size: 40px;
-        text-align: center;
-        margin-top: 2px;
-    }
     
     .img {
         text-align: center;
@@ -216,7 +176,7 @@
     input {
         border: none;
         border-radius: 5px;
-        margin-left:5px;
+        margin-left: 5px;
     }
     
     .tlo input {
@@ -230,6 +190,30 @@
         width: auto;
         height: auto;
         border-radius: 19px;
+    }
+    
+    button {
+        border-radius: 5px;
+        border: none;
+    }
+    
+    button:hover {
+        cursor: pointer;
+        /*pokazuje palec po najechaniu*/
+    }
+    
+    .close:hover {
+        cursor: pointer;
+        /*pokazuje palec po najechaniu*/
+    }
+    
+    .plan {
+        background: none;
+        border: none;
+    }
+    
+    .plan:hover {
+        cursor: pointer;
     }
     
     input:hover {
@@ -263,19 +247,34 @@
         border: solid;
         border-radius: 7px;
     }
+    /* visited button */
     
     .back:visited {
         color: azure;
     }
+    /* selected button */
     
     .back:active {
         color: rgb(67, 60, 60);
     }
+    /* mouse over button */
     
     .back:hover {
         color: rgb(197, 180, 180);
     }
-
+    
+    #stopka {
+        position: fixed;
+        height: 40px;
+        width: 100%;
+        right: 0.5px;
+        background-color: #465973;
+        bottom: 0;
+        text-align: center;
+        font-size: 19px;
+        color: white;
+    }
+    
     table,
     th,
     td,
@@ -283,33 +282,31 @@
         border: 1px solid black;
         text-align: center;
     }
-
-    /* Responsywność */ 
+    /* Responsywność */
     /* 1080p */
-    @media only screen and (min-width:1890px) and (min-height:1050px){
+    
+    @media only screen and (min-width:1890px) and (min-height:1050px) {
         /* Animacje */
-
-            @keyframes ProfilAnim {
-                from {
-                    height: 0;
-                    opacity: 0;
-                }
-                to {
-                    height: 700px;
-                    opacity: 1;
-                }
+        @keyframes ProfilAnim {
+            from {
+                height: 0;
+                opacity: 0;
             }
-
-            @keyframes ProfilAnimRev {
-                from {
-                    height: 700px;
-                    opacity: 1;
-                }
-                to {
-                    height: 0;
-                    opacity: 0;
-                }
-            }  
+            to {
+                height: 700px;
+                opacity: 1;
+            }
+        }
+        @keyframes ProfilAnimRev {
+            from {
+                height: 700px;
+                opacity: 1;
+            }
+            to {
+                height: 0;
+                opacity: 0;
+            }
+        }
     }
     /* 1440p+ */
     
@@ -318,18 +315,18 @@
             top: 2;
             font-size: 60px;
         }
-        .tab-contents{
+        .tab-contents {
             width: 800px;
             height: 1000px;
         }
-        .close{
+        .close {
             font-size: 35px;
         }
-        input{
+        input {
             margin-left: 5px;
             font-size: 25px;
         }
-        .tab-el{
+        .tab-el {
             font-size: 40px;
         }
         .tab-content {
@@ -338,57 +335,52 @@
         #stopka {
             font-size: 20px;
         }
-        .back{
+        .back {
             font-size: 20px;
         }
-        #student{
+        #student {
             margin-top: 80px;
             font-size: 35px;
         }
-        
-        button{
+        button {
             margin-left: 15px;
             font-size: 20px;
         }
-        .wyswietlanie{
+        .wyswietlanie {
             width: 60%;
-            height: 650px;   
+            height: 650px;
         }
-        .obw1 form button{
+        .obw1 form button {
             font-size: 20px;
         }
-
         /* Plan */
-        h3{
-            font-size:30px;
-        }
-
-        table,th,td,tr{
-            padding: 5px;
-            margin: 5px;
-            color:rgb(228, 244, 255);
+        h3 {
             font-size: 30px;
         }
-
-        form select{
+        table,
+        th,
+        td,
+        tr {
+            padding: 5px;
+            margin: 5px;
+            color: rgb(228, 244, 255);
+            font-size: 30px;
+        }
+        form select {
             font-size: 20px;
         }
-        #pl{
-            font-size:25px;
+        #pl {
+            font-size: 25px;
         }
-        .plan{
+        .plan {
             text-align: center;
             margin: auto;
         }
-
-        
-        #stopka{
+        #stopka {
             margin-bottom: 15px;
             font-size: 25px;
         }
-
         /* Animacje */
-
         @keyframes ProfilAnim {
             from {
                 height: 0;
@@ -399,7 +391,6 @@
                 opacity: 1;
             }
         }
-
         @keyframes ProfilAnimRev {
             from {
                 height: 1000px;
@@ -409,8 +400,7 @@
                 height: 0;
                 opacity: 0;
             }
-        }  
-
+        }
     }
     /* Tablet */
     
@@ -418,23 +408,21 @@
         h1 {
             font-size: 30px;
         }
-        .tab-contents{
+        .tab-contents {
             width: 60%;
             height: 800px;
         }
-        .wyswietlanie{
+        .wyswietlanie {
             width: 80%;
             height: 550px;
         }
-        .obw1{
+        .obw1 {
             font-size: 20px;
         }
         #stopka {
             font-size: 15px;
         }
-
         /* Animacje */
-
         @keyframes ProfilAnim {
             from {
                 height: 0;
@@ -445,7 +433,6 @@
                 opacity: 1;
             }
         }
-
         @keyframes ProfilAnimRev {
             from {
                 height: 800px;
@@ -455,7 +442,7 @@
                 height: 0;
                 opacity: 0;
             }
-        }  
+        }
     }
     /* Phone */
     
@@ -463,51 +450,50 @@
         h1 {
             font-size: 20px;
         }
-        .tab-contents{
+        .tab-contents {
             width: 100%;
             height: 500px;
         }
-        
         .tab-content {
             font-size: 15px;
         }
-        .wyswietlanie{
+        .wyswietlanie {
             width: 80%;
             height: 320px;
         }
-        #dane{
-            margin-right:15px;
-            margin-left:15px;
+        #dane {
+            margin-right: 15px;
+            margin-left: 15px;
         }
-        #student{
+        #student {
             margin-top: 10px;
-            font-size:15px;
+            font-size: 15px;
         }
-        .student1{margin-top:5px;}
-        .back{
-            margin:5px;
-            font-size:12px;
+        .student1 {
+            margin-top: 5px;
         }
-
-        table,th,td,tr{
+        .back {
+            margin: 5px;
+            font-size: 12px;
+        }
+        table,
+        th,
+        td,
+        tr {
             border-collapse: collapse;
             padding: 5px;
             margin: 5px;
-            color:rgb(228, 244, 255);
+            color: rgb(228, 244, 255);
             font-size: 10px;
         }
-
-        form select{
+        form select {
             font-size: 12px;
         }
-
         #stopka {
             height: auto;
             font-size: 10px;
         }
-
         /* Animacje */
-
         @keyframes ProfilAnim {
             from {
                 height: 0;
@@ -518,7 +504,6 @@
                 opacity: 1;
             }
         }
-
         @keyframes ProfilAnimRev {
             from {
                 height: 500px;
@@ -528,9 +513,9 @@
                 height: 0;
                 opacity: 0;
             }
-        } 
+        }
     }
-       
+    
     .drukuj {
         margin-bottom: 15px;
         text-align: -webkit-center;
