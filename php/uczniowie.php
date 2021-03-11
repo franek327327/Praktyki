@@ -17,6 +17,7 @@ session_start();
     <title>Nauczyciel - Uczniowie</title>
     <link rel="stylesheet" href="../css/style1.css">
     <script src="../js/app1.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
     <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=PT+Sans&display=swap" rel="stylesheet">

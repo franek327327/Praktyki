@@ -22,7 +22,7 @@
         margin-left: 15px;
         color: white;
         font-weight: bold;
-        float: right;
+        float: right; 
         font-size: 22px;
         line-height: 20px;
         cursor: pointer;
@@ -44,53 +44,7 @@
     h3 {
         text-align: center;
     }
-    /*menu
-
-.blink-text-menu {
-    font-size: 50px;
-    list-style-type: none;
-    width: fit-content;
-    margin: 250px auto auto auto;
-}
-
-.blink-text-menu li a {
-    position: relative;
-    display: flex;
-    padding: 6px;
-    color: white;
-    font-family: Lato, sans-serif;
-    text-decoration: none;
-    text-align: center;
-    font-size: 20px;
-}
-
-.blink-text-menu li a span {
-    position: relative;
-    overflow: hidden;
-    transition: 0.6s;
-}
-
-.blink-text-menu li a span .out {
-    display: inline-flex;
-}
-
-.blink-text-menu li a span .in {
-    position: absolute;
-    left: 0;
-    opacity: 0;
-    transform: translateX(100%);
-}
-
-.blink-text-menu li a:hover span .out {
-    opacity: 0;
-    transform: translateX(-100%);
-}
-
-.blink-text-menu li a:hover span .in {
-    opacity: 1;
-    transform: translateX(0);
-}
-*/
+    
     
     
     #meni {
@@ -262,6 +216,7 @@
     input {
         border: none;
         border-radius: 5px;
+        margin-left:5px;
     }
     
     .tlo input {
@@ -313,12 +268,6 @@
         color: azure;
     }
     
-    @media only screen and (max-width: 900px) and (orientation:landscape) {
-        body {
-            transform: rotate(-90deg);
-        }
-    }
-    
     .back:active {
         color: rgb(67, 60, 60);
     }
@@ -326,32 +275,142 @@
     .back:hover {
         color: rgb(197, 180, 180);
     }
-    /* Responsywność */
-    /* 1080p */
-    
-    @media only screen and (min-height:1030px) and (min-width:1870px) {
-        h1 {
-            font-size: 40px;
-        }
-        .tab-content {
-            font-size: 20px;
-        }
-        #stopka {
-            font-size: 15px;
-        }
+
+    table,
+    th,
+    td,
+    tr {
+        border: 1px solid black;
+        text-align: center;
     }
-    /* 1440p */
+
+    /* Responsywność */ 
+    /* 1080p */
+    @media only screen and (min-width:1890px) and (min-height:1050px){
+        /* Animacje */
+
+            @keyframes ProfilAnim {
+                from {
+                    height: 0;
+                    opacity: 0;
+                }
+                to {
+                    height: 700px;
+                    opacity: 1;
+                }
+            }
+
+            @keyframes ProfilAnimRev {
+                from {
+                    height: 700px;
+                    opacity: 1;
+                }
+                to {
+                    height: 0;
+                    opacity: 0;
+                }
+            }  
+    }
+    /* 1440p+ */
     
     @media only screen and (min-width: 2500px) and (min-height: 1390px) {
         h1 {
-            font-size: 50px;
+            top: 2;
+            font-size: 60px;
+        }
+        .tab-contents{
+            width: 800px;
+            height: 1000px;
+        }
+        .close{
+            font-size: 35px;
+        }
+        input{
+            margin-left: 5px;
+            font-size: 25px;
+        }
+        .tab-el{
+            font-size: 40px;
         }
         .tab-content {
-            font-size: 25px;
+            font-size: 35px;
         }
         #stopka {
             font-size: 20px;
         }
+        .back{
+            font-size: 20px;
+        }
+        #student{
+            margin-top: 80px;
+            font-size: 35px;
+        }
+        
+        button{
+            margin-left: 15px;
+            font-size: 20px;
+        }
+        .wyswietlanie{
+            width: 60%;
+            height: 650px;   
+        }
+        .obw1 form button{
+            font-size: 20px;
+        }
+
+        /* Plan */
+        h3{
+            font-size:30px;
+        }
+
+        table,th,td,tr{
+            padding: 5px;
+            margin: 5px;
+            color:rgb(228, 244, 255);
+            font-size: 30px;
+        }
+
+        form select{
+            font-size: 20px;
+        }
+        #pl{
+            font-size:25px;
+        }
+        .plan{
+            text-align: center;
+            margin: auto;
+        }
+
+        
+        #stopka{
+            margin-bottom: 15px;
+            font-size: 25px;
+        }
+
+        /* Animacje */
+
+        @keyframes ProfilAnim {
+            from {
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                height: 1000px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes ProfilAnimRev {
+            from {
+                height: 1000px;
+                opacity: 1;
+            }
+            to {
+                height: 0;
+                opacity: 0;
+            }
+        }  
+
     }
     /* Tablet */
     
@@ -359,15 +418,44 @@
         h1 {
             font-size: 30px;
         }
-        .close {
-            position: relative;
+        .tab-contents{
+            width: 60%;
+            height: 800px;
         }
-        .tab-content {
-            font-size: 15px;
+        .wyswietlanie{
+            width: 80%;
+            height: 550px;
         }
-        #stopka {
+        .obw1{
             font-size: 20px;
         }
+        #stopka {
+            font-size: 15px;
+        }
+
+        /* Animacje */
+
+        @keyframes ProfilAnim {
+            from {
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                height: 800px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes ProfilAnimRev {
+            from {
+                height: 800px;
+                opacity: 1;
+            }
+            to {
+                height: 0;
+                opacity: 0;
+            }
+        }  
     }
     /* Phone */
     
@@ -375,49 +463,74 @@
         h1 {
             font-size: 20px;
         }
-        .blink-text-menu {
-            font-size: 15px;
+        .tab-contents{
+            width: 100%;
+            height: 500px;
         }
+        
         .tab-content {
             font-size: 15px;
         }
+        .wyswietlanie{
+            width: 80%;
+            height: 320px;
+        }
+        #dane{
+            margin-right:15px;
+            margin-left:15px;
+        }
+        #student{
+            margin-top: 10px;
+            font-size:15px;
+        }
+        .student1{margin-top:5px;}
+        .back{
+            margin:5px;
+            font-size:12px;
+        }
+
+        table,th,td,tr{
+            border-collapse: collapse;
+            padding: 5px;
+            margin: 5px;
+            color:rgb(228, 244, 255);
+            font-size: 10px;
+        }
+
+        form select{
+            font-size: 12px;
+        }
+
         #stopka {
-            font-size: 15px;
+            height: auto;
+            font-size: 10px;
         }
+
+        /* Animacje */
+
+        @keyframes ProfilAnim {
+            from {
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                height: 500px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes ProfilAnimRev {
+            from {
+                height: 500px;
+                opacity: 1;
+            }
+            to {
+                height: 0;
+                opacity: 0;
+            }
+        } 
     }
-    /*Animacje*/
-    
-    @keyframes ProfilAnim {
-        from {
-            height: 0;
-            opacity: 0;
-        }
-        to {
-            height: 400px;
-            opacity: 1;
-        }
-    }
-    
-    @keyframes ProfilAnimRev {
-        from {
-            height: 600px;
-            opacity: 1;
-        }
-        to {
-            height: 0;
-            opacity: 0;
-        }
-    }
-    
-    table,
-    th,
-    td,
-    tr {
-        border: 1px solid black;
-        text-align: center;
-        font-size: 13px;
-    }
-    
+       
     .drukuj {
         margin-bottom: 15px;
         text-align: -webkit-center;
