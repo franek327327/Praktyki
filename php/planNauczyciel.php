@@ -10,6 +10,8 @@ if(!isset($_SESSION['zalogowany']) || (isset($_SESSION['funkcja']) && $_SESSION[
     <meta charset="utf-8" />
     <title>Plan lekcji dla użytkownika o id równym <?php echo " ".$_SESSION['id'];?></title>
     <link rel="stylesheet" href="../css/style1.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script src="../js/app1.js" defer></script>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -97,7 +99,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
             }
             echo
 
-            "<div class='drukuj'><table>
+            "<div id='conas'><div class='drukuj'><table>
             <tr>
             <th>Nr</th>
             <th>Godzina</th>
@@ -259,7 +261,7 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
             .(isset($Lekcja5_8) ? $Lekcja5_8 : "-").
             "</td>
             </tr>
-            </table></div>";
+            </table></div></div>";
 
              $przedmiot = "SELECT id, przedmiot FROM slownik";
              $klasa = "SELECT id, klasa FROM klasy";
@@ -345,7 +347,9 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
             $polaczenie->close();
 ?>
 <button id="pl" onclick="printDiv();">Drukuj</button>
-            
+<button onclick="Download();">Pobierz</button>
+<button onclick="SendMail();">Wyślij na email</button>
+
 
             <div id="stopka">
         PLAN LEKCJI &copy; Praktyka gr2
