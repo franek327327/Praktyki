@@ -328,7 +328,7 @@ if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 								unset($_SESSION['fr_uN']);
 								}
 							}
-							?>">Uczeń
+							?>>Uczeń
 							</label>
 							<label>
 							<input type="radio" name="uN" value="nauczyciel" <?php
