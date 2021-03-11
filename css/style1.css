@@ -285,7 +285,7 @@
     /* Responsywność */
     /* 1080p */
     
-    @media only screen and (min-width:1890px) and (min-height:1050px) {
+    @media only screen and (min-width:1850px) and (min-height:1030px) {
         /* Animacje */
         @keyframes ProfilAnim {
             from {
@@ -310,7 +310,7 @@
     }
     /* 1440p+ */
     
-    @media only screen and (min-width: 2500px) and (min-height: 1390px) {
+    @media only screen and (min-width: 2500px) and (min-height: 1380px) {
         h1 {
             top: 2;
             font-size: 60px;
@@ -404,7 +404,7 @@
     }
     /* Tablet */
     
-    @media only screen and (max-width: 1100px) {
+    @media only screen and (min-width: 500px) {
         h1 {
             font-size: 30px;
         }
