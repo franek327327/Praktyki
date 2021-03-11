@@ -103,20 +103,8 @@
 
 
     <h1>Platforma Szkolna - Uczeń</h1>
-  <!-- <div id="Menu">
-    <ul class="blink-text-menu tab">
-        <li class="tab-el">
-            <a href="#profil">Profil</a>
-        </li>
-        <li class="tab-el">
-            <a href="planUczen.php">Plan</a>
-        </li>
-		<li class="tab-el">
-            <a href="procesWylogowania.php">Wyloguj</a>
-        </li>
-
-    </ul>
-    </div>-->
+  
+   
     <div id="meni">
         <ul>
             <li class="tab-el"><a href="#profil">Profil</a></li>

@@ -61,37 +61,10 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 </head>
 
 <body>
-<!--
-<div class ="alert">
-<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-</div>
--->
+
     <h1>Platforma Szkolna - Nauczyciel</h1>
 
-    <!--
-<div id="menu">
-    <ul class="blink-text-menu">
-        <li class="tab-el">
-            <a href="#profil">Profil</a>
-        </li>
-        <li class="tab-el">
-            <a href="uczniowie.php">Uczniowie</a>
-        </li>
-        <li class="tab-el">
-            <a href="#klasy">Klasy</a>
-        </li>
-        <li class="tab-el">
-            <a href="planNauczyciel.php">Kalendarium</a>
-        </li>
-        <li class="tab-el">
-            <a href="#lekcje">Lekcje</a>
-        </li>
-		<li class="tab-el">
-            <a href="procesWylogowania.php">Wyloguj</a>
-        </li>
-    </ul>
-</div>
--->
+   
 
 <div id="meni">
 

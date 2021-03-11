@@ -38,15 +38,6 @@
         color: rgb(255, 0, 0);
     }
     
-    .alert {
-        background-color: #f44336;
-        color: white;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    
     .closebtn {
         margin-left: 15px;
         color: white;
@@ -282,9 +273,9 @@
         border: 1px solid black;
         text-align: center;
     }
-
-     /* Animacje */
-     @keyframes ProfilAnim {
+    /* Animacje */
+    
+    @keyframes ProfilAnim {
         from {
             height: 0;
             opacity: 0;
@@ -294,6 +285,7 @@
             opacity: 1;
         }
     }
+    
     @keyframes ProfilAnimRev {
         from {
             height: 700px;
@@ -304,7 +296,6 @@
             opacity: 0;
         }
     }
-    
     /* Responsywność */
     /* 1080p */
     
