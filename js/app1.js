@@ -28,27 +28,6 @@ blinkTextMenuLinks.forEach(function(link) {
     });
 });
 
-// Profil
-/*
-const profil = document.querySelector("#profil");
-const profilShowBtn = document.querySelector("#showProfil");
-const profilCloseBtn = document.querySelector("#closeProfil");
-
-profilShowBtn.addEventListener("click", function() {
-
-    profil.style.display = "block";
-	profil.classList.add("profilAnim");
-    profil.classList.remove("profilAnimRev");
-});
-
-profilCloseBtn.addEventListener("click", function() {
-
-    profil.style.display = "block";
-	profil.classList.add("profilAnimRev");
-    profil.classList.remove("profilAnim");
-});
-*/
-
  const buttons = document.querySelectorAll(".tab-el");
 
  for(const btn of buttons){
