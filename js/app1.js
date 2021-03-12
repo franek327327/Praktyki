@@ -106,10 +106,10 @@ function printDiv()
             url: "test.php",
             data: {zdj : img},
             success : function(response) {
-                console.log(response);
+                alert(response);
             },
             error : function(response) {
-                console.log(response);
+                alert(response);
             }
         });
        });

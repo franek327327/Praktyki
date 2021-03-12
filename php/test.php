@@ -11,11 +11,10 @@ if(isset($_POST['zdj']))
     $mail->IsSMTP();
     $mail->CharSet="UTF-8";
     $mail->Host = "smtp.wp.pl"; /* Zależne od hostingu poczty*/
-    $mail->SMTPDebug = 1;
+    $mail->SMTPDebug = 0;
     $mail->Port = 465 ; /* Zależne od hostingu poczty, czasem 587 */
     $mail->SMTPSecure = 'ssl'; /* Jeżeli ma być aktywne szyfrowanie SSL */
     $mail->SMTPAuth = true;
-    $mail->IsHTML(true);
     $mail->Username = "plan.lekcji321@wp.pl"; /* login do skrzynki email często adres*/
     $mail->Password = "planlekcji123"; /* Hasło do poczty */
     $mail->setFrom('plan.lekcji321@wp.pl', 'Plan Lekcji'); /* adres e-mail i nazwa nadawcy */
@@ -24,8 +23,9 @@ if(isset($_POST['zdj']))
     $mail->Body = "Witaj, w załączniku wysłano plan lekcji!";
     $mail->AddAttachment('planlekcji.jpg');
 
+
     if(!$mail->Send()) {
-    echo "Wiadmość nie została wysłana!". $mail->ErrorInfo;
+    echo "Wiadmość nie została wysłana!";
     } else 
     {
         echo "Wiadmość została wysłana!";

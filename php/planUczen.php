@@ -3,6 +3,8 @@
     <title>Plan lekcji</title>
     <link rel="stylesheet" href="../css/style1.css">
     <script src="../js/app1.js" defer></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +14,9 @@
 </head>
 <body>
 <h1>Platforma Szkolna - Plan</h1>
-
+<a class="back" href="nauczyciel.php">Powrót</a>
+<div id="plan">
+        <h3>Plan Lekcji</h3>
 <?php
 // wyswietlanie planu
 session_start();
@@ -29,7 +33,6 @@ if(!isset($_SESSION['jestKlasa']))
     exit();
 }
 ?>
-<a class="back" href="nauczyciel.php">Powrót</a>
 <?php
 require_once "polaczenieZBaza.php";
 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
@@ -80,7 +83,7 @@ $lekcje1 =
                 }
             }
             echo
-            "<div id='plan'><h3>Plan lekcji dla klasy ".$_SESSION['klasa']."</h3> <div class='drukuj'><table>
+            "<div id='conas'><div class='drukuj'><table>
             <tr>
             <th>Nr</th>
             <th>Godzina</th>
@@ -242,11 +245,14 @@ $lekcje1 =
             .(isset($Lekcja5_8) ? $Lekcja5_8 : "-").
             "</td>
             </tr>
-            </table></div>";
+            </table></div></div>";
             
             $polaczenie->close();
 ?>
 <button id="pl" onclick="printDiv();">Drukuj</button>
+<button onclick="Download();">Pobierz</button>
+<button onclick="SendMail();">Wyślij na email</button>
+
 </div>
 <div id="stopka">
         PLAN LEKCJI &copy; Praktyka gr2
