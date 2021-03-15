@@ -206,38 +206,39 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
         <!-- Usuwanie i wyświetlanie przedmiotów-->
         <h3>Dodaj Przedmiot</h3>
         <div class="wyswietlanie">
-
+                
         
-        <div class="obw1">
-       
-            <?php
-                $przedmioty = "SELECT id, przedmiot FROM slownik";
+            <div class="obw1">
+                <table>
+                <?php
+                    $przedmioty = "SELECT id, przedmiot FROM slownik";
 
-                $rezultat = $polaczenie->query($przedmioty);
+                    $rezultat = $polaczenie->query($przedmioty);
 
-                if ($rezultat->num_rows > 0) {
-                    $petla=0;
-                    while($wiersz = $rezultat->fetch_assoc()) {
-                        $petla++;
-                        echo $petla. ". " . $wiersz["przedmiot"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>" . "
-                        <form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> 
-                        <input type='hidden' name='nazwaPrzedmiotu' value='".$wiersz['przedmiot']."'/>
-                        <button name = 'edytowaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Edytuj</button> </form>" . "<br>";
+                    if ($rezultat->num_rows > 0) {
+                        $petla=0;
+                        while($wiersz = $rezultat->fetch_assoc()) {
+                            $petla++;
+                            echo "<tr><td>". $petla. ".</td><td> " . $wiersz["przedmiot"]."</td><td><form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form></td>" . "
+                            <td><form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> 
+                            <input type='hidden' name='nazwaPrzedmiotu' value='".$wiersz['przedmiot']."'/>
+                            <button name = 'edytowaniePrzedmiotu' type = 'submit' value = '". $wiersz['id'] ."'>" . "Edytuj</button> </form></td></tr>";
+                        }
+                        $rezultat->close();
                     }
-                    $rezultat->close();
-                }
-                if(isset($_SESSION['przedmioty']))
-                {
-                    ?>
-                    <script>
-                    alert(<?php echo '"'.$_SESSION["przedmioty"].'"'; ?>);
-                    </script>
-                    <?php
-                    unset($_SESSION['przedmioty']);
-                }
-            ?>
+                    if(isset($_SESSION['przedmioty']))
+                    {
+                        ?>
+                        <script>
+                        alert(<?php echo '"'.$_SESSION["przedmioty"].'"'; ?>);
+                        </script>
+                        <?php
+                        unset($_SESSION['przedmioty']);
+                    }
+                ?>
+                </table>
             </div>
-            </div>
+        </div>
        
             
         <!-- Dodawanie przedmiotów -->
@@ -253,36 +254,36 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
         <div class="wyswietlanie">
             
         
-        <div class="obw1">
-        
-        <?php
-            $klasy = "SELECT id, klasa FROM klasy";
-
-            $rezultat = $polaczenie->query($klasy);
-
-            if ($rezultat->num_rows > 0) {
-                $petla = 0;
-                while($wiersz = $rezultat->fetch_assoc()) {
-                    $petla++;
-                    echo $petla . ". " . $wiersz["klasa"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwanieKlasy' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>
-                    <form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> 
-                    <input type='hidden' name='nazwaKlasy' value='".$wiersz['klasa']."'/>
-                    <button name = 'edytowanieKlasy' type = 'submit' value = '". $wiersz['id'] ."'>" . "Edytuj</button> </form>" . "<br>";
-                }
-                $rezultat->close();
-            }
-            if(isset($_SESSION['klasy']))
-            {
-                ?>
-                    <script>
-                    alert(<?php echo '"'.$_SESSION["klasy"].'"'; ?>);
-                    </script>
+            <div class="obw1">
+                <table>
                     <?php
-                unset($_SESSION['klasy']);
-            }
-        ?>
-       
-        </div>
+                        $klasy = "SELECT id, klasa FROM klasy";
+
+                        $rezultat = $polaczenie->query($klasy);
+
+                        if ($rezultat->num_rows > 0) {
+                            $petla = 0;
+                            while($wiersz = $rezultat->fetch_assoc()) {
+                                $petla++;
+                                echo "<tr><td>".$petla . ".</td><td>" . $wiersz["klasa"]."</td><td><form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwanieKlasy' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form></td>
+                                <td><form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> 
+                                <input type='hidden' name='nazwaKlasy' value='".$wiersz['klasa']."'/>
+                                <button name = 'edytowanieKlasy' type = 'submit' value = '". $wiersz['id'] ."'>" . "Edytuj</button> </form></td></tr>";
+                            }
+                            $rezultat->close();
+                        }
+                        if(isset($_SESSION['klasy']))
+                        {
+                            ?>
+                                <script>
+                                alert(<?php echo '"'.$_SESSION["klasy"].'"'; ?>);
+                                </script>
+                                <?php
+                            unset($_SESSION['klasy']);
+                        }
+                    ?>
+                </table>
+            </div>
         </div>
         <!-- Dodawanie klasy -->
         
@@ -303,36 +304,36 @@ $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
         <div class="wyswietlanie">
             
         
-        <div class="obw1">
-        
-        <?php
-            $sale = "SELECT id, sala FROM sale";
-
-            $rezultat = $polaczenie->query($sale);
-
-            if ($rezultat->num_rows > 0) {
-                $petla = 0;
-                while($wiersz = $rezultat->fetch_assoc()) {
-                    $petla++;
-                    echo $petla . ". " . $wiersz["sala"]."<form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwanieSali' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button> </form>
-                    <form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> 
-                    <input type='hidden' name='nazwaSali' value='".$wiersz['sala']."'/>
-                    <button name = 'edytowanieSali' type = 'submit' value = '". $wiersz['id'] ."'>" . "Edytuj</button> </form>" . "<br>";
-                }
-                $rezultat->close();
-            }
-            if(isset($_SESSION['sale']))
-            {
-                ?>
-                    <script>
-                    alert(<?php echo '"'.$_SESSION["sale"].'"'; ?>);
-                    </script>
+            <div class="obw1">
+                <table>
                     <?php
-                unset($_SESSION['sale']);
-            }
-        ?>
-       
-        </div>
+                        $sale = "SELECT id, sala FROM sale";
+
+                        $rezultat = $polaczenie->query($sale);
+
+                        if ($rezultat->num_rows > 0) {
+                            $petla = 0;
+                            while($wiersz = $rezultat->fetch_assoc()) {
+                                $petla++;
+                                echo "<tr><td>".$petla . ".</td><td>" . $wiersz["sala"]."</td><td><form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> <button name = 'usuwanieSali' type = 'submit' value = '". $wiersz['id'] ."'>" . "Usun</button></td> </form>
+                                <td><form style = 'display: inline;' method = 'post' action = 'nauczycielAkcje.php'> 
+                                <input type='hidden' name='nazwaSali' value='".$wiersz['sala']."'/>
+                                <button name = 'edytowanieSali' type = 'submit' value = '". $wiersz['id'] ."'>" . "Edytuj</button></td></form></tr>";
+                            }
+                            $rezultat->close();
+                        }
+                        if(isset($_SESSION['sale']))
+                        {
+                            ?>
+                                <script>
+                                alert(<?php echo '"'.$_SESSION["sale"].'"'; ?>);
+                                </script>
+                                <?php
+                            unset($_SESSION['sale']);
+                        }
+                    ?>
+                </table>
+            </div>
         </div>
         <!-- Dodawanie Sali -->
         

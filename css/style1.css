@@ -266,11 +266,28 @@
         color: white;
     }
     
-    table,
-    th,
-    td,
-    tr {
-        border: 1px solid black;
+    table, td, th
+     {
+        border-spacing: 0px;
+        border: 1px solid rgb(118, 255, 225);
+        text-align: center;
+        color: rgb(228, 244, 255);
+        margin: 5px;
+    }
+    .obw1 table{
+        border-right: 1px solid rgb(255, 255, 255);
+        border-left: 1px solid rgb(255, 255, 255);
+        border-top:0px;
+        border-bottom:0px;
+        text-align: center;
+        color: rgb(0, 0, 0);
+    }
+    .obw1 table td{
+        border: 0px;
+    }
+    table button{
+        background-color: #465973;
+        color: rgb(255, 255, 255);
         text-align: center;
     }
     /* Animacje */
@@ -390,6 +407,7 @@
             text-align: center;
             margin: auto;
         }
+        
         #stopka {
             margin-bottom: 15px;
             font-size: 25px;
@@ -433,6 +451,14 @@
         .obw1 {
             font-size: 20px;
         }
+        
+        table,
+        th,
+        td,
+        tr{
+            color: rgb(228, 244, 255);
+        }
+
         #stopka {
             font-size: 15px;
         }
@@ -490,16 +516,19 @@
             margin: 5px;
             font-size: 12px;
         }
-        table,
-        th,
-        td,
-        tr {
+        table
+         {
             border-collapse: collapse;
             padding: 5px;
             margin: 5px;
             color: rgb(228, 244, 255);
             font-size: 10px;
         }
+        td{
+            margin: 1px;
+            padding: 1px;
+        }
+
         form select {
             font-size: 12px;
         }
