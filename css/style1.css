@@ -72,6 +72,8 @@
     }
     
     #student {
+        max-height: 80vh;
+        overflow: auto;
         margin: auto;
         text-align: center;
         font-size: large;
