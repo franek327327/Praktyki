@@ -15,6 +15,7 @@ require "polaczenieZBaza.php";
 // Dodawanie Lekcji
 if(isset($_POST['dodawanie']))
 {
+    echo"dodawanie";
                 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
                 unset($_POST['dodawanie']);
 
@@ -25,9 +26,7 @@ if(isset($_POST['dodawanie']))
                     VALUES ('".$_POST['przedmiot']."', '".$_POST['klasa']."', '".$_POST['dzien']."', '".$_POST['godzina']."', '".$_POST['sala']."', '".$_POST['imieinazwisko']."')";
 
                     $sprawdzanieLekcji=
-                    "SELECT idDzien, idGodzinaLekcyjna, idKlasa, IdNauczyciel
-                    FROM plan
-                    ";
+                    "SELECT IdDzien, IdGodzinaLekcyjna, IdKlasa, IdNauczyciel FROM plan";
 
                     $rezultatSprawdzania = $polaczenie->query($sprawdzanieLekcji);
 
@@ -35,13 +34,14 @@ if(isset($_POST['dodawanie']))
 
                     if ($rezultatSprawdzania->num_rows > 0) 
                     {
+                        echo"znaleziono wiersz";
                     while($wiersz = $rezultatSprawdzania->fetch_assoc()) 
                         {
-                            if($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['idKlasa'] == $_POST['klasa'])
+                            if($wiersz['IdDzien'] == $_POST['dzien'] && $wiersz['IdGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['IdKlasa'] == $_POST['klasa'])
                             {
                                 $_SESSION['wiadomoscDodawania'] = "Ta klasa już ma lekcję w tym czasie!";
                                 $czyMoznaWyslac = false;
-                            }else if($wiersz['idDzien'] == $_POST['dzien'] && $wiersz['idGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['IdNauczyciel'] == $_POST['imieinazwisko'])
+                            }else if($wiersz['IdDzien'] == $_POST['dzien'] && $wiersz['IdGodzinaLekcyjna'] == $_POST['godzina'] && $wiersz['IdNauczyciel'] == $_POST['imieinazwisko'])
                             {
                                 $_SESSION['wiadomoscDodawania'] = "Ten nauczyciel już ma lekcję w tym czasie!";
                                 $czyMoznaWyslac = false;
@@ -162,7 +162,7 @@ elseif(isset($_POST['usuwanieKlasy']))
 else if(isset($_POST['dodawanieKlasy']))
 {
     $czyMoznaWyslac = true;
-    unset($_POST['dodawanieKlasy']);
+
     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
     $dodawanie = "INSERT INTO klasy (klasa) VALUES ('".$_POST['dodawanaKlasa']."')";
     $sprawdzanie = "SELECT id, klasa FROM klasy WHERE klasa=".$_POST['dodawanaKlasa'];
