@@ -10,14 +10,14 @@ if(isset($_POST['zdj']))
     $mail = new PHPMailer\PHPMailer\PHPMailer();
     $mail->IsSMTP();
     $mail->CharSet="UTF-8";
-    $mail->Host = "smtp.wp.pl"; /* Zależne od hostingu poczty*/
-    $mail->SMTPDebug = 0;
-    $mail->Port = 465 ; /* Zależne od hostingu poczty, czasem 587 */
+    $mail->Host = "smtp.gmail.com"; /* Zależne od hostingu poczty*/
+    $mail->SMTPDebug = 1;
+    $mail->Port = 465; /* Zależne od hostingu poczty, czasem 587 */
     $mail->SMTPSecure = 'ssl'; /* Jeżeli ma być aktywne szyfrowanie SSL */
     $mail->SMTPAuth = true;
-    $mail->Username = "plan.lekcji321@wp.pl"; /* login do skrzynki email często adres*/
+    $mail->Username = "planlekcji06"; /* login do skrzynki email często adres*/
     $mail->Password = "planlekcji123"; /* Hasło do poczty */
-    $mail->setFrom('plan.lekcji321@wp.pl', 'Plan Lekcji'); /* adres e-mail i nazwa nadawcy */
+    $mail->setFrom('planlekcji06@gmail.com', 'Plan Lekcji'); /* adres e-mail i nazwa nadawcy */
     $mail->AddAddress($_SESSION['email']); /* adres lub adresy odbiorców */
     $mail->Subject = "Plan lekcji"; /* Tytuł wiadomości */
     $mail->Body = "Witaj, w załączniku wysłano plan lekcji!";
