@@ -275,6 +275,7 @@
         text-align: center;
         color: rgb(228, 244, 255);
         margin: 5px;
+        padding: 6px;
     }
     .obw1 table{
         border-right: 1px solid rgb(255, 255, 255);
@@ -394,7 +395,8 @@
         th,
         td,
         tr {
-            padding: 5px;
+            border-spacing: 0px;
+            padding: 6px;
             margin: 5px;
             color: rgb(228, 244, 255);
             font-size: 30px;
