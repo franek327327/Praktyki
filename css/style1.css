@@ -294,7 +294,7 @@
         color: rgb(0, 0, 0);
         margin: auto;
     }
-    .obw1 table button{
+    .obw1 table button, #student table button{
         color: rgb(255, 255, 255);
     }
     
@@ -461,12 +461,18 @@
             width: 60%;
             height: 800px;
         }
+        .back {
+            border: solid 1px;
+        }
         .wyswietlanie {
             width: 80%;
             height: 550px;
         }
         .obw1 {
             font-size: 20px;
+        }
+        #student{
+            margin-top: 10px;
         }
         table,
         th,
@@ -528,20 +534,22 @@
             margin-top: 5px;
         }
         .back {
-            margin: 5px;
-            font-size: 12px;
-        }
-        table {
-            border-collapse: collapse;
-            padding: 5px;
-            margin: 5px;
-            color: rgb(228, 244, 255);
-            font-size: 10px;
-        }
-        td {
-            margin: 1px;
+            border: solid 1px;
             padding: 1px;
+            margin: 5px;
+            font-size: 9px;
         }
+        table, td, th {
+            border-collapse: collapse;
+            margin: 5px;
+            color: rgb(0, 0, 0);
+            padding: 1px;
+            font-size: 8px;
+        }
+        table button{
+            font-size: 8px;
+        }
+
         form select {
             font-size: 12px;
         }
