@@ -294,6 +294,9 @@
         color: rgb(0, 0, 0);
         margin: auto;
     }
+    .obw1 table button{
+        color: rgb(255, 255, 255);
+    }
     
     .obw1 table td {
         border: 0px;
@@ -301,7 +304,6 @@
     
     table button {
         background-color: #465973;
-        color: rgb(255, 255, 255);
         text-align: center;
     }
     /* Animacje */
@@ -360,6 +362,10 @@
             top: 2;
             font-size: 60px;
         }
+        img{
+            width:25%;
+            height:25%;
+        }
         .tab-contents {
             width: 800px;
             height: 1000px;
@@ -409,15 +415,12 @@
             border-spacing: 0px;
             padding: 6px;
             margin: 5px;
-            color: rgb(228, 244, 255);
             font-size: 30px;
         }
         form select {
             font-size: 20px;
         }
-        #pl {
-            font-size: 25px;
-        }
+       
         .plan {
             text-align: center;
             margin: auto;
