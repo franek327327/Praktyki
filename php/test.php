@@ -11,7 +11,7 @@ if(isset($_POST['zdj']))
     $mail->IsSMTP();
     $mail->CharSet="UTF-8";
     $mail->Host = "smtp.gmail.com"; /* Zależne od hostingu poczty*/
-    $mail->SMTPDebug = 1;
+    $mail->SMTPDebug = 0;
     $mail->Port = 465; /* Zależne od hostingu poczty, czasem 587 */
     $mail->SMTPSecure = 'ssl'; /* Jeżeli ma być aktywne szyfrowanie SSL */
     $mail->SMTPAuth = true;

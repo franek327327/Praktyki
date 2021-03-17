@@ -25,6 +25,7 @@ if(isset($_POST['dodawanie']))
 {
     echo"dodawanie";
                 $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+                
                 unset($_POST['dodawanie']);
 
                 $czyMoznaWyslac = true;
@@ -289,7 +290,7 @@ else if(isset($_POST['edycjaLekcji']))
              echo '<input type="submit" name="usuniecieLekcji" value="Usuń lekcję!">';
              echo "</form>";  
              ?>
-            <button onclick="location.href='plannauczyciel.php'">powrót</button>
+            <button onclick="location.href='planNauczyciel.php'">powrót</button>
             <?php 
 
             }
@@ -331,6 +332,7 @@ else if(isset($_POST['usuniecieLekcji']))
 else if(isset($_POST['edytowanieKlasy']))
 {
     $_SESSION["nazwaKlasy"] = $_POST["nazwaKlasy"];
+    echo '<h3 style="color:white">Edycja klasy '.$_SESSION["nazwaKlasy"].'</h3>';
     echo '<form method="post" action="nauczycielAkcje.php">';
     echo '<input type="text" name="zmianaKlasy" value="'.$_SESSION['nazwaKlasy'].'">';
     echo '<input type="submit" name="edytuj" value="edytuj klase">';
@@ -369,6 +371,7 @@ elseif(isset($_POST["zmianaKlasy"]))
 //edytowanie przedmiotu
 else if(isset($_POST['edytowaniePrzedmiotu']))
 {
+    echo '<h3 style="color:white">Edycja przedmiotu '.$_POST["nazwaPrzedmiotu"].'</h3>';
     echo '<form method="post" action="nauczycielAkcje.php">';
     echo '<input type="text" name="zmianaPrzedmiotu" value="'.$_POST['nazwaPrzedmiotu'].'">';
     echo '<input type="submit" name="edytuj" value="Zapisz!">';
@@ -562,6 +565,7 @@ else if(isset($_POST['dodawanieSali']))
 // edytowanie sali
 else if(isset($_POST['edytowanieSali']))
 {
+    echo '<h3 style="color:white">Edycja sali '.$_POST["nazwaSali"].'</h3>';
     echo '<form method="post" action="nauczycielAkcje.php">';
     echo '<input type="text" name="zmianaSali" value="'.$_POST['nazwaSali'].'">';
     echo '<input type="submit" name="edytuj" value="Zapisz!">';
