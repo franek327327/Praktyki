@@ -188,6 +188,7 @@
         width: auto;
         height: auto;
         border-radius: 19px;
+        padding: 5px;
     }
     
     button {
@@ -461,6 +462,9 @@
             width: 60%;
             height: 800px;
         }
+        #meni{
+            margin-top: 270px;
+        }
         .back {
             border: solid 1px;
         }
@@ -521,6 +525,16 @@
         .wyswietlanie {
             width: 80%;
             height: 320px;
+        }
+        .obw1 table, .obw1 td, .obw1 th, .obw1 tr{
+            font-size:20px;
+        }
+        .obw1 table button{
+            font-size: 12px;
+        }
+
+        #meni{
+            margin-top: 150px;
         }
         #dane {
             margin-right: 15px;
