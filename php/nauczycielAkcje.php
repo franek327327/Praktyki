@@ -482,26 +482,28 @@ else if (isset($_POST['zapisz']))
                     else
                     {
                         //Czy mail istnieje
-                        $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE email='$email' AND id <> ".$_SESSION['id']);
+                        $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE email='$email' AND id = ".$_SESSION['id']);
                         if(!$rezultat) throw new Exception($polaczenie->error);
                         
                         $ileMaili = $rezultat->num_rows;
                         if($ileMaili>0)
                         {
                             $ok=false;
-                            $_SESSION['error_email']="Podany email już istnieje w bazie";
+                            $_SESSION['wiadomosc'] ="Podany email już istnieje w bazie!";
+                            header("Location:nauczyciel.php");
                         }
                         $rezultat->close();
                         
                         //czy login istnieje
-                        $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE BINARY login='$login' AND id <> ".$_SESSION['id']);
+                        $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE BINARY login='$login' AND id = ".$_SESSION['id']);
                         if(!$rezultat) throw new Exception($polaczenie->error);
                         
                         $ileLogin = $rezultat->num_rows;
                         if($ileLogin>0)
                         {
                             $ok=false;
-                            $_SESSION['error_login']="Podany login już istnieje w bazie";
+                            $_SESSION['wiadomosc'] ="Podany login już istnieje w bazie!";
+                            header("Location:nauczyciel.php");
                         }
                         if($ok==true)
                         {
@@ -609,7 +611,7 @@ elseif(isset($_POST["usuwanieSali"]))
     }
     else
     {
-        $_SESSION['sale'] = "Nie udało się usunąć sali!";
+        $_SESSION['sale'] = "Ta sala jest używana w planie!";
         $polaczenie->close();
         header("Location:nauczyciel.php");
     }

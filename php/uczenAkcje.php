@@ -87,7 +87,8 @@ else if (isset($_POST['zapisz']))
                         if($ileMaili>0)
                         {
                             $ok=false;
-                            $_SESSION['error_email']="Podany email już istnieje w bazie";
+                            $_SESSION['wiadomosc'] ="Podany email już istnieje w bazie!";
+                            header("Location:uczen.php");
                         }
                         $rezultat->close();
                         
@@ -99,7 +100,8 @@ else if (isset($_POST['zapisz']))
                         if($ileLogin>0)
                         {
                             $ok=false;
-                            $_SESSION['error_login']="Podany login już istnieje w bazie";
+                            $_SESSION['wiadomosc'] ="Podany login już istnieje w bazie!";
+                            header("Location:uczen.php");
                         }
                         if($ok==true)
                         {

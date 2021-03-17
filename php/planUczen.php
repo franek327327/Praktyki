@@ -83,7 +83,7 @@ $lekcje1 =
                 }
             }
             echo
-            "<div id='conas'><div class='drukuj'><table>
+            "<div class='drukuj'><table>
             <tr>
             <th>Nr</th>
             <th>Godzina</th>
@@ -245,7 +245,7 @@ $lekcje1 =
             .(isset($Lekcja5_8) ? $Lekcja5_8 : "-").
             "</td>
             </tr>
-            </table></div></div>";
+            </table></div>";
             
             $polaczenie->close();
 ?>

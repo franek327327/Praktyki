@@ -106,7 +106,7 @@ if (isset($_POST['emailReg']))
 			else
 			{
 				//Czy mail istnieje
-				$rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE email='$email'");
+				$rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE BINARY email='$email'");
 				if(!$rezultat) throw new Exception($polaczenie->error);
 				
 				$ileMaili = $rezultat->num_rows;
@@ -117,7 +117,7 @@ if (isset($_POST['emailReg']))
 				}
 				
 				//czy login istnieje
-				$rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE login='$login'");
+				$rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE BINARY login='$login'");
 				if(!$rezultat) throw new Exception($polaczenie->error);
 				
 				$ileLogin = $rezultat->num_rows;

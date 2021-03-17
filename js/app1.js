@@ -61,7 +61,6 @@ blinkTextMenuLinks.forEach(function(link) {
 // Drukowanie planu
 function printDiv()
 {
-            console.log("print");
 			var printContents = document.querySelector(".drukuj").innerHTML;
 			var originalContents = document.body.innerHTML;
 
@@ -78,7 +77,7 @@ function printDiv()
 
  function SendMail()
   {
-    html2canvas(document.getElementById('conas')).then(function(canvas) {
+    html2canvas(document.querySelector('.drukuj').children[0]).then(function(canvas) {
         var img=canvas.toDataURL();
         $.ajax({
             type: "POST",
@@ -99,7 +98,9 @@ function printDiv()
   }
   function Download()
   {
-    html2canvas(document.getElementById('conas')).then(function(canvas) {
+      const planLekcji = document.querySelector(".drukuj").children[0];
+      planLekcji.classList.add("pobierz");
+    html2canvas(document.querySelector('.drukuj')).then(function(canvas) {
         SaveAs(canvas.toDataURL(), 'plan lekcji.png');
         });
   }
