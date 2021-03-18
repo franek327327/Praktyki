@@ -147,11 +147,6 @@
         display: block;
     }
     
-    .tab-el {
-        border-radius: 15px 15px 0 0;
-        transition: 0.1s all;
-    }
-    
     .close {
         text-decoration: none;
         margin-left: 5px;
